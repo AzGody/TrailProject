@@ -8,32 +8,43 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
-#[ApiResource()]
+#[ApiResource(
+    normalizationContext: ['groups' => ['evenement:read']],
+    denormalizationContext: ['groups' => ['evenement:write']],
+)]
 #[ORM\Entity(repositoryClass: EvenementRepository::class)]
 class Evenement
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['evenement:read', 'evenement:write'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['evenement:read', 'evenement:write'])]
     private ?string $nom = null;
 
     #[ORM\Column]
+    #[Groups(['evenement:read', 'evenement:write'])]
     private array $localisation = [];
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Groups(['evenement:read', 'evenement:write'])]
     private ?\DateTimeInterface $dateDebut = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Groups(['evenement:read', 'evenement:write'])]
     private ?\DateTimeInterface $dateFin = null;
 
     #[ORM\OneToMany(mappedBy: 'evenement', targetEntity: Course::class)]
+    #[Groups(['evenement:read', 'evenement:write'])]
     private Collection $course;
 
     #[ORM\ManyToMany(targetEntity: Utilisateur::class, mappedBy: 'evenement')]
+    #[Groups(['evenement:read', 'evenement:write'])]
     private Collection $utilisateurs;
 
     public function __construct()

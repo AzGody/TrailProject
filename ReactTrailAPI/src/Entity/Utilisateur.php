@@ -9,35 +9,45 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
-#[ApiResource()]
+#[ApiResource(
+    normalizationContext: ['groups' => ['utilisateur:read']],
+    denormalizationContext: ['groups' => ['utilisateur:write']],)]
 #[ORM\Entity(repositoryClass: UtilisateurRepository::class)]
 class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['utilisateur:read', 'utilisateur:write'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
+    #[Groups(['utilisateur:read', 'utilisateur:write'])]
     private ?string $email = null;
 
     #[ORM\Column]
+    #[Groups(['utilisateur:read', 'utilisateur:write'])]
     private array $roles = [];
 
     /**
      * @var string The hashed password
      */
     #[ORM\Column]
+    #[Groups(['utilisateur:read', 'utilisateur:write'])]
     private ?string $password = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['utilisateur:read', 'utilisateur:write'])]
     private ?string $pseudo = null;
 
     #[ORM\ManyToMany(targetEntity: Evenement::class, inversedBy: 'utilisateurs')]
+    #[Groups(['utilisateur:read', 'utilisateur:write'])]
     private Collection $evenement;
 
     #[ORM\ManyToMany(targetEntity: Course::class, inversedBy: 'utilisateurs')]
+    #[Groups(['utilisateur:read', 'utilisateur:write'])]
     private Collection $course;
 
     public function __construct()
