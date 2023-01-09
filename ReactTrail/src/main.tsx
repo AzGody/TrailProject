@@ -4,6 +4,7 @@ import App from './App'
 import Courses from './Pages/courses'
 import Evenements from './Pages/evenements'
 import List from './Components/trailList'
+import Details from './Components/trailDetails'
 // import './index.css'
 
 const router = createBrowserRouter([
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
   {
     path: "/list",
     element: <List />
+  },
+  {
+    path: "/details",
+    element: <Details />
   },
 ])
 
