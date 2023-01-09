@@ -9,6 +9,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ApiResource(
     normalizationContext: ['groups' => ['course:read']],
@@ -24,27 +25,31 @@ class Course
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['course:read', 'course:write'])]
+    #[Groups(['course:read', 'course:write', 'evenement:read'])]
+    #[Assert\NotBlank]
     private ?string $nom = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    #[Groups(['course:read', 'course:write'])]
+    #[Groups(['course:read', 'course:write', 'evenement:read'])]
+    #[Assert\NotBlank]
     private ?\DateTimeInterface $date = null;
 
     #[ORM\Column]
-    #[Groups(['course:read', 'course:write'])]
+    #[Groups(['course:read', 'course:write', 'evenement:read'])]
+    #[Assert\NotBlank]
     private array $localisation = [];
 
     #[ORM\Column]
-    #[Groups(['course:read', 'course:write'])]
+    #[Groups(['course:read', 'course:write', 'evenement:read'])]
+    #[Assert\NotBlank]
     private ?int $distance = null;
 
     #[ORM\Column(nullable: true)]
-    #[Groups(['course:read', 'course:write'])]
+    #[Groups(['course:read', 'course:write', 'evenement:read'])]
     private ?int $denivelePositif = null;
 
     #[ORM\Column(nullable: true)]
-    #[Groups(['course:read', 'course:write'])]
+    #[Groups(['course:read', 'course:write', 'evenement:read'])]
     private ?int $deniveleNegatif = null;
 
     #[ORM\ManyToOne(inversedBy: 'course')]
@@ -52,7 +57,8 @@ class Course
     private ?Evenement $evenement = null;
 
     #[ORM\ManyToMany(targetEntity: Utilisateur::class, mappedBy: 'course')]
-    #[Groups(['course:read', 'course:write'])]
+    #[Groups(['course:read', 'course:write', 'evenement:read'])]
+    #[Assert\NotBlank]
     private Collection $utilisateurs;
 
     public function __construct()
