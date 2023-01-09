@@ -1,6 +1,8 @@
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import App from './App'
+import Courses from './Pages/courses'
+import Evenements from './Pages/evenements'
 import './index.css'
 
 const router = createBrowserRouter([
@@ -10,11 +12,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/evenements",
-    element: <div>Evenements</div>,
+    element: <Evenements />,
   },
   {
     path: "/courses",
-    element: <div>Courses</div>
+    element: <Courses />
   }
 ])
 
