@@ -1,5 +1,4 @@
 import './style.css'
-import formBg from '../../assets/courses-form-bg.jpg'
 
 const Courses = () => {
   return (
