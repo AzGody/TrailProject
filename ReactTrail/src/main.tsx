@@ -3,9 +3,9 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import App from './App'
 import Courses from './Pages/courses'
 import Evenements from './Pages/evenements'
-import List from './Components/trailList'
-// import './index.css'
-<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Dancing+Script" />
+import './index.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 const router = createBrowserRouter([
   {
     path: '/',
