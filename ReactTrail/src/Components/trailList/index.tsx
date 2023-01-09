@@ -19,9 +19,9 @@ const List = () => {
                         Course à pied en nature, sur sentiers et chemins de montagne. Dépassez vos limites et admirez la beauté de la nature.
                         </p>
                         <div className="user">
-                            <img src="https://www.belambra.fr/les-echappees/wp-inside/uploads/2019/12/perdu-randonnee-reflexes.jpg" alt="user" />
+                            <img src="https://img1.freepng.fr/20180714/ggq/kisspng-user-profile-computer-icons-login-clip-art-profile-picture-icon-5b49de2f1ef441.4301202215315676631268.jpg" alt="user" />
                             <div className="user-info">
-                                <h5>July Dec</h5>
+                                <h5>Bastien Oswald</h5>
                                 <small>2h ago</small>
                             </div>
                         </div>
@@ -42,9 +42,9 @@ const List = () => {
                         Course à pied en nature, sur sentiers et chemins de montagne. Dépassez vos limites et admirez la beauté de la nature.
                         </p>
                         <div className="user">
-                            <img src="https://www.belambra.fr/les-echappees/wp-inside/uploads/2019/12/perdu-randonnee-reflexes.jpg" alt="user" />
+                            <img src="https://img1.freepng.fr/20180714/ggq/kisspng-user-profile-computer-icons-login-clip-art-profile-picture-icon-5b49de2f1ef441.4301202215315676631268.jpg" alt="user" />
                             <div className="user-info">
-                                <h5>July Dec</h5>
+                                <h5>Bastien Oswald</h5>
                                 <small>2h ago</small>
                             </div>
                         </div>
@@ -64,9 +64,9 @@ const List = () => {
                         Course à pied en nature, sur sentiers et chemins de montagne. Dépassez vos limites et admirez la beauté de la nature.
                         </p>
                         <div className="user">
-                            <img src="https://www.belambra.fr/les-echappees/wp-inside/uploads/2019/12/perdu-randonnee-reflexes.jpg" alt="user" />
+                            <img src="https://img1.freepng.fr/20180714/ggq/kisspng-user-profile-computer-icons-login-clip-art-profile-picture-icon-5b49de2f1ef441.4301202215315676631268.jpg" alt="user" />
                             <div className="user-info">
-                                <h5>July Dec</h5>
+                                <h5>Bastien Oswald</h5>
                                 <small>2h ago</small>
                             </div>
                         </div>
@@ -86,9 +86,9 @@ const List = () => {
                         Course à pied en nature, sur sentiers et chemins de montagne. Dépassez vos limites et admirez la beauté de la nature.
                         </p>
                         <div className="user">
-                            <img src="https://www.belambra.fr/les-echappees/wp-inside/uploads/2019/12/perdu-randonnee-reflexes.jpg" alt="user" />
+                            <img src="https://img1.freepng.fr/20180714/ggq/kisspng-user-profile-computer-icons-login-clip-art-profile-picture-icon-5b49de2f1ef441.4301202215315676631268.jpg" alt="user" />
                             <div className="user-info">
-                                <h5>July Dec</h5>
+                                <h5>Bastien Oswald</h5>
                                 <small>2h ago</small>
                             </div>
                         </div>
@@ -108,9 +108,9 @@ const List = () => {
                         Course à pied en nature, sur sentiers et chemins de montagne. Dépassez vos limites et admirez la beauté de la nature.
                         </p>
                         <div className="user">
-                            <img src="https://www.belambra.fr/les-echappees/wp-inside/uploads/2019/12/perdu-randonnee-reflexes.jpg" alt="user" />
+                            <img src="https://img1.freepng.fr/20180714/ggq/kisspng-user-profile-computer-icons-login-clip-art-profile-picture-icon-5b49de2f1ef441.4301202215315676631268.jpg" alt="user" />
                             <div className="user-info">
-                                <h5>July Dec</h5>
+                                <h5>Bastien Oswald</h5>
                                 <small>2h ago</small>
                             </div>
                         </div>
@@ -130,9 +130,9 @@ const List = () => {
                         Course à pied en nature, sur sentiers et chemins de montagne. Dépassez vos limites et admirez la beauté de la nature.
                         </p>
                         <div className="user">
-                            <img src="https://www.belambra.fr/les-echappees/wp-inside/uploads/2019/12/perdu-randonnee-reflexes.jpg" alt="user" />
+                            <img src="https://img1.freepng.fr/20180714/ggq/kisspng-user-profile-computer-icons-login-clip-art-profile-picture-icon-5b49de2f1ef441.4301202215315676631268.jpg" alt="user" />
                             <div className="user-info">
-                                <h5>July Dec</h5>
+                                <h5>Bastien Oswald</h5>
                                 <small>2h ago</small>
                             </div>
                         </div>
@@ -152,9 +152,9 @@ const List = () => {
                         Course à pied en nature, sur sentiers et chemins de montagne. Dépassez vos limites et admirez la beauté de la nature.
                         </p>
                         <div className="user">
-                            <img src="https://www.belambra.fr/les-echappees/wp-inside/uploads/2019/12/perdu-randonnee-reflexes.jpg" alt="user" />
+                            <img src="https://img1.freepng.fr/20180714/ggq/kisspng-user-profile-computer-icons-login-clip-art-profile-picture-icon-5b49de2f1ef441.4301202215315676631268.jpg" alt="user" />
                             <div className="user-info">
-                                <h5>July Dec</h5>
+                                <h5>Bastien Oswald</h5>
                                 <small>2h ago</small>
                             </div>
                         </div>
@@ -174,9 +174,9 @@ const List = () => {
                         Course à pied en nature, sur sentiers et chemins de montagne. Dépassez vos limites et admirez la beauté de la nature.
                         </p>
                         <div className="user">
-                            <img src="https://www.belambra.fr/les-echappees/wp-inside/uploads/2019/12/perdu-randonnee-reflexes.jpg" alt="user" />
+                            <img src="https://img1.freepng.fr/20180714/ggq/kisspng-user-profile-computer-icons-login-clip-art-profile-picture-icon-5b49de2f1ef441.4301202215315676631268.jpg" alt="user" />
                             <div className="user-info">
-                                <h5>July Dec</h5>
+                                <h5>Bastien Oswald</h5>
                                 <small>2h ago</small>
                             </div>
                         </div>
