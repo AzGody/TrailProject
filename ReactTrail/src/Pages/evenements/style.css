@@ -1,0 +1,13 @@
+.form-container{
+    background-image: url('../../assets/courses-form-bg.jpg');
+  }
+  
+  .form-container form{
+    background-color: rgba(0, 0, 0, 0.699);
+  }
+  
+  ::placeholder{
+      font-size: 14px;
+      width: fit-content;    
+  }
+  
