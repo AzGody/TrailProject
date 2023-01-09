@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import App from './App'
 import Courses from './Pages/courses'
 import Evenements from './Pages/evenements'
-import List from './Components/trailList'
+import Footer from './Components/trailList'
 // import './index.css'
 
 const router = createBrowserRouter([
@@ -21,7 +21,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/list",
-    element: <List />
+    element: <Footer />
   },
 ])
 
