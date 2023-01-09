@@ -86,6 +86,21 @@ h3 {
   margin-top: auto;
 }
 
+.distance{
+  align-items: right;
+  width: fit-content;
+  margin: auto;
+  font-size: 25px;
+  font-weight: 600;
+  color: #016DBB;
+}
+
+.flex{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
 .user img {
   border-radius: 50%;
   width: 40px;

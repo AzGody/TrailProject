@@ -9,6 +9,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ApiResource(
     normalizationContext: ['groups' => ['evenement:read']],
@@ -25,26 +26,32 @@ class Evenement
 
     #[ORM\Column(length: 255)]
     #[Groups(['evenement:read', 'evenement:write'])]
+    #[Assert\NotBlank]
     private ?string $nom = null;
 
     #[ORM\Column]
     #[Groups(['evenement:read', 'evenement:write'])]
+    #[Assert\NotBlank]
     private array $localisation = [];
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     #[Groups(['evenement:read', 'evenement:write'])]
+    #[Assert\NotBlank]
     private ?\DateTimeInterface $dateDebut = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     #[Groups(['evenement:read', 'evenement:write'])]
+    #[Assert\NotBlank]
     private ?\DateTimeInterface $dateFin = null;
 
     #[ORM\OneToMany(mappedBy: 'evenement', targetEntity: Course::class)]
+    #[Assert\NotBlank]
     #[Groups(['evenement:read', 'evenement:write'])]
     private Collection $course;
 
     #[ORM\ManyToMany(targetEntity: Utilisateur::class, mappedBy: 'evenement')]
     #[Groups(['evenement:read', 'evenement:write'])]
+    #[Assert\NotBlank]
     private Collection $utilisateurs;
 
     public function __construct()

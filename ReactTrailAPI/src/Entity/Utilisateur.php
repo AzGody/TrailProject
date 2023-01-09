@@ -10,6 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 #[ApiResource(
     normalizationContext: ['groups' => ['utilisateur:read']],
@@ -25,10 +27,12 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 180, unique: true)]
     #[Groups(['utilisateur:read', 'utilisateur:write'])]
+    #[Assert\NotBlank]
     private ?string $email = null;
 
     #[ORM\Column]
     #[Groups(['utilisateur:read', 'utilisateur:write'])]
+    #[Assert\NotBlank]
     private array $roles = [];
 
     /**
@@ -36,18 +40,22 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column]
     #[Groups(['utilisateur:read', 'utilisateur:write'])]
+    #[Assert\NotBlank]
     private ?string $password = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['utilisateur:read', 'utilisateur:write'])]
+    #[Groups(['utilisateur:read', 'utilisateur:write', 'course:read', 'evenement:read'])]
+    #[Assert\NotBlank]
     private ?string $pseudo = null;
 
     #[ORM\ManyToMany(targetEntity: Evenement::class, inversedBy: 'utilisateurs')]
     #[Groups(['utilisateur:read', 'utilisateur:write'])]
+    #[Assert\NotBlank]
     private Collection $evenement;
 
     #[ORM\ManyToMany(targetEntity: Course::class, inversedBy: 'utilisateurs')]
     #[Groups(['utilisateur:read', 'utilisateur:write'])]
+    #[Assert\NotBlank]
     private Collection $course;
 
     public function __construct()
