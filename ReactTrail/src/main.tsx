@@ -4,7 +4,7 @@ import App from './App'
 import Courses from './Pages/courses'
 import Evenements from './Pages/evenements'
 import List from './Components/trailList'
-// import './index.css'
+import './index.css'
 
 const router = createBrowserRouter([
   {
