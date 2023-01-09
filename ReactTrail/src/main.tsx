@@ -4,6 +4,7 @@ import App from './App'
 import Courses from './Pages/courses'
 import Evenements from './Pages/evenements'
 import './index.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const router = createBrowserRouter([
   {
