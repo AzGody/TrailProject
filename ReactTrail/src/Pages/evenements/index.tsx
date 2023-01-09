@@ -64,7 +64,6 @@ const Evenements = () => {
           />
         </form>
       </div>
-      <img alt="" />
     </div>
   )
 }
