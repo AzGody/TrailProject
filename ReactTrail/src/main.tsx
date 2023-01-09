@@ -19,10 +19,6 @@ const router = createBrowserRouter([
     path: "/courses",
     element: <Courses />
   },
-  {
-    path: "/list",
-    element: <List />
-  }
 ])
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
