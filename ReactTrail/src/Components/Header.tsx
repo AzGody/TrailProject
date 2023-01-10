@@ -25,7 +25,7 @@ export default function Header(props: any) {
 
                     <div className=" p-9 z-10 text-center">
 
-                        <p className="font-header text-[86px]  pt-24 leading-[60px] drop-shadow text-stone-50"> {props.namePage}</p>
+                        <p className="font-header text-[86px]  pt-24 leading-[60px] drop-shadow text-stone-50 text-4xl lg:text-7xl"> {props.namePage}</p>
 
                         <p className="font-bold mt-4 text-stone-50 text-lg"> {props.description}</p>
 

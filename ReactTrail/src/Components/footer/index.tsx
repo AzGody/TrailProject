@@ -7,7 +7,10 @@ import instagram from '../../assets/twitter.png'
 const Footer = () => {
     return (
         <div className='footer'>
-            <img src={IMG} className='logo'></img>
+            <a href={"/"} className={"h-[200px] w-[200px]"}>
+                <img src={IMG} className='logo'></img>
+            </a>
+
             <div className='title-footer'>Reactive Trail</div>
             <a href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'>
                 <div className='socials'>
