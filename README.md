@@ -49,7 +49,7 @@ composer install
 ### Lancer les migrations
 
 ```bash
-symfony doctrine:migrations:migrate
+php bin/console doctrine:migrations:migrate
 ```
 
 ### Lancer le serveur Symfony

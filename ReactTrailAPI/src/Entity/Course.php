@@ -68,6 +68,12 @@ class Course
     #[Assert\Valid]
     private Collection $utilisateurs;
 
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Groups(['course:read', 'course:write', 'evenement:read'])]
+    #[Assert\Type('string')]
+    #[Assert\Length(max: 2000)]
+    private ?string $description = null;
+
     public function __construct()
     {
         $this->utilisateurs = new ArrayCollection();
@@ -185,6 +191,18 @@ class Course
         if ($this->utilisateurs->removeElement($utilisateur)) {
             $utilisateur->removeCourse($this);
         }
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
 
         return $this;
     }

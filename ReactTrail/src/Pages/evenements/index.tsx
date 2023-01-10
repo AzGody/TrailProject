@@ -144,6 +144,18 @@ const Evenements = () => {
                 />
               </div>
             </div>
+            <div className="flex flex-col items-start justify-center w-48">
+                <label className={"text-white"} htmlFor="description">Description</label>
+                <input
+                    type="textarea"
+                    id="description"
+                    name="description"
+                    value={inputs.description || ""}
+                    onChange={handleChange}
+                    placeholder="description"
+                    className="border-black rounded-lg border-solid border p-2 text-black"
+                />
+            </div>
             <input
               type="submit"
               value="Créer"

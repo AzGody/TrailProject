@@ -1,3 +1,4 @@
+// @ts-nocheck - may need to be at the start of file
 import "./index.css";
 import { list } from "postcss";
 import { useEffect, useState } from "react";
@@ -30,6 +31,7 @@ const List = () => {
                 />
               </div>
               <div className="card-body">
+                <h1>{course.nom}</h1>
                 <h4>{new Date(course.date).toLocaleDateString('Fr-fr')}</h4>
                 <h3>{course.localisation.nom}</h3>
                
