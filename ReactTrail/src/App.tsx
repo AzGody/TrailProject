@@ -3,6 +3,8 @@ import reactLogo from './assets/react.svg'
 import {Outlet} from "react-router-dom"
 import Header from "./Components/Header";
 import Footer from './Components/footer';
+import TrailDetails from "./Components/trailDetails";
+import TrailList from "./Components/trailList";
 
 // import './App.css'
 
@@ -27,6 +29,7 @@ function App() {
                 vos expériences de trail avec nous !
             </p>
 
+            <TrailList></TrailList>
             <Footer></Footer>
 
         </div>

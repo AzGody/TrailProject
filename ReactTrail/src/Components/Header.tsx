@@ -34,9 +34,9 @@ export default function Header(props: any) {
                     </div>
 
                 </div>
-
+                <Navbar></Navbar>
             </header>
-            <Navbar></Navbar>
+
         </>
     )
 }
