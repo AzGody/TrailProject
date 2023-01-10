@@ -13,10 +13,9 @@
   border-left: 1rem solid #016DBB;
   border-radius: 10px;
 }
-.container {
+.list-container {
   display: flex;
-  width: 1040px !important;
-  justify-content: space-evenly;
+  /* justify-content: space-evenly; */
   flex-wrap: wrap;
 }
 .card {

@@ -1,12 +1,10 @@
 import './index.css'
-import {list} from "postcss";
+import { list } from "postcss";
 
 const List = () => {
     return (
         <div className='list'>
-            <div className="container">
-
-
+            <div className="list-container">
                 <a href={"/details"}>
                     <div className="card">
                         <div className="card-header">
