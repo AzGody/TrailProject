@@ -185,21 +185,6 @@ const Evenements = () => {
         </div>
         <div className="map h-2/4 w-96" id="map">
             <Marker_ coords={[lat, lng]}/>
-          {/* <MapContainer
-            center={[lat, lng]}
-            zoom={13}
-            scrollWheelZoom={false}
-          >
-            <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-            <Marker position={[lat, lng]}>
-              <Popup>
-                A pretty CSS3 popup. <br /> Easily customizable.
-              </Popup>
-            </Marker>
-          </MapContainer> */}
         </div>
       </div>
       <Footer></Footer>
