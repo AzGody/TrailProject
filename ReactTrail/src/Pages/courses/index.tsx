@@ -98,7 +98,7 @@ const Courses = () => {
                         </div>
                         <div className="flex items-center justify-between mt-4">
                             <div className="flex flex-col items-start justify-center  w-48">
-                                <label className={"text-white"} htmlFor="course-denivele-max">Dénivelé maximum</label>
+                                <label className={"text-white"} htmlFor="course-denivele-max">Dénivelé positif</label>
                                 <input
                                     type="number"
                                     id="denivelePositif"
@@ -110,7 +110,7 @@ const Courses = () => {
                                 />
                             </div>
                             <div className="flex flex-col items-start justify-center  w-48">
-                                <label className={"text-white"} htmlFor="course-denivele-min">Dénivelé minimum</label>
+                                <label className={"text-white"} htmlFor="course-denivele-min">Dénivelé négatif</label>
                                 <input
                                     type="number"
                                     id="deniveleNegatif"
@@ -125,12 +125,12 @@ const Courses = () => {
                         <input
                             type="submit"
                             value="Créer"
-                            className="mt-4 mr-4 bg-slate-500 rounded-lg p-2 text-white w-24 cursor-pointer"
+                            className="mt-4 mr-4 bg-slate-500 rounded-lg p-2 text-white w-24 hover:bg-slate-600 cursor-pointer"
                         />
                         <input
                             type="button"
                             value="Annuler"
-                            className="mt-4 bg-red-400 rounded-lg p-2 text-white w-24 cursor-pointer"
+                            className="mt-4 bg-red-400 rounded-lg p-2 text-white w-24 hover:bg-red-500 cursor-pointer"
                         />
                     </form>
                 </div>
