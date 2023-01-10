@@ -80,7 +80,7 @@ const Courses = () => {
                                 type="text"
                                 id="course-localisation"
                                 name="course-localisation"
-                                placeholder="Entrez la distance de la course en km"
+                                placeholder="Entrez la distance de la course en m"
                                 className="border-black rounded-lg border-solid border p-2 w-full"
                             />
                         </div>
@@ -92,7 +92,7 @@ const Courses = () => {
                                 name="distance"
                                 value={inputs.distance || ""}
                                 onChange={handleChange}
-                                placeholder="Entrez la distance de la course en km"
+                                placeholder="Entrez la distance de la course en m"
                                 className="border-black rounded-lg border-solid border p-2 w-full"
                             />
                         </div>

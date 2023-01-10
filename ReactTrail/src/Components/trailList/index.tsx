@@ -30,6 +30,7 @@ const List = () => {
                 />
               </div>
               <div className="card-body">
+                <h1>{course.nom}</h1>
                 <h4>{new Date(course.date).toLocaleDateString('Fr-fr')}</h4>
                 <h3>{course.localisation.nom}</h3>
                
