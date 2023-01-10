@@ -28,6 +28,12 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_ORGANISATEUR
+        ROLE_ORGANISATEUR: ROLE_USER
+        ROLE_USER: ROLE_READONLY
+        ROLE_READONLY:
+
 
 when@test:
     security:
