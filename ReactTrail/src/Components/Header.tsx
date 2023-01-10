@@ -12,11 +12,15 @@ export default function Header(props: any) {
         <>
             <header className="relative">
 
-                <img
-                    className={"rounded-full absolute cursor-pointer top-0 left-1/2 z-10 drop-shadow transform -translate-x-1/2 -translate-y-1/2 transition duration-1000 ease-in-out  hover:scale-105"}
-                    src="/logoFond.png" width={200} height={200} alt={"logo"}></img>
+                <a href={"/"}>
+                    <img
+                        className={"rounded-full absolute cursor-pointer top-0 left-1/2 z-10 drop-shadow transform -translate-x-1/2 -translate-y-1/2 transition duration-1000 ease-in-out  hover:scale-105"}
+                        src="/logoFond.png" width={200} height={200} alt={"logo"}></img>
+                </a>
 
-                <div className={"bg-cover bg-center bg-no-repeat h-96"} style={{backgroundImage: `url(${props.backgroundImage})`}}>
+
+                <div className={"bg-cover bg-center bg-no-repeat h-96"}
+                     style={{backgroundImage: `url(${props.backgroundImage})`}}>
 
 
                     <div className=" p-9 z-10 text-center">

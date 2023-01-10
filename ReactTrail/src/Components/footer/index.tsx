@@ -6,7 +6,6 @@ import instagram from '../../assets/twitter.png'
 
 const Footer = () => {
     return (
-
         <div className='footer'>
             <img src={IMG} className='logo'></img>
             <div className='title-footer'>Reactive Trail</div>
