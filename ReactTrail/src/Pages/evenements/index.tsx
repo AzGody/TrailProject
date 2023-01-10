@@ -22,6 +22,34 @@ const Evenements = () => {
       })
     })
   }
+  const [inputs, setInputs] = useState({});
+
+  const handleSubmit = (event: any) => {
+      event.preventDefault();
+      inputs.localisation = {lat: 45, lng: 6}; //TODO: supprimer
+      inputs.utilisateurs = [];
+      inputs.courses = [];
+
+      console.log(inputs);
+
+      fetch('http://127.0.0.1:8000/api/courses', {
+          method: 'POST',
+          headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(inputs)
+      })
+          .then(response => response.json())
+          .then(response => console.log(JSON.stringify(response)))
+          .catch(error => console.log(error))
+  }
+
+  const handleChange = (event: any) => {
+      const name = event.target.name;
+      const value = event.target.value;
+      setInputs(values => ({...values, [name]: value}))
+  }
 
 //   function handleSearch(input: string) {
 //     fetch('/cities.json').then((response) =>
@@ -52,25 +80,30 @@ const Evenements = () => {
             action=""
             method="post"
             className="w-2/3 p-4 rounded-lg text-white"
+            onSubmit={handleSubmit}
           >
             <div className="flex flex-col items-start justify-center w-full">
-              <label htmlFor="course-nom">Nom</label>
+              <label htmlFor="nom">Nom</label>
               <input
                 type="text"
-                id="course-nom"
-                name="course-nom"
+                id="nom"
+                name="nom"
                 placeholder="Entrez le nom de l'événement"
                 className="border-black rounded-lg border-solid border p-2 h-10 w-full text-black"
+                value={inputs.nom || ""}
+                onChange={handleChange}
               />
             </div>
             <div className="relative flex flex-col items-start justify-center w-full mt-4">
-              <label htmlFor="course-localisation">Localisation</label>
+              <label htmlFor="localisation">Localisation</label>
               <input
                 type="text"
-                id="course-localisation"
-                name="course-localisation"
+                id="localisation"
+                name="localisation"
                 placeholder="Entrez le nom de la ville"
                 className="border-black rounded-lg border-solid border p-2 w-full text-black"
+                value={inputs.localisation || ""}
+                onChange={handleChange}
                 // onChange={(e) => handleSearch(e.currentTarget.value)}
               />
               <div className="results absolute flex flex-col items-center justify-center w-full rounded-lg border border-slate-500 bg-slate-200 hidden">
@@ -79,21 +112,25 @@ const Evenements = () => {
             </div>
             <div className="flex items-center justify-between mt-4">
               <div className="flex flex-col items-start justify-center w-48">
-                <label htmlFor="course-date-debut">Date de début</label>
+                <label htmlFor="date-debut">Date de début</label>
                 <input
                   type="date"
-                  id="course-date-debut"
-                  name="course-date-debut"
+                  id="date-debut"
+                  name="dateDebut"
                   className="border-black rounded-lg border-solid border p-2 h-10 w-full text-slate-400"
+                  value={inputs.dateDebut || ""}
+                  onChange={handleChange}
                 />
               </div>
               <div className="flex flex-col items-start justify-center w-48">
-                <label htmlFor="course-date-fin">Date de fin</label>
+                <label htmlFor="date-fin">Date de fin</label>
                 <input
                   type="date"
-                  id="course-date-fin"
-                  name="course-date-fin"
+                  id="date-fin"
+                  name="dateFin"
                   className="border-black rounded-lg border-solid border p-2 h-10 w-full text-slate-400"
+                  value={inputs.dateFin || ""}
+                  onChange={handleChange}
                 />
               </div>
             </div>
