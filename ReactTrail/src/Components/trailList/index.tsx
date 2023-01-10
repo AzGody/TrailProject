@@ -5,6 +5,8 @@ const List = () => {
     return (
         <div className='list'>
             <div className="container">
+
+
                 <a href={"/details"}>
                     <div className="card">
                         <div className="card-header">
