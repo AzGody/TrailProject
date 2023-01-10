@@ -36,7 +36,7 @@ const Evenements = () => {
 
       console.log(inputs);
 
-      fetch('http://127.0.0.1:8000/api/courses', {
+      fetch('http://127.0.0.1:8000/api/evenements', {
           method: 'POST',
           headers: {
               'Accept': 'application/json',
