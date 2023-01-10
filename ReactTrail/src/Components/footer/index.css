@@ -22,6 +22,7 @@
   margin: auto 0;
   font-size: 60px;
   color: white;
+  font-family: 'Dancing Script';
   /* width: fit-content; */
 }
 
@@ -48,6 +49,7 @@ a {
   .title-footer{
     font-size: 40px;
     margin: auto;
+    font-family: 'Dancing Script';
   }
   a{
     margin: auto;
