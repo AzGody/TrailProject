@@ -6,6 +6,10 @@
   background-color: rgba(0, 0, 0, 0.699);
 }
 
+.form-container form textarea{
+  resize: none;
+}
+
 ::placeholder{
     font-size: 14px;
     width: fit-content;    
