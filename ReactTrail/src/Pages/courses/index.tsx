@@ -2,12 +2,16 @@ import './style.css'
 
 const Courses = () => {
   return (
-    <div className='form-container h-screen flex flex-col items-center justify-center'>
+    <div className="form-container h-screen flex flex-col items-center justify-center">
       <h1 className="text-3xl font-bold underline text-center mb-8">
         Créer une course
       </h1>
       <div className="flex flex-col items-center justify-center w-full">
-        <form action="" method="post" className="w-1/3 p-4 rounded-lg text-white">
+        <form
+          action=""
+          method="post"
+          className="w-1/3 p-4 rounded-lg text-white"
+        >
           <div className="flex items-center justify-between ">
             <div className="flex flex-col items-start justify-center w-48">
               <label htmlFor="course-nom">Nom</label>
@@ -28,6 +32,16 @@ const Courses = () => {
                 className="border-black rounded-lg border-solid border p-2 h-10 w-full text-slate-400"
               />
             </div>
+          </div>
+          <div className="flex flex-col items-start justify-center w-full mt-4 hidden">
+            <label htmlFor="course-localisation">Localisation</label>
+            <input
+              type="text"
+              id="course-localisation"
+              name="course-localisation"
+              placeholder="Entrez la distance de la course en km"
+              className="border-black rounded-lg border-solid border p-2 w-full"
+            />
           </div>
           <div className="flex flex-col items-start justify-center w-full mt-4">
             <label htmlFor="course-distance">Distance</label>
@@ -73,7 +87,6 @@ const Courses = () => {
           />
         </form>
       </div>
-      <img  alt="" />
     </div>
   )
 }

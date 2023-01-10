@@ -27,38 +27,45 @@ class Course
     #[ORM\Column(length: 255)]
     #[Groups(['course:read', 'course:write', 'evenement:read'])]
     #[Assert\NotBlank]
+    #[Assert\Type('string')]
     private ?string $nom = null;
-
+    
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     #[Groups(['course:read', 'course:write', 'evenement:read'])]
     #[Assert\NotBlank]
     private ?\DateTimeInterface $date = null;
-
+    
     #[ORM\Column]
     #[Groups(['course:read', 'course:write', 'evenement:read'])]
     #[Assert\NotBlank]
+    #[Assert\Valid]
     private array $localisation = [];
 
     #[ORM\Column]
     #[Groups(['course:read', 'course:write', 'evenement:read'])]
     #[Assert\NotBlank]
+    #[Assert\Type('int')]
     private ?int $distance = null;
-
+    
     #[ORM\Column(nullable: true)]
     #[Groups(['course:read', 'course:write', 'evenement:read'])]
+    #[Assert\Type('int')]
     private ?int $denivelePositif = null;
-
+    
     #[ORM\Column(nullable: true)]
     #[Groups(['course:read', 'course:write', 'evenement:read'])]
+    #[Assert\Type('int')]
     private ?int $deniveleNegatif = null;
 
     #[ORM\ManyToOne(inversedBy: 'course')]
     #[Groups(['course:read', 'course:write'])]
+    #[Assert\Valid]
     private ?Evenement $evenement = null;
-
+    
     #[ORM\ManyToMany(targetEntity: Utilisateur::class, mappedBy: 'course')]
     #[Groups(['course:read', 'course:write', 'evenement:read'])]
     #[Assert\NotBlank]
+    #[Assert\Valid]
     private Collection $utilisateurs;
 
     public function __construct()
