@@ -20,3 +20,30 @@ npm install -g pnpm
 pnpm run dev
 ```
 
+# Reactive Trail API
+
+## Installation
+
+### Création de la base de données
+
+Il faut un serveur de base de données MYSQL
+
+```sql
+CREATE DATABASE IF NOT EXISTS `reactiv-trail`;
+```
+
+### Ajout du mot de passe de votre base MySQL
+
+- Dans le fichier `.env`
+
+```dotenv
+DATABASE_URL="mysql://root:VOTRE_MOT_DE_PASSE_MYSQL@127.0.0.1:3306/reactiv-trail"
+```
+
+### Se placer dans le dossier ReactTrailAPI
+
+```bash
+composer install
+```
+
+
