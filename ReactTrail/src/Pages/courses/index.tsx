@@ -7,36 +7,6 @@ import List from "../../Components/trailList"
 
 
 const Courses = () => {
-  const [inputs, setInputs] = useState({})
-
-  const handleSubmit = (event: any) => {
-    event.preventDefault()
-    inputs.localisation = { lat: 45, lng: 6 } //TODO: supprimer
-    inputs.utilisateurs = []
-    inputs.distance = +inputs.distance
-    inputs.denivelePositif = +inputs.denivelePositif
-    inputs.deniveleNegatif = +inputs.deniveleNegatif
-    //console.log(inputs)
-
-    fetch('http://127.0.0.1:8000/api/courses', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(inputs),
-    })
-      .then((response) => response.json())
-      .then((response) => console.log(JSON.stringify(response)))
-      .catch((error) => console.log(error))
-  }
-
-  const handleChange = (event: any) => {
-    const name = event.target.name
-    const value = event.target.value
-    setInputs((values) => ({ ...values, [name]: value }))
-  }
-
     return (
         <div className={"container mx-auto pt-28"}>
             <Header backgroundImage="/course.png"
