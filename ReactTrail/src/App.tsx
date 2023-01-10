@@ -20,7 +20,7 @@ function App() {
                     nbCourses={"56"}
             />
 
-            <p className={"pt-2"}>
+            <p className={"lg:pt-2 px-4 lg:px-0"}>
                 Bienvenue sur notre site de trail ! Nous sommes passionnés de course à pied en nature et avons créé ce
                 site pour partager notre amour du trail avec vous. Vous trouverez ici tout ce dont vous avez besoin pour
                 découvrir et pratiquer ce sport fascinant : conseils de préparation, itinéraires de courses, tests de

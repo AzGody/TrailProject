@@ -1,5 +1,5 @@
-/* @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=DancingScript&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DancingScript&display=swap");
 * {
     box-sizing: border-box;
     font-family: "Roboto", sans-serif;
@@ -33,7 +33,7 @@
 .distanceDetails {
     color: #fff;
     background-color: #016DBB;
-    padding: 20px 35px;
+    padding: 20px 50px;
     border-radius: 50px;
 }
 .track {
@@ -66,8 +66,8 @@
     align-items: center;
 }
 .circle {
-    width: 30px;
-    height: 30px;
+    min-width: 30px;
+    min-height: 30px;
     border: 3px solid #000;
     border-radius: 30px;
 }
@@ -92,22 +92,20 @@
     border-radius: 50px;
 }
 
-.flex {
-    display: flex;
-    align-items: center;
-}
-
 .font-dancing-script {
     font-family: 'Dancing Script', cursive;
     font-size: 25px;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 800px) {
+    .header {
+        flex-direction: column;
+    }
     .track {
         flex-direction: column;
     }
     .middle-track {
-        flex-direction: row;
+        flex-direction: row-reverse;
     }
     .join {
         flex-direction: column;
