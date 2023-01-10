@@ -15,7 +15,7 @@
 }
 .container {
   display: flex;
-  width: 1040px;
+  width: 1040px !important;
   justify-content: space-evenly;
   flex-wrap: wrap;
 }
@@ -33,18 +33,21 @@
   height: 125px;
   object-fit: cover;
 }
+
 h4{
     margin: 0;
     text-align: center;
     width: 100%;
     color: #808AE7;
+    font-weight: 700 !important;
 }
 
 h3 {
     text-align: center;
     width: 100%;
-    font-size: 24px;
-    margin-top: 10px;
+    font-size: 24px !important;
+    margin-top: 10px !important;
+    font-weight: 600 !important;
     /* font-family: "Dancing Script"; 
     font-size: 21px; */
 }
@@ -78,8 +81,8 @@ h3 {
 }
 
 .card-body p {
-  font-size: 13px;
-  margin: 0 0 40px;
+  font-size: 15px !important;
+  margin: 10px 0 40px !important;
 }
 .user {
   display: flex;
