@@ -26,7 +26,7 @@ const List = () => {
     <div className="list">
       <div className="list-container">
         {courses.map(course=>
-            (<a href={"/details"}>
+            (<a key={course.id} href={"/details"}>
             <div className="card">
               <div className="card-header">
                 <img
