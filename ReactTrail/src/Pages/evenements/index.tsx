@@ -73,9 +73,9 @@ const Evenements = () => {
                 className="border-black rounded-lg border-solid border p-2 w-full text-black"
                 // onChange={(e) => handleSearch(e.currentTarget.value)}
               />
-              {/* <div className="results absolute flex flex-col items-center justify-center w-full rounded-lg border border-slate-500 bg-slate-200 hidden">
+              <div className="results absolute flex flex-col items-center justify-center w-full rounded-lg border border-slate-500 bg-slate-200 hidden">
                 
-              </div> */}
+              </div>
             </div>
             <div className="flex items-center justify-between mt-4">
               <div className="flex flex-col items-start justify-center w-48">
