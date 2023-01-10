@@ -7,6 +7,7 @@ import List from './Components/trailList'
 import Details from './Components/trailDetails'
 import './index.css'
 import Footer from "./Components/footer";
+import CreationCourse from './Pages/creationCourse'
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
   {
     path: "/list",
     element: <List />
+  },
+  {
+    path: "/new-course",
+    element: <CreationCourse />
   },
   {
     path: "/details",
