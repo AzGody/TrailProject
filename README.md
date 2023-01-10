@@ -40,10 +40,16 @@ CREATE DATABASE IF NOT EXISTS `reactiv-trail`;
 DATABASE_URL="mysql://root:VOTRE_MOT_DE_PASSE_MYSQL@127.0.0.1:3306/reactiv-trail"
 ```
 
-### Se placer dans le dossier ReactTrailAPI
+### Se placer dans le dossier ReactTrailAPI et installer les dépendances
 
 ```bash
 composer install
+```
+
+### Lancer le serveur Symfony
+
+```bash
+symfony server:start
 ```
 
 
