@@ -46,10 +46,15 @@ DATABASE_URL="mysql://root:VOTRE_MOT_DE_PASSE_MYSQL@127.0.0.1:3306/reactiv-trail
 composer install
 ```
 
+### Lancer les migrations
+
+```bash
+php bin/console doctrine:migrations:migrate
+```
+
 ### Lancer le serveur Symfony
 
 ```bash
 symfony server:start
 ```
-
 

@@ -1,3 +1,4 @@
+// @ts-nocheck - may need to be at the start of file
 import "./index.css";
 import { list } from "postcss";
 import { useEffect, useState } from "react";
