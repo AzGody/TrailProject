@@ -18,6 +18,10 @@ const List = () => {
       .catch((error) => console.log(error));
   }, []);
 
+  const truncate = (str, max, len) => {
+    return str.length > max ? str.substring(0, len) + "..." : str;
+  }
+
   return (
     <div className="list">
       <div className="list-container">
@@ -31,10 +35,10 @@ const List = () => {
                 />
               </div>
               <div className="card-body">
+                <h3>{new Date(course.date).toLocaleDateString('Fr-fr')}</h3>
                 <h1>{course.nom}</h1>
-                <h4>{new Date(course.date).toLocaleDateString('Fr-fr')}</h4>
-                <h3>{course.localisation.nom}</h3>
-               
+                <h2>{course.localisation.nom}</h2>
+                <p>{truncate(String(course.description), 0, 80)}</p>
                 <div className="flex">
                   <div className="distance">{course.distance} m</div>
                 </div>

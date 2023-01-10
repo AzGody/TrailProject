@@ -17,6 +17,11 @@
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
+  padding: 30px 0 50px 0;
+}
+.list-container a
+{
+  margin-right: 0;
 }
 .card {
   margin: 10px;
@@ -25,7 +30,7 @@
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
   overflow: hidden;
   width: 300px;
-  margin-top: 50px
+  margin-top: 20px
 }
 .card-header img {
   width: 100%;
@@ -33,7 +38,7 @@
   object-fit: cover;
 }
 
-h4{
+h3{
     margin: 0;
     text-align: center;
     width: 100%;
@@ -41,14 +46,21 @@ h4{
     font-weight: 700 !important;
 }
 
-h3,h1 {
+.card-body h1 {
     text-align: center;
     width: 100%;
-    font-size: 24px !important;
-    margin-top: 10px !important;
-    font-weight: 600 !important;
+    font-size: 24px;
+    /* margin-top: 10px; */
+    font-weight: 600;
     /* font-family: "Dancing Script"; 
     font-size: 21px; */
+}
+.card-body h2{
+  width: 100%;
+  text-align: center;
+  /* margin-top: 10px; */
+  color: #aaa;
+  font-weight: bold;
 }
 .card-body {
   display: flex;
@@ -80,8 +92,10 @@ h3,h1 {
 }
 
 .card-body p {
-  font-size: 15px !important;
-  margin: 10px 0 40px !important;
+  font-size: 15px;
+  margin: 10px 0 10px;
+  text-align: center;
+  width: 100%;
 }
 .user {
   display: flex;
