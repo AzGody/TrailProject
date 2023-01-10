@@ -1,3 +1,4 @@
+// @ts-nocheck - may need to be at the start of file
 import { useState } from 'react'
 import {
   MapContainer,
@@ -7,6 +8,9 @@ import {
   useMapEvents,
 } from 'react-leaflet'
 import './style.css'
+
+import Header from '../../Components/Header'
+import Footer from '../../Components/footer'
 
 const Evenements = () => {
   const [lat, setLat] = useState(48.864716)
@@ -51,25 +55,31 @@ const Evenements = () => {
       setInputs(values => ({...values, [name]: value}))
   }
 
-//   function handleSearch(input: string) {
-//     fetch('/cities.json').then((response) =>
-//       response.json().then((data) => {
-//         document.querySelector('.results')?.classList.remove('hidden')
-//         data.map((item: string, index: number) => {
-//           if (Object.values(item)[4].toLowerCase().includes(input.toLowerCase())) {
-//             let div = document.createElement("div")
-//             div.classList.add("text-black", "align-left", "w-full", "hover:bg-slate-300", "pl-2")
-//             div.innerHTML = data[index].name+" - " + data[index].department_code
-//             document.querySelector('.results')?.append(div)
-//           }
-//         })
-//       })
-//     )
-//   }
-    // handleSearch("Bor")
+  //   function handleSearch(input: string) {
+  //     fetch('/cities.json').then((response) =>
+  //       response.json().then((data) => {
+  //         document.querySelector('.results')?.classList.remove('hidden')
+  //         data.map((item: string, index: number) => {
+  //           if (Object.values(item)[4].toLowerCase().includes(input.toLowerCase())) {
+  //             let div = document.createElement("div")
+  //             div.classList.add("text-black", "align-left", "w-full", "hover:bg-slate-300", "pl-2")
+  //             div.innerHTML = data[index].name+" - " + data[index].department_code
+  //             document.querySelector('.results')?.append(div)
+  //           }
+  //         })
+  //       })
+  //     )
+  //   }
+  // handleSearch("Bor")
   getCoordinates('Bordeaux')
 
   return (
+    <div className={"container mx-auto pt-28"}>
+    <Header
+      backgroundImage="/evenement.jpeg"
+      namePage="Créer un évenement"
+      description="Saisissiez le formulaire pour créer un évenement :"
+    />
     <div className="form-container flex items-center justify-around w-screen h-screen">
       <div className="h-full w-2/4 flex flex-col items-center justify-center">
         <h1 className="text-3xl font-bold underline text-center mb-8">
@@ -139,31 +149,33 @@ const Evenements = () => {
               value="Créer"
               className="mt-4 mr-4 bg-slate-500 rounded-lg p-2 text-white w-24"
             />
-            <input
-              type="button"
-              value="Annuler"
-              className="mt-4 bg-red-400 rounded-lg p-2 text-white w-24"
+             <input
+                type="button"
+                value="Annuler"
+                className="mt-4 bg-red-400 rounded-lg p-2 text-white w-24"
+              />
+            </form>
+          </div>
+          </div>
+          <div className="map h-2/4 w-96" id="map">
+            <MapContainer
+             center={{ lat: lat, lng: lng }}
+             zoom={13}
+             scrollWheelZoom={false}
+            >
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-          </form>
+            <Marker position={[lat, lng]}>
+              <Popup>
+                A pretty CSS3 popup. <br /> Easily customizable.
+              </Popup>
+            </Marker>
+          </MapContainer>
         </div>
       </div>
-      <div className="map h-2/4 w-96" id="map">
-        <MapContainer
-          center={{ lat: lat, lng: lng }}
-          zoom={13}
-          scrollWheelZoom={false}
-        >
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-          <Marker position={[lat, lng]}>
-            <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
-            </Popup>
-          </Marker>
-        </MapContainer>
-      </div>
+      <Footer></Footer>
     </div>
   )
 }
