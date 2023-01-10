@@ -27,18 +27,20 @@ class Evenement
     #[ORM\Column(length: 255)]
     #[Groups(['evenement:read', 'evenement:write'])]
     #[Assert\NotBlank]
+    #[Assert\Type('string')]
     private ?string $nom = null;
-
+    
     #[ORM\Column]
     #[Groups(['evenement:read', 'evenement:write'])]
     #[Assert\NotBlank]
+    #[Assert\Type('array')]
     private array $localisation = [];
-
+    
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     #[Groups(['evenement:read', 'evenement:write'])]
     #[Assert\NotBlank]
     private ?\DateTimeInterface $dateDebut = null;
-
+    
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     #[Groups(['evenement:read', 'evenement:write'])]
     #[Assert\NotBlank]
@@ -47,11 +49,13 @@ class Evenement
     #[ORM\OneToMany(mappedBy: 'evenement', targetEntity: Course::class)]
     #[Assert\NotBlank]
     #[Groups(['evenement:read', 'evenement:write'])]
+    #[Assert\Valid]
     private Collection $course;
-
+    
     #[ORM\ManyToMany(targetEntity: Utilisateur::class, mappedBy: 'evenement')]
     #[Groups(['evenement:read', 'evenement:write'])]
     #[Assert\NotBlank]
+    #[Assert\Valid]
     private Collection $utilisateurs;
 
     public function __construct()
