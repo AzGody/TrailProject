@@ -125,7 +125,7 @@ const CreationCourse = () => {
       }
       fetchEvents()
     return (
-        <div className={"container mx-auto pt-28"}>
+        <div>
             <Header backgroundImage="/course.png"
                 namePage="Créer une course"
                 description="Saisissiez le formulaire pour créer une course :"

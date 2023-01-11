@@ -10,69 +10,71 @@ const Details = (props: any) => {
     const { id } = useParams();
     useEffect(() => {
         fetch(`http://127.0.0.1:8000/api/courses/${id}`, {
-          method: "GET",
-          headers: {
-            Accept: "application/json",
-          },
+            method: "GET",
+            headers: {
+                Accept: "application/json",
+            },
         })
-          .then((response) => response.json())
-          .then((response) => setCourse(response))
-          .catch((error) => console.log(error));
-      }, []);
+            .then((response) => response.json())
+            .then((response) => setCourse(response))
+            .catch((error) => console.log(error));
+    }, []);
 
     return (
-        <div className={"container mx-auto pt-28"}>
+        <div>
             <Header backgroundImage="https://www.belambra.fr/les-echappees/wp-inside/uploads/2019/12/perdu-randonnee-reflexes.jpg"
-                    namePage={course.nom}
-                    description={course.distance+" m"}
+                namePage={course.nom}
+                description={course.distance + " m"}
             />
-            <div className="details">
-                <div className="container">
-                    <div className="header">
-                        <div className="title font-dancing-script">
-                            {course.nom}
-                        </div>
-                        <div className="distanceDetails font-dancing-script">
-                            {course.distance} m
-                        </div>
-                    </div>
-                    <div className="track">
-                        <div className="start">
-                            <img src="/src/assets/start.png" alt="Start"></img>
-                            <div className="font-dancing-script">
-                               {course?.localisation?.nom}
+            <div className={"container mx-auto py-10"}>
+                <div className="details">
+                    <div className="container">
+                        <div className="header">
+                            <div className="title font-dancing-script">
+                                {course.nom}
+                            </div>
+                            <div className="distanceDetails font-dancing-script">
+                                {course.distance} m
                             </div>
                         </div>
-                        <div className="middle-track">
-                            <img className="arrow-top" src="/src/assets/arrow.png" alt="positive elevation"></img>
-                            <div className="elevation font-dancing-script">
-                                <div className="elevation font-dancing-script">
-                                    {course.denivelePositif}m
+                        <div className="track">
+                            <div className="start">
+                                <img src="/src/assets/start.png" alt="Start"></img>
+                                <div className="font-dancing-script">
+                                    {course?.localisation?.nom}
                                 </div>
                             </div>
-                            <div className="join">
-                                <div className="circle"></div>
-                                <div className="line"></div>
-                                <div className="circle"></div>
+                            <div className="middle-track">
+                                <img className="arrow-top" src="/src/assets/arrow.png" alt="positive elevation"></img>
+                                <div className="elevation font-dancing-script">
+                                    <div className="elevation font-dancing-script">
+                                        {course.denivelePositif}m
+                                    </div>
+                                </div>
+                                <div className="join">
+                                    <div className="circle"></div>
+                                    <div className="line"></div>
+                                    <div className="circle"></div>
+                                </div>
+                                <div className="elevation font-dancing-script">
+                                    {course.deniveleNegatif}m
+                                </div>
+                                <img className="arrow-bottom" src="/src/assets/arrow.png" alt="nagative elevation"></img>
                             </div>
-                            <div className="elevation font-dancing-script">
-                                {course.deniveleNegatif}m
-                            </div>
-                            <img className="arrow-bottom" src="/src/assets/arrow.png" alt="nagative elevation"></img>
-                        </div>
-                        <div className="arrival">
-                            <img src="/src/assets/arrival.png" alt="Start"></img>
-                            <div className="font-dancing-script">
-                               {course?.localisation?.nom}
+                            <div className="arrival">
+                                <img src="/src/assets/arrival.png" alt="Start"></img>
+                                <div className="font-dancing-script">
+                                    {course?.localisation?.nom}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="description">
-                        <div className="title font-dancing-script">
-                            Description
-                        </div>
-                        <div className="content">
-                            {course.description}
+                        <div className="description">
+                            <div className="title font-dancing-script">
+                                Description
+                            </div>
+                            <div className="content">
+                                {course.description}
+                            </div>
                         </div>
                     </div>
                 </div>

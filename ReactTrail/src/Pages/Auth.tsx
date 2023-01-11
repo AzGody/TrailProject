@@ -11,13 +11,15 @@ function Auth() {
     const [count, setCount] = useState(0)
 
     return (
-        <div className={"container mx-auto pt-28"}>
+        <div>
             <Header backgroundImage="/home.webp"
                     namePage="Connexion"
                     description="Connectez vous a votre compte ! "
             />
+            <div className={"container mx-auto py-10"}>
 
             <FormAuth></FormAuth>
+            </div>
             <Footer></Footer>
 
         </div>
