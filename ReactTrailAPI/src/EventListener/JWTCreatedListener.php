@@ -4,16 +4,23 @@ namespace App\EventListener;
 
 use App\Repository\UtilisateurRepository;
 use Lexik\Bundle\JWTAuthenticationBundle\Event\JWTCreatedEvent;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 class JWTCreatedListener
 {
+    /**
+     * @var RequestStack
+     */
+    private $requestStack;
+
     private UtilisateurRepository $utilisateurRepository;
 
     /**
      * @param UtilisateurRepository $utilisateurRepository
      */
-    public function __construct(UtilisateurRepository $utilisateurRepository)
+    public function __construct(RequestStack $requestStack, UtilisateurRepository $utilisateurRepository)
     {
+        $this->requestStack = $requestStack;
         $this->utilisateurRepository = $utilisateurRepository;
     }
 
