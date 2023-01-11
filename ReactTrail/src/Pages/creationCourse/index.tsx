@@ -39,7 +39,6 @@ const CreationCourse = () => {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                Authorization: "Bearer " + "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2NzM0NDQzMDgsImV4cCI6MTY3MzUzMDcwOCwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJ1c2VybmFtZSI6InJvbWFpbkBnbWFpbC5jb20iLCJlbWFpbCI6InJvbWFpbkBnbWFpbC5jb20iLCJwc2V1ZG8iOiJSb21haW4ifQ.GBrknVAJiJWkmVb4GvzxDmSop6zItRSssoR7Kem4UpAlaF3WO1uGra6TNWH98LUTaHxVNjcVBxEuF2DpIp24J2Tqr6IGkC3KbuYBLn4ekytn6PIMPKAW6akJF9stetjv_B6mzGDBYWLT062oLM6Ig7TkOPLf7UT95M7lKKdy3WqZLyXarnqE09Es3KDmiCNO8xN4IjTJXrG4bqv6wzi7A_35RQtULUZcgb3Hpserb8Lwevu9jaVi82rHt-HDFQlcLagqWxif7hV0Fm0jag4PonFZ9HhSDRvm1hx1_Sk1XapYUeTHyJ-ENy2n5e670xHFWD-IF8DaIZsLIKHGjYbztQ",
             },
             body: JSON.stringify(inputs)
         })
@@ -108,7 +107,6 @@ const CreationCourse = () => {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                Authorization: "Bearer " + "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2NzM0NDQzMDgsImV4cCI6MTY3MzUzMDcwOCwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJ1c2VybmFtZSI6InJvbWFpbkBnbWFpbC5jb20iLCJlbWFpbCI6InJvbWFpbkBnbWFpbC5jb20iLCJwc2V1ZG8iOiJSb21haW4ifQ.GBrknVAJiJWkmVb4GvzxDmSop6zItRSssoR7Kem4UpAlaF3WO1uGra6TNWH98LUTaHxVNjcVBxEuF2DpIp24J2Tqr6IGkC3KbuYBLn4ekytn6PIMPKAW6akJF9stetjv_B6mzGDBYWLT062oLM6Ig7TkOPLf7UT95M7lKKdy3WqZLyXarnqE09Es3KDmiCNO8xN4IjTJXrG4bqv6wzi7A_35RQtULUZcgb3Hpserb8Lwevu9jaVi82rHt-HDFQlcLagqWxif7hV0Fm0jag4PonFZ9HhSDRvm1hx1_Sk1XapYUeTHyJ-ENy2n5e670xHFWD-IF8DaIZsLIKHGjYbztQ",
             },
         })
             .then(response => response.json())
