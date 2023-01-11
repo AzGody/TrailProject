@@ -1,0 +1,18 @@
+.bo-dashboard{
+    display: flex;
+    align-items: flex-start;
+}
+.bo-dash-content{
+    flex-grow: 1;
+    text-align: center;
+}
+.bo-dash-content h1{
+    font-size: 50px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    color: rgb(31 41 55);
+    border-bottom: 5px solid rgb(31 41 55);
+}
+.bo-dash-content button{
+    margin-bottom: 0;
+}

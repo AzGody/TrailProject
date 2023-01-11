@@ -12,6 +12,10 @@ import CreateEvenement from "./Pages/creationEvenement";
 import CreateUser from "./Pages/CreateUser";
 import Page404 from './Pages/404'
 import EventDetails from './Components/eventDetails'
+import BackOffice from "./Pages/BackOffice";
+import BackOfficeEvenements from "./Pages/BackOffice/Evenement";
+import BackOfficeCourses from "./Pages/BackOffice/Courses";
+import BackOfficeUtilisateurs from "./Pages/BackOffice/Utilisateurs";
 
 const router = createBrowserRouter([
   {
@@ -54,6 +58,22 @@ const router = createBrowserRouter([
   {
     path: "/evenement/:id",
     element: <EventDetails/>
+  },
+  {
+    path: "/admin",
+    element: <BackOffice/>
+  },
+  {
+    path: "/admin/evenements",
+    element: <BackOfficeEvenements/>
+  },
+  {
+    path: "/admin/courses",
+    element: <BackOfficeCourses/>
+  },
+  {
+    path: "/admin/utilisateurs",
+    element: <BackOfficeUtilisateurs/>
   },
 ])
 
