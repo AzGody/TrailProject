@@ -21,7 +21,7 @@ const Details = (props: any) => {
       }, []);
 
     return (
-        <div className={"container mx-auto pt-28"}>
+        <div className={"container mx-auto py-10"}>
             <Header backgroundImage="https://www.belambra.fr/les-echappees/wp-inside/uploads/2019/12/perdu-randonnee-reflexes.jpg"
                     namePage={course.nom}
                     description={course.distance+" m"}
