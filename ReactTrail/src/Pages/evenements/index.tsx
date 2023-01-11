@@ -34,7 +34,7 @@ const Evenements = () => {
       method: 'POST',
       headers: {
         Accept: 'application/json',
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json', 
       },
       body: JSON.stringify(inputs),
     })
@@ -65,7 +65,8 @@ const Evenements = () => {
             'align-left',
             'w-full',
             'hover:bg-slate-300',
-            'pl-2'
+            'pl-2',
+            'cursor-pointer'
           )
           div.innerHTML = item.nom + ' - ' + item.codesPostaux[0]
           div.onclick = (e) => {
@@ -119,7 +120,6 @@ const Evenements = () => {
                   name="localisation"
                   placeholder="Entrez le nom de la ville"
                   className="localisation border-black rounded-lg border-solid border p-2 w-full text-black"
-                  // onChange={(e) => handleSearch(e.currentTarget.value)}
                 />
                 <div
                   className="search absolute flex flex-col items-center justify-center w-1/3 rounded-lg cursor-pointer text-black"
