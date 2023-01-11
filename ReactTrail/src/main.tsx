@@ -9,11 +9,13 @@ import Details from './Components/trailDetails'
 import './index.css'
 import Footer from "./Components/footer";
 import CreateUser from "./Pages/CreateUser";
+import Page404 from './Pages/404'
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
+    errorElement: <Page404 />
   },
   {
     path: "/evenements",
