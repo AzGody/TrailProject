@@ -107,7 +107,7 @@ const CreationCourse = () => {
                         onSubmit={handleSubmit}
                         className="w-2/4 p-4 rounded-lg text-black"
                     >
-                        <div className="flex items-center justify-between ">
+                        <div className="name-date flex items-center justify-between ">
                             <div className="flex flex-col items-start justify-center w-48">
                                 <label className={"text-white"} htmlFor="course-nom">Nom</label>
                                 <input
@@ -181,7 +181,7 @@ const CreationCourse = () => {
                                 className="border-black rounded-lg border-solid border p-2 w-full"
                             />
                         </div>
-                        <div className="flex items-center justify-between mt-4">
+                        <div className="denivele flex items-center justify-between mt-4">
                             <div className="flex flex-col items-start justify-center  w-48">
                                 <label className={"text-white"} htmlFor="course-denivele-max">Dénivelé maximum</label>
                                 <input
