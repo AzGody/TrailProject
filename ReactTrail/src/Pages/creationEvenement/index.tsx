@@ -11,6 +11,7 @@ const Evenements = () => {
   const [lat, setLat] = useState(48.864716)
   const [lng, setLng] = useState(2.349014)
 
+
   function getCoordinates(cityName: string) {
     fetch(
       'https://nominatim.openstreetmap.org/search?format=json&q=' + cityName
@@ -27,6 +28,11 @@ const Evenements = () => {
     event.preventDefault()
     inputs.utilisateurs = []
     inputs.courses = []
+    inputs.localisation = {
+      name: 'ville',
+      lat: lat,
+      lng: lng
+    }
 
     console.log(inputs)
 
