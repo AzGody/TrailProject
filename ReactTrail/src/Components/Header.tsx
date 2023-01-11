@@ -1,11 +1,26 @@
 import * as React from "react"
 import Navbar from "./Navbar";
+import jwt_decode from "jwt-decode";
+import {useEffect, useState} from "react";
 
 export interface HeaderProps {
 
 }
 
 export default function Header(props: any) {
+
+    const [message, setMessage] = useState("");
+
+    const token = sessionStorage.getItem("JWT")
+
+    useEffect(() => {
+        if (token !== null) {
+            const decoded = jwt_decode(token);
+
+            setMessage("Bonjour" + " " + decoded.pseudo + "👋")
+        }
+    }, [message])
+
 
     return (
 
@@ -35,6 +50,9 @@ export default function Header(props: any) {
                             className="text-2xl font-bold   drop-shadow">{props.nbCourses} </span> {props.description3}
                         </p>
 
+                        <p className={"text-xl text-stone-50 font-bold pt-2 "}>
+                            {message}
+                        </p>
                     </div>
 
                 </div>

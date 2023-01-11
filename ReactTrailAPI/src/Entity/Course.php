@@ -2,6 +2,10 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Doctrine\Orm\Filter\DateFilter;
+use ApiPlatform\Doctrine\Orm\Filter\RangeFilter;
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Delete;
 use App\Repository\CourseRepository;
@@ -26,6 +30,9 @@ use ApiPlatform\Metadata\Put;
 #[GetCollection]
 #[Post(security: "is_granted('ROLE_ORGANISATEUR')")]
 #[Delete(security: "is_granted('ROLE_ORGANISATEUR')")]
+#[ApiFilter(DateFilter::class, properties: ['date'])]
+#[ApiFilter(RangeFilter::class, properties: ['distance'])]
+#[ApiFilter(SearchFilter::class, properties: ['nom' => 'partial'])]
 #[ORM\Entity(repositoryClass: CourseRepository::class)]
 class Course
 {
