@@ -28,8 +28,13 @@ function App() {
                 satisfaire votre soif de découverte et de performance. Rejoignez notre communauté en ligne et partagez
                 vos expériences de trail avec nous !
             </p>
-
+            <p className='lg:pt-2 px-4 lg:px-0 text-xl font-semibold'>
+                Liste des courses les plus populaires :
+            </p>
             <TrailList></TrailList>
+            <p className='lg:pt-2 px-4 lg:px-0 text-xl font-semibold'>
+                Liste des évènements les plus populaires :
+            </p>
             <Footer></Footer>
 
         </div>

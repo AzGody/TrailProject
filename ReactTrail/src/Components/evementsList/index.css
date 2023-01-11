@@ -1,0 +1,131 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+* {
+  box-sizing: border-box;
+}
+.list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  background-color: #AABED7;
+  font-family: "Roboto", sans-serif;
+  color: #10182f;
+  border-left: 1rem solid #016DBB;
+  border-radius: 10px;
+}
+.list-container {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  padding: 30px 0 50px 0;
+}
+.list-container a
+{
+  margin: auto;
+}
+.card {
+  margin: 10px;
+  background-color: #fff;
+  border-radius: 30px;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  width: 300px;
+  margin-top: 20px
+}
+.card-header img {
+  width: 100%;
+  height: 125px;
+  object-fit: cover;
+}
+
+h3{
+    margin: 0;
+    text-align: center;
+    width: 100%;
+    color: #808AE7;
+    font-weight: 700 !important;
+}
+
+.card-body h1 {
+    text-align: center;
+    width: 100%;
+    font-size: 24px;
+    /* margin-top: 10px; */
+    font-weight: 600;
+    /* font-family: "Dancing Script"; 
+    font-size: 21px; */
+}
+.card-body h2{
+  width: 100%;
+  text-align: center;
+  /* margin-top: 10px; */
+  color: #aaa;
+  font-weight: bold;
+}
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+  min-height: 250px;
+}
+
+.tag {
+  background: #cccccc;
+  border-radius: 50px;
+  font-size: 12px;
+  margin: 0;
+  color: #fff;
+  padding: 2px 10px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.tag-teal {
+  background-color: #47bcd4;
+}
+.tag-purple {
+  background-color: #5e76bf;
+}
+.tag-pink {
+  background-color: #cd5b9f;
+}
+
+.card-body p {
+  font-size: 15px;
+  margin: 10px 0 10px;
+  text-align: center;
+  width: 100%;
+}
+.user {
+  display: flex;
+  margin-top: auto;
+}
+
+.distance{
+  align-items: right;
+  width: fit-content;
+  margin: auto;
+  font-size: 25px;
+  font-weight: 600;
+  color: #016DBB;
+}
+
+.flex{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.user img {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+.user-info h5 {
+  margin: 0;
+}
+.user-info small {
+  color: #545d7a;
+}

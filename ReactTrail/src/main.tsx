@@ -11,6 +11,7 @@ import CreateCourse from "./Pages/creationCourse";
 import CreateEvenement from "./Pages/creationEvenement";
 import CreateUser from "./Pages/CreateUser";
 import Page404 from './Pages/404'
+import EventDetails from './Components/eventDetails'
 
 const router = createBrowserRouter([
   {
@@ -47,16 +48,12 @@ const router = createBrowserRouter([
     element: <CreateEvenement />
   },
   {
-    path: "/details",
-    element: <Details
-        title="Trail en montagne à Saint-Étienne-de-Baïgorry"
-        distance="25"
-        startCity="Saint-Étienne-de-Baïgorry"
-        arrivalCity="Saint-Étienne-de-Baïgorry"
-        negativeElevation="200"
-        positiveElevation="130"
-        description="Le trail en montagne à Saint-Étienne-de-Baïgorry est une course à pied en nature qui se déroule sur des sentiers et chemins de montagne. Ce parcours de montagne offre de magnifiques panoramas sur les paysages environnants. Vous pourrez découvrir la région et ses richesses naturelles tout en vous dépassant physiquement. Le trail en montagne est une activité idéale pour les amateurs de plein air et de grands espaces. Si vous cherchez un défi physique et un moment de détente en pleine nature, le trail en montagne à Saint-Étienne-de-Baïgorry est fait pour vous."
-    />
+    path: "/courses/:id",
+    element: <Details/>
+  },
+  {
+    path: "/evenement/:id",
+    element: <EventDetails/>
   },
 ])
 
