@@ -11,6 +11,7 @@ const UsersList = () => {
       method: "GET",
       headers: {
         Accept: "application/json",
+        Authorization: "Bearer " + sessionStorage.getItem("JWT")
       },
     })
       .then((response) => response.json())
@@ -34,23 +35,23 @@ const UsersList = () => {
     if (utilisateurs.length != 0) {
       return <div className="admin-list grow flex items-center justify-center">
         <div className="admin-list-container">                
-            <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+                <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
-                            <th scope="col" class="px-6 py-3">
+                            <th scope="col" className="px-6 py-3">
                                 ID
                             </th>
-                            <th scope="col" class="px-6 py-3">
+                            <th scope="col" className="px-6 py-3">
                                 Pseudo
                             </th>
-                            <th scope="col" class="px-6 py-3">
+                            <th scope="col" className="px-6 py-3">
                                 Email
                             </th>
-                            <th scope="col" class="px-6 py-3">
+                            <th scope="col" className="px-6 py-3">
                                 Role
                             </th>
-                            <th scope="col" class="px-6 py-3 text-center">
+                            <th scope="col" className="px-6 py-3 text-center">
                                 Actions
                             </th>
                         </tr>
@@ -58,22 +59,22 @@ const UsersList = () => {
                     <tbody>
                     {utilisateurs.map(utilisateur =>
                       (
-                        <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        <tr className="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                            <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                               {utilisateur.id}
                             </th>
-                            <td class="px-6 py-4">
+                            <td className="px-6 py-4">
                               {utilisateur.pseudo}
                             </td>
-                            <td class="px-6 py-4">
+                            <td className="px-6 py-4">
                               {utilisateur.email}
                             </td>  
-                            <td class="px-6 py-4">
-                              {utilisateur?.roles}
+                            <td className="px-6 py-4">
+                              {utilisateur.roles.map(role => <div>{role}</div>)}
                             </td>                            
-                            <td class="px-6 py-4 text-center">
-                                <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Modifier</a>
-                                <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Supprimer</a>
+                            <td className="px-6 py-4 text-center">
+                                <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Modifier</a>
+                                <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Supprimer</a>
                             </td>
                         </tr>
                       ))}

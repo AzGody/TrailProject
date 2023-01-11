@@ -28,7 +28,7 @@ function FormCreateUser() {
                 setHidden("block mb-4 rounded-lg")
             }
             else{
-                location.replace("/auth")
+                location.replace("/login")
             }
         })
             .catch(error => console.log(error))

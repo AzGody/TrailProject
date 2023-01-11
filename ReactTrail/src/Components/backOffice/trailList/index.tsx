@@ -35,35 +35,35 @@ const BOList = () => {
     if (courses.length != 0) {
       return <div className="admin-list grow flex items-center justify-center">
         <div className="admin-list-container">                
-            <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+                <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
-                            <th scope="col" class="px-6 py-3">
+                            <th scope="col" className="px-6 py-3">
                               ID
                             </th>
-                            <th scope="col" class="px-6 py-3">
+                            <th scope="col" className="px-6 py-3">
                                 Nom
                             </th>
-                            <th scope="col" class="px-6 py-3">
+                            <th scope="col" className="px-6 py-3">
                                 Date
                             </th>
-                            <th scope="col" class="px-6 py-3">
+                            <th scope="col" className="px-6 py-3">
                                 Localisation
                             </th>
-                            <th scope="col" class="px-6 py-3">
+                            <th scope="col" className="px-6 py-3">
                                 Distance
                             </th>
-                            <th scope="col" class="px-6 py-3">
+                            <th scope="col" className="px-6 py-3">
                                 Dénivelé P
                             </th>
-                            <th scope="col" class="px-6 py-3">
+                            <th scope="col" className="px-6 py-3">
                                 Dénivelé N
                             </th>
-                            <th scope="col" class="px-6 py-3">
+                            <th scope="col" className="px-6 py-3">
                                 Evenement
                             </th>
-                            <th scope="col" class="px-6 py-3 text-center">
+                            <th scope="col" className="px-6 py-3 text-center">
                                 Actions
                             </th>
                         </tr>
@@ -71,34 +71,34 @@ const BOList = () => {
                     <tbody>
                     {courses.map(course =>
                       (
-                        <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        <tr className="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                            <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                               {course.id}
                             </th>
-                            <td class="px-6 py-4">
+                            <td className="px-6 py-4">
                               {course.nom}
                             </td>
-                            <td class="px-6 py-4">
+                            <td className="px-6 py-4">
                               {course.date}
                             </td>
-                            <td class="px-6 py-4">
+                            <td className="px-6 py-4">
                               {course?.localisation?.nom}
                             </td>
-                            <td class="px-6 py-4">
+                            <td className="px-6 py-4">
                               {course.distance}
                             </td>
-                            <td class="px-6 py-4">
+                            <td className="px-6 py-4">
                               {course.denivelePositif}
                             </td>
-                            <td class="px-6 py-4">
+                            <td className="px-6 py-4">
                               {course.deniveleNegatif}
                             </td>
-                            <td class="px-6 py-4">
+                            <td className="px-6 py-4">
                               {/* {course?.evenement?.nom} */}
                             </td>
-                            <td class="px-6 py-4 text-center">
-                                <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Modifier</a>
-                                <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Supprimer</a>
+                            <td className="px-6 py-4 text-center">
+                                <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Modifier</a>
+                                <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Supprimer</a>
                             </td>
                         </tr>
                       ))}

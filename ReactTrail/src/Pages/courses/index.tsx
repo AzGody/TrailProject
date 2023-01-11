@@ -23,11 +23,7 @@ const Courses = () => {
                     <button onClick={(event) => {
                         event.preventDefault()
                         setVisible(!visible)
-                    }} type="button" class="self-end text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none">Filter</button>
-
-                    <a href='/createCourse'>
-                        <button type="button" class="self-end text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none" href="http://127.0.0.1:5173/createCourse">Créer une course</button>
-                    </a>
+                    }} type="button" className="self-end text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none">Filter</button>
                 </div>
                 <Collapse isOpened={visible}>
                     <div className='border-2 p-7'>
@@ -49,7 +45,7 @@ const Courses = () => {
                         <input className='my-1.5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"'></input>
                         <div className='flex content-between'>
                             <div></div>
-                            <button type="button" class="my-1.5 text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none" href="http://127.0.0.1:5173/createCourse">Appliquer</button>
+                            <button type="button" className="my-1.5 text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none" href="http://127.0.0.1:5173/createCourse">Appliquer</button>
                         </div>
                     </div>
                 </Collapse>

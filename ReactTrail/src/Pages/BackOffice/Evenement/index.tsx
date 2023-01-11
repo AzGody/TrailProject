@@ -12,8 +12,8 @@ const BackOfficeEvenements = () => {
     return (
         <div className={"container mx-auto pt-28"}>
             <Header backgroundImage="/evenement.jpeg"
-                namePage="Créer un évènement"
-                description="Saisissiez le formulaire pour créer un évènement :"
+                namePage="Liste des évènements"
+                description="Liste de tous les événements créés :"
             />
             <Navbar/>
             <BOEvent/>

@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Transition} from "@headlessui/react";
 import jwt_decode from "jwt-decode";
 import {redirect} from "react-router-dom";
+import {isAdmin} from "../utils/isAdmin";
 
 function Nav() {
     const [isOpen, setIsOpen] = useState(false);
@@ -21,11 +22,6 @@ function Nav() {
         sessionStorage.removeItem("JWT")
         location.replace("/")
     }
-
-    const redirectAuth = () => {
-        location.replace("/auth")
-    }
-
 
     return (
         <div>
@@ -55,16 +51,16 @@ function Nav() {
                                     >
                                         Evenements
                                     </a>
-
-
-                                    <a
-                                        href="/admin"
-                                        className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                                    >
-                                        Dashboard
-                                    </a>
+                                    {
+                                        isAdmin() ?
+                                            <a
+                                                href="/admin"
+                                                className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                                            >
+                                                Dashboard
+                                            </a> : null
+                                    }
                                 </div>
-
                             </div>
                             <div className={"text-stone-50 justify-center items-center flex"}>
 
@@ -82,12 +78,12 @@ function Nav() {
                                 <p className={"pl-2"}>{message} </p></div>
 
                             {token === null ?
-                                <button
-                                    onClick={redirectAuth}
+                                <a
+                                    href={"/login"}
                                     className="text-green-600 hover:bg-green-200 hover:text-green-900 transition-colors px-3 py-2 rounded-md text-sm font-medium"
                                 >
                                     Connexion
-                                </button> :
+                                </a> :
                                 <button onClick={logOutUser}
                                         className="text-red-600 hover:bg-red-200 hover:text-red-900 transition-colors px-3 py-2 rounded-md text-sm font-medium"
                                 >
@@ -177,7 +173,7 @@ function Nav() {
                                 </a>
 
                                 <a
-                                    href="/auth"
+                                    href="/login"
                                     className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                                 >
                                     Connexion

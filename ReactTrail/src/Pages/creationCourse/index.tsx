@@ -243,11 +243,11 @@ const CreationCourse = () => {
                             value="Créer"
                             className="mt-4 mr-4 bg-slate-500 rounded-lg p-2 text-white w-24 hover:bg-slate-600 cursor-pointer"
                         />
-                        <input
+                        <button
                             type="button"
-                            value="Annuler"
+                            onClick={e => { history.back() } }
                             className="mt-4 bg-red-400 rounded-lg p-2 text-white w-24 hover:bg-red-500 cursor-pointer"
-                        />
+                        >Annuler</button>
                     </form>
                 </div>
                 <div className="map h-2/4 w-96 hidden" id="map">
