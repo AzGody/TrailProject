@@ -9,7 +9,7 @@ import List from "../../Components/trailList"
 const Courses = () => {
     return (
         <div className={"container mx-auto pt-28"}>
-            <Header backgroundImage="/course.png"
+            <Header backgroundImage="/evenement.jpeg"
                 namePage="Créer un évènement"
                 description="Saisissiez le formulaire pour créer un évènement :"
             />
