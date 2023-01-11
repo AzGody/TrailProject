@@ -11,6 +11,7 @@ const CreationCourse = () => {
     const [inputs, setInputs] = useState({});
     const [lat, setLat] = useState(48.864716)
     const [lng, setLng] = useState(2.349014)
+    const [event, setEvent] = useState()
 
     function getCoordinates(cityName: string) {
       fetch(
@@ -28,6 +29,7 @@ const CreationCourse = () => {
         inputs.localisation = { lat: 45, lng: 6 }; //TODO: supprimer
         inputs.utilisateurs = [];
         inputs.distance = +inputs.distance;
+        // inputs.evenement = event
         inputs.denivelePositif = +inputs.denivelePositif;
         inputs.deniveleNegatif = +inputs.deniveleNegatif;
         //console.log(inputs)
@@ -36,7 +38,8 @@ const CreationCourse = () => {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                Authorization: "Bearer " + "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2NzM0NDQzMDgsImV4cCI6MTY3MzUzMDcwOCwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJ1c2VybmFtZSI6InJvbWFpbkBnbWFpbC5jb20iLCJlbWFpbCI6InJvbWFpbkBnbWFpbC5jb20iLCJwc2V1ZG8iOiJSb21haW4ifQ.GBrknVAJiJWkmVb4GvzxDmSop6zItRSssoR7Kem4UpAlaF3WO1uGra6TNWH98LUTaHxVNjcVBxEuF2DpIp24J2Tqr6IGkC3KbuYBLn4ekytn6PIMPKAW6akJF9stetjv_B6mzGDBYWLT062oLM6Ig7TkOPLf7UT95M7lKKdy3WqZLyXarnqE09Es3KDmiCNO8xN4IjTJXrG4bqv6wzi7A_35RQtULUZcgb3Hpserb8Lwevu9jaVi82rHt-HDFQlcLagqWxif7hV0Fm0jag4PonFZ9HhSDRvm1hx1_Sk1XapYUeTHyJ-ENy2n5e670xHFWD-IF8DaIZsLIKHGjYbztQ",
             },
             body: JSON.stringify(inputs)
         })
@@ -60,6 +63,7 @@ const CreationCourse = () => {
         else{
             document.querySelector('.localisation').classList.contains('hidden') ? null : document.querySelector('.localisation').classList.add('hidden')
             document.querySelector('.map')?.classList.add('hidden')
+            setEvent(e.target.value)
         }
     }
 
@@ -95,6 +99,31 @@ const CreationCourse = () => {
         )
       }
 
+      function fetchEvents(){
+        Array.prototype.slice.call(document.querySelectorAll('.opt')).map((item, index) => {
+            index > 1 ? item.remove() : null
+        })
+        fetch('http://127.0.0.1:8000/api/evenements', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                Authorization: "Bearer " + "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2NzM0NDQzMDgsImV4cCI6MTY3MzUzMDcwOCwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJ1c2VybmFtZSI6InJvbWFpbkBnbWFpbC5jb20iLCJlbWFpbCI6InJvbWFpbkBnbWFpbC5jb20iLCJwc2V1ZG8iOiJSb21haW4ifQ.GBrknVAJiJWkmVb4GvzxDmSop6zItRSssoR7Kem4UpAlaF3WO1uGra6TNWH98LUTaHxVNjcVBxEuF2DpIp24J2Tqr6IGkC3KbuYBLn4ekytn6PIMPKAW6akJF9stetjv_B6mzGDBYWLT062oLM6Ig7TkOPLf7UT95M7lKKdy3WqZLyXarnqE09Es3KDmiCNO8xN4IjTJXrG4bqv6wzi7A_35RQtULUZcgb3Hpserb8Lwevu9jaVi82rHt-HDFQlcLagqWxif7hV0Fm0jag4PonFZ9HhSDRvm1hx1_Sk1XapYUeTHyJ-ENy2n5e670xHFWD-IF8DaIZsLIKHGjYbztQ",
+            },
+        })
+            .then(response => response.json())
+            .then(response => {
+                response.map((item, index) => {
+                    let opt = document.createElement('option')
+                    opt.value = item.nom
+                    opt.innerHTML = item.nom
+                    opt.classList.add('opt')
+                    document.querySelector('option[value="none"]')?.after(opt)
+                })
+            })
+            .catch(error => console.log(error))
+      }
+      fetchEvents()
     return (
         <div className={"container mx-auto pt-28"}>
             <Header backgroundImage="/course.png"
@@ -138,14 +167,11 @@ const CreationCourse = () => {
                                 type="text"
                                 id="course-evenement"
                                 name="course-evenement"
-                                className="border-black rounded-lg border-solid border p-2 w-full"
+                                className="event-select border-black rounded-lg border-solid border p-2 w-full"
                                 onChange={handleSelectChange}
                             >
-                                <option value="default" disabled selected>Choisissez l'événement associé à la course</option>
-                                <option value="none" >Aucun</option>
-                                <option value="event1" >Event 1</option>
-                                <option value="event2" >Event 2</option>
-                                <option value="event3" >Event 3</option>
+                                <option className='opt opt-default' value="default" disabled selected>Choisissez l'événement associé à la course</option>
+                                <option className='opt opt-none' value="none" >Aucun</option>
                             </select>
                         </div>
                         <div className="localisation relative flex flex-col items-start justify-center w-full mt-4 hidden">
