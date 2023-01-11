@@ -25,26 +25,6 @@ const List = () => {
   return (
     <div className="list">
       <div className="list-container">
-        {courses.map(course =>
-        (<a href={"/details"}>
-          <div className="card">
-            <div className="card-header">
-              <img
-                src="https://www.belambra.fr/les-echappees/wp-inside/uploads/2019/12/perdu-randonnee-reflexes.jpg"
-                alt="rover"
-              />
-            </div>
-            <div className="card-body">
-              <h3>{new Date(course.date).toLocaleDateString('Fr-fr')}</h3>
-              <h1>{course.nom}</h1>
-              <h2>{course.localisation.nom}</h2>
-              <p>{truncate(String(course.description), 0, 80)}</p>
-              <div className="flex">
-                <div className="distance">{course.distance} m</div>
-              </div>
-            </div>
-          </div>
-        </a>))}
         {courses.map(course=>
             (<a key={course.id} href={"/details"}>
             <div className="card">
