@@ -47,7 +47,7 @@ const router = createBrowserRouter([
     element: <CreateEvenement />
   },
   {
-    path: "/details",
+    path: "/details/:id",
     element: <Details/>
   },
 ])
