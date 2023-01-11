@@ -29,3 +29,8 @@ services:
     App\OpenApi\JwtDecorator:
         decorates: 'api_platform.openapi.factory'
         arguments: [ '@.inner' ]
+
+    acme_api.event.authentication_failure_listener:
+        class: App\EventListener\AuthenticationFailureListener
+        tags:
+            - { name: kernel.event_listener, event: lexik_jwt_authentication.on_authentication_failure, method: onAuthenticationFailureResponse }
