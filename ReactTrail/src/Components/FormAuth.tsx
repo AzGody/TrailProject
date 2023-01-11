@@ -33,6 +33,7 @@ function FormAuth() {
                     setHidden("block mb-4 rounded-lg")
                 }
                 else{
+                    console.log(response)
                     sessionStorage.setItem("JWT", response.token)
                     location.replace("/")
                 }
