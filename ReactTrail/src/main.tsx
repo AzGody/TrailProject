@@ -7,7 +7,8 @@ import Auth from './Pages/Auth'
 import List from './Components/trailList'
 import Details from './Components/trailDetails'
 import './index.css'
-import Footer from "./Components/footer";
+import CreateCourse from "./Pages/creationCourse";
+import CreateEvenement from "./Pages/creationEvenement";
 import CreateUser from "./Pages/CreateUser";
 import Page404 from './Pages/404'
 
@@ -36,6 +37,14 @@ const router = createBrowserRouter([
   {
     path: "/createUser",
     element: <CreateUser />
+  },
+  {
+    path: "/createCourse",
+    element: <CreateCourse />
+  },
+  {
+    path: "/createEvenement",
+    element: <CreateEvenement />
   },
   {
     path: "/details",
