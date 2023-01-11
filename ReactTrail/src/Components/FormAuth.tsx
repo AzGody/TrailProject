@@ -1,6 +1,5 @@
+// @ts-nocheck - may need to be at the start of file
 import React, {useState} from "react";
-import {Transition} from "@headlessui/react";
-import {redirect} from "react-router-dom";
 
 function FormAuth() {
 
