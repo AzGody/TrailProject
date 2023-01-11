@@ -13,9 +13,9 @@ const Courses = () => {
                 namePage="Créer une course"
                 description="Saisissiez le formulaire pour créer une course :"
             />
-            <div className='flex items-center justify-center w-full'>Voici la liste des courses disponibles
-            <a href='/new-course'>
-                <button type="button" class="self-end text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none" href="http://127.0.0.1:5173/new-course">Créer une course</button>
+            <div className='flex items-center justify-center w-full text-2xl'>Voici la liste des courses disponibles
+            <a href='/createCourse'>
+                <button type="button" class="self-end text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none" href="http://127.0.0.1:5173/createCourse">Créer une course</button>
             </a>
             </div>
             <List />

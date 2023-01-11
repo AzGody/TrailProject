@@ -3,7 +3,7 @@ import './style.css'
 import { useState } from "react";
 import Header from "../../Components/Header";
 import Footer from "../../Components/footer";
-import Marker_ from '../evenements/Marker_';
+import Marker_ from '../creationEvenement/Marker_';
 
 
 const CreationCourse = () => {
@@ -210,12 +210,12 @@ const CreationCourse = () => {
                         <input
                             type="submit"
                             value="Créer"
-                            className="mt-4 mr-4 bg-slate-500 rounded-lg p-2 text-white w-24 cursor-pointer"
+                            className="mt-4 mr-4 bg-slate-500 rounded-lg p-2 text-white w-24 hover:bg-slate-600 cursor-pointer"
                         />
                         <input
                             type="button"
                             value="Annuler"
-                            className="mt-4 bg-red-400 rounded-lg p-2 text-white w-24 cursor-pointer"
+                            className="mt-4 bg-red-400 rounded-lg p-2 text-white w-24 hover:bg-red-500 cursor-pointer"
                         />
                     </form>
                 </div>
