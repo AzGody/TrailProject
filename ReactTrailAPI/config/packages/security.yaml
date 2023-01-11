@@ -38,8 +38,8 @@ security:
         - { path: ^/api$, roles: PUBLIC_ACCESS } # Allows accessing the Swagger UI
         - { path: ^/docs, roles: PUBLIC_ACCESS } # Allows accessing the Swagger UI docs
         - { path: ^/api/utilisateurs$, roles: PUBLIC_ACCESS }
-        - { path: ^/api/courses$, roles: PUBLIC_ACCESS }
-        - { path: ^/api/evenements$, roles: PUBLIC_ACCESS }
+        - { path: ^/api/courses, roles: PUBLIC_ACCESS }
+        - { path: ^/api/evenements, roles: PUBLIC_ACCESS }
         - { path: ^/, roles: IS_AUTHENTICATED_FULLY }
 
 
