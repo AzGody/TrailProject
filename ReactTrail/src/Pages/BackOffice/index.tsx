@@ -3,7 +3,7 @@ import './style.css'
 import Header from "../../Components/Header";
 import Footer from "../../Components/footer";
 import List from "../../Components/trailList";
-import Navbar from "../../Components/backOffice";
+import Navbar from "../../Components/backOffice/navbar";
 
 
 
