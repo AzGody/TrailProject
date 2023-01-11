@@ -1,6 +1,6 @@
 // @ts-nocheck - may need to be at the start of file
 import './style.css'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "../../Components/Header";
 import Footer from "../../Components/footer";
 import Marker_ from '../creationEvenement/Marker_';
@@ -11,6 +11,7 @@ const CreationCourse = () => {
     const [inputs, setInputs] = useState({});
     const [lat, setLat] = useState(48.864716)
     const [lng, setLng] = useState(2.349014)
+    const [events, setEvents] = useState([])
     const [event, setEvent] = useState()
 
     function getCoordinates(cityName: string) {
@@ -24,15 +25,16 @@ const CreationCourse = () => {
       })
     }
 
-    const handleSubmit = (event: any) => {
-        event.preventDefault();
-        inputs.localisation = { lat: 45, lng: 6 }; //TODO: supprimer
+    const handleSubmit = (e: any) => {
+        e.preventDefault();
+        inputs.localisation = { lat: lat, lng: lng}; //TODO: supprimer
         inputs.utilisateurs = [];
         inputs.distance = +inputs.distance;
-        // inputs.evenement = event
+        console.log(event)
+        event == undefined ? null : inputs.evenement = "/api/evenements/"+event
         inputs.denivelePositif = +inputs.denivelePositif;
         inputs.deniveleNegatif = +inputs.deniveleNegatif;
-        //console.log(inputs)
+        // console.log(inputs)
 
         fetch('http://127.0.0.1:8000/api/courses', {
             method: 'POST',
@@ -54,7 +56,6 @@ const CreationCourse = () => {
     }
 
     const handleSelectChange = (e) => {
-        console.log(e.target.value)
         if(e.target.value == "none"){
             document.querySelector('.localisation').classList.remove('hidden')
             document.querySelector('.map')?.classList.remove('hidden')
@@ -97,31 +98,37 @@ const CreationCourse = () => {
           })
         )
       }
-
       function fetchEvents(){
         Array.prototype.slice.call(document.querySelectorAll('.opt')).map((item, index) => {
             index > 1 ? item.remove() : null
         })
-        fetch('http://127.0.0.1:8000/api/evenements', {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
+        events.map((item, index) => {
+            let opt = document.createElement('option')
+            opt.value = item.id
+            opt.innerHTML = item.nom
+            opt.onclick = (e) => {
+                console.log(e.target.value)
+            }
+            opt.classList.add('opt')
+            document.querySelector('option[value="none"]')?.after(opt)
+        })
+      }
+      useEffect(() => {
+          fetch('http://127.0.0.1:8000/api/evenements', {
+              method: 'GET',
+              headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json',
             },
         })
-            .then(response => response.json())
-            .then(response => {
-                response.map((item, index) => {
-                    let opt = document.createElement('option')
-                    opt.value = item.nom
-                    opt.innerHTML = item.nom
-                    opt.classList.add('opt')
-                    document.querySelector('option[value="none"]')?.after(opt)
-                })
-            })
-            .catch(error => console.log(error))
-      }
-      fetchEvents()
+          .then((response) => response.json())
+          .then((response) => {setEvents(response)})
+          .catch((error) => console.log(error));
+        }, []);
+        
+        useEffect(() => {
+            fetchEvents()
+        }, events[0])
     return (
         <div>
             <Header backgroundImage="/course.png"
