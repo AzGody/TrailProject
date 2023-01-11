@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Delete;
 use App\Repository\CourseRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -10,11 +11,21 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Put;
+
 
 #[ApiResource(
     normalizationContext: ['groups' => ['course:read']],
     denormalizationContext: ['groups' => ['course:write']],
 )]
+#[Get]
+#[Put(security: "is_granted('ROLE_ORGANISATEUR')")]
+#[GetCollection]
+#[Post(security: "is_granted('ROLE_ORGANISATEUR')")]
+#[Delete(security: "is_granted('ROLE_ORGANISATEUR')")]
 #[ORM\Entity(repositoryClass: CourseRepository::class)]
 class Course
 {

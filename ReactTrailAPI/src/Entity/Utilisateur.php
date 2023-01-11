@@ -22,15 +22,16 @@ use Symfony\Component\Validator\Constraints\Email;
 
 #[ApiResource(
     operations: [
-        new GetCollection(),
+        new GetCollection(security: "is_granted('ROLE_ADMIN')"),
         new Post(processor: UserPasswordHasher::class),
-        new Get(),
-        new Put(processor: UserPasswordHasher::class),
-        new Patch(processor: UserPasswordHasher::class),
-        new Delete(),
+        new Get(security: "is_granted('ROLE_ADMIN')"),
+        new Put(security: "is_granted('ROLE_ADMIN')", processor: UserPasswordHasher::class),
+        new Patch(security: "is_granted('ROLE_ADMIN')", processor: UserPasswordHasher::class),
+        new Delete(security: "is_granted('ROLE_ADMIN')"),
     ],
     normalizationContext: ['groups' => ['utilisateur:read']],
-    denormalizationContext: ['groups' => ['utilisateur:write']],)]
+    denormalizationContext: ['groups' => ['utilisateur:write']],
+    )]
 #[ORM\Entity(repositoryClass: UtilisateurRepository::class)]
 class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
 {
