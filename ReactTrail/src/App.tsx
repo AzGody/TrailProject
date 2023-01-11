@@ -5,6 +5,7 @@ import Header from "./Components/Header";
 import Footer from './Components/footer';
 import TrailDetails from "./Components/trailDetails";
 import TrailList from "./Components/trailList";
+import EvenementList from "./Components/evementsList";
 
 // import './App.css'
 
@@ -35,6 +36,7 @@ function App() {
                 <p className='lg:pt-2 px-4 lg:px-0 text-xl font-semibold'>
                     Liste des évènements les plus populaires :
                 </p>
+                <EvenementList></EvenementList>
             </div>
             <Footer></Footer>
 
