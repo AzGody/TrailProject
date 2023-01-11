@@ -1,36 +1,53 @@
+// @ts-nocheck - may need to be at the start of file
 import './index.css'
 import Header from "../Header";
 import Footer from "../footer";
+import { useParams } from 'react-router-dom';
+import { useEffect, useState } from "react";
 
 const Details = (props: any) => {
+    const [course, setCourse] = useState([]);
+    const { id } = useParams();
+    useEffect(() => {
+        fetch(`http://127.0.0.1:8000/api/courses/${id}`, {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+          },
+        })
+          .then((response) => response.json())
+          .then((response) => setCourse(response))
+          .catch((error) => console.log(error));
+      }, []);
+
     return (
         <div className={"container mx-auto pt-28"}>
             <Header backgroundImage="https://www.belambra.fr/les-echappees/wp-inside/uploads/2019/12/perdu-randonnee-reflexes.jpg"
-                    namePage={props.title}
-                    description={props.distance+" km"}
+                    namePage={course.nom}
+                    description={course.distance+" m"}
             />
             <div className="details">
                 <div className="container">
                     <div className="header">
                         <div className="title font-dancing-script">
-                            {props.title}
+                            {course.nom}
                         </div>
                         <div className="distanceDetails font-dancing-script">
-                            {props.distance} km
+                            {course.distance} m
                         </div>
                     </div>
                     <div className="track">
                         <div className="start">
                             <img src="/src/assets/start.png" alt="Start"></img>
                             <div className="font-dancing-script">
-                                {props.startCity}
+                               {course?.localisation?.nom}
                             </div>
                         </div>
                         <div className="middle-track">
                             <img className="arrow-top" src="/src/assets/arrow.png" alt="positive elevation"></img>
                             <div className="elevation font-dancing-script">
                                 <div className="elevation font-dancing-script">
-                                    +{props.positiveElevation}m
+                                    +{course.denivelePositif}m
                                 </div>
                             </div>
                             <div className="join">
@@ -39,14 +56,14 @@ const Details = (props: any) => {
                                 <div className="circle"></div>
                             </div>
                             <div className="elevation font-dancing-script">
-                                -{props.negativeElevation}m
+                                -{course.deniveleNegatif}m
                             </div>
                             <img className="arrow-bottom" src="/src/assets/arrow.png" alt="nagative elevation"></img>
                         </div>
                         <div className="arrival">
                             <img src="/src/assets/arrival.png" alt="Start"></img>
                             <div className="font-dancing-script">
-                                {props.arrivalCity}
+                               {course?.localisation?.nom}
                             </div>
                         </div>
                     </div>
@@ -55,14 +72,7 @@ const Details = (props: any) => {
                             Description
                         </div>
                         <div className="content">
-                            {props.description}
-                            Le trail en montagne à Saint-Étienne-de-Baïgorry est une course à pied en nature qui se
-                            déroule sur des sentiers et chemins de montagne. Ce parcours de montagne offre de
-                            magnifiques panoramas sur les paysages environnants. Vous pourrez découvrir la région et ses
-                            richesses naturelles tout en vous dépassant physiquement. Le trail en montagne est une
-                            activité idéale pour les amateurs de plein air et de grands espaces. Si vous cherchez un
-                            défi physique et un moment de détente en pleine nature, le trail en montagne à
-                            Saint-Étienne-de-Baïgorry est fait pour vous.
+                            {course.description}
                         </div>
                     </div>
                 </div>

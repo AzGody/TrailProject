@@ -58,3 +58,18 @@ php bin/console doctrine:migrations:migrate
 symfony server:start
 ```
 
+
+
+# Informations supplémentaires
+
+## Problème de génération des clé pour le JWT
+
+```Windows CMD
+scoop install openssl
+```
+
+Puis redémarrer l'ordinateur, et refaire le 
+
+```Projet API 
+php bin/console lexik:jwt:generate-keypair
+```
