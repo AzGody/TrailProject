@@ -1,8 +1,24 @@
 import './index.css'
 import Header from "../Header";
 import Footer from "../footer";
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 const EventDetails = (props: any) => {
+
+    const [evenement, setEvenement] = useState([]);
+    const { id } = useParams();
+    useEffect(() => {
+        fetch(`http://127.0.0.1:8000/api/evenements/${id}`, {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+          },
+        })
+          .then((response) => response.json())
+          .then((response) => console.log(response))
+          .catch((error) => console.log(error));
+      }, []);
 
     function goToTrailDetails() {
         window.location.href = "#";
