@@ -29,7 +29,7 @@ const List = () => {
     return <div className="list">
       <div className="list-container">
         {courses.map(course =>
-        (<a key={course.id} href={"/details"}>
+        (<a key={course.id} href={`/details/${course.id}`}>
           <div className="card">
             <div className="card-header">
               <img
@@ -56,7 +56,7 @@ const List = () => {
     return <div className="list">
       <div className="list-container">
         {courses.slice(0, 4).map(course =>
-        (<a key={course.id} href={"/details"}>
+        (<a key={course.id} href={`/details/${course.id}`}>
           <div className="card">
             <div className="card-header">
               <img
