@@ -1,0 +1,61 @@
+.eventTrailList {
+    background-color: #fff;
+    border-radius: 50px;
+}
+.eventTrailItem {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+.eventTrailItem:first-child {
+    border-radius: 50px 50px 0 0;
+}
+.eventTrailItem:last-child {
+    border-radius: 0 0 50px 50px;
+}
+.eventTrailItem:hover {
+    cursor: pointer;
+    background-color: #016DBB;
+    color: #fff;
+}
+.eventTrailItem:hover .distanceDetails {
+    color: #fff;
+    border-color: #fff;
+}
+.eventTrailItem:not(:last-child) {
+    border-bottom: 2px solid hsl(0,0%,80%);
+}
+.eventTrailItem .imageAndText {
+    display: flex;
+}
+.eventTrailItem img {
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+}
+.eventTrailItemText {
+    padding-left: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+@media (max-width: 800px) {
+    .eventTrailItem {
+        flex-direction: column;
+        gap: 20px;
+        padding-block: 20px;
+    }
+    .eventTrailItem .distanceDetails {
+        margin-inline: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .eventTrailItem .imageAndText {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+}
