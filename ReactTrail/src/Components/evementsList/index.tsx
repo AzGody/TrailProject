@@ -6,8 +6,11 @@ import { useEffect, useState } from "react";
 const List = () => {
   const [courses, setCourses] = useState([]);
 
+  var pathLocation = window.location.pathname;
+  console.log(pathLocation)
+
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/courses", {
+    fetch("http://127.0.0.1:8000/api/evenements", {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -23,6 +26,7 @@ const List = () => {
   }
 
   function AllCourses() {
+    console.log(courses.length)
     if (courses.length != 0) {
       return <div className="list">
         <div className="list-container">
@@ -52,8 +56,8 @@ const List = () => {
     else {
       return (
         <div className="list">
-          <div className="list-container">
-            Aucune course n'est disponibe pour le moment
+          <div className="list-container"> 
+            Aucun évènement n'est disponible pour le moment
           </div>
         </div>
       )
@@ -91,7 +95,7 @@ const List = () => {
       return (
         <div className="list">
           <div className="list-container">
-            Aucune course n'est disponibe pour le moment
+            Aucun évènement n'est disponibe pour le moment
           </div>
         </div>
       )
