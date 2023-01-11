@@ -11,6 +11,7 @@ specifiers:
   leaflet: ^1.9.3
   postcss: ^8.4.21
   react: ^18.2.0
+  react-collapse: ^5.1.1
   react-dom: ^18.2.0
   react-leaflet: ^4.2.0
   react-router-dom: ^6.6.1
@@ -23,6 +24,7 @@ dependencies:
   jwt-decode: 3.1.2
   leaflet: 1.9.3
   react: 18.2.0
+  react-collapse: 5.1.1_react@18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-leaflet: 4.2.0_yydtlhsdonbqao6vgvkwhv2zki
   react-router-dom: 6.6.1_biqbaboplfbrettd7655fr4n2y
@@ -1117,6 +1119,14 @@ packages:
     resolution: {integrity: sha512-WuyALRjWPDGtt/wzJiadO5AXY+8hZ80hVpe6MyivgraREW751X3SbhRvG3eLKOYN+8VEvqLcf3wdnt44Z4S4SA==}
     engines: {node: '>=10'}
     dev: true
+
+  /react-collapse/5.1.1_react@18.2.0:
+    resolution: {integrity: sha512-k6cd7csF1o9LBhQ4AGBIdxB60SUEUMQDAnL2z1YvYNr9KoKr+nDkhN6FK7uGaBd/rYrYfrMpzpmJEIeHRYogBw==}
+    peerDependencies:
+      react: '>=16.3.0'
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /react-dom/18.2.0_react@18.2.0:
     resolution: {integrity: sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==}

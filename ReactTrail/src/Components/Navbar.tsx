@@ -84,12 +84,12 @@ function Nav() {
                             {token === null ?
                                 <button
                                     onClick={redirectAuth}
-                                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                                    className="text-green-600 hover:bg-green-200 hover:text-green-900 transition-colors px-3 py-2 rounded-md text-sm font-medium"
                                 >
                                     Connexion
                                 </button> :
                                 <button onClick={logOutUser}
-                                        className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                                        className="text-red-600 hover:bg-red-200 hover:text-red-900 transition-colors px-3 py-2 rounded-md text-sm font-medium"
                                 >
                                     Déconnexion
                                 </button>
