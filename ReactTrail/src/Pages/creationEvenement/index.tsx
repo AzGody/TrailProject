@@ -10,6 +10,7 @@ import Marker_ from './Marker_'
 const Evenements = () => {
   const [lat, setLat] = useState(48.864716)
   const [lng, setLng] = useState(2.349014)
+  const [cityName, setCityName] = useState('')
 
   function getCoordinates(cityName: string) {
     fetch(
@@ -27,6 +28,11 @@ const Evenements = () => {
     event.preventDefault()
     inputs.utilisateurs = []
     inputs.courses = []
+    inputs.localisation = {
+      name: cityName,
+      lat: lat,
+      lng: lng
+    }
 
     console.log(inputs)
 
@@ -74,6 +80,7 @@ const Evenements = () => {
               e.target.innerText.split(' - ')[0]
             document.querySelector('.results')?.classList.add('hidden')
             getCoordinates(e.target.innerText.split(' - ')[0])
+            setCityName(e.target.innerText.split(' - ')[0])
           }
           document.querySelector('.results')?.append(div)
         })
