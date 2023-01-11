@@ -11,6 +11,7 @@ import CreateCourse from "./Pages/creationCourse";
 import CreateEvenement from "./Pages/creationEvenement";
 import CreateUser from "./Pages/CreateUser";
 import Page404 from './Pages/404'
+import EventDetails from './Components/eventDetails'
 
 const router = createBrowserRouter([
   {
@@ -47,8 +48,12 @@ const router = createBrowserRouter([
     element: <CreateEvenement />
   },
   {
-    path: "/details/:id",
+    path: "/courses/:id",
     element: <Details/>
+  },
+  {
+    path: "/evenement/:id",
+    element: <EventDetails/>
   },
 ])
 

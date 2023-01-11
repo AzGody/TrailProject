@@ -10,7 +10,7 @@ import Marker_ from './Marker_'
 const Evenements = () => {
   const [lat, setLat] = useState(48.864716)
   const [lng, setLng] = useState(2.349014)
-
+  const [cityName, setCityName] = useState('')
 
   function getCoordinates(cityName: string) {
     fetch(
@@ -29,7 +29,7 @@ const Evenements = () => {
     inputs.utilisateurs = []
     inputs.courses = []
     inputs.localisation = {
-      name: 'ville',
+      name: cityName,
       lat: lat,
       lng: lng
     }
@@ -80,6 +80,7 @@ const Evenements = () => {
               e.target.innerText.split(' - ')[0]
             document.querySelector('.results')?.classList.add('hidden')
             getCoordinates(e.target.innerText.split(' - ')[0])
+            setCityName(e.target.innerText.split(' - ')[0])
           }
           document.querySelector('.results')?.append(div)
         })
@@ -138,7 +139,7 @@ const Evenements = () => {
                 </div>
                 <div className="results absolute flex flex-col items-center justify-center w-full rounded-lg border border-slate-500 bg-slate-200 hidden"></div>
               </div>
-              <div className="flex items-center justify-between mt-4">
+              <div className="date flex items-center justify-between mt-4">
                 <div className="flex flex-col items-start justify-center w-48">
                   <label htmlFor="date-debut">Date de début</label>
                   <input
@@ -162,7 +163,7 @@ const Evenements = () => {
                   />
                 </div>
               </div>
-              <div className="flex flex-col items-start justify-center w-48">
+              <div className="flex flex-col items-start justify-center w-full">
                 <label className={'text-white'} htmlFor="description">
                   Description
                 </label>
@@ -173,7 +174,7 @@ const Evenements = () => {
                   value={inputs.description || ''}
                   onChange={handleChange}
                   placeholder="description"
-                  className="border-black rounded-lg border-solid border p-2 text-black"
+                  className="border-black rounded-lg border-solid border p-2 w-full text-black"
                 />
               </div>
               <input

@@ -47,7 +47,7 @@ const Details = (props: any) => {
                             <img className="arrow-top" src="/src/assets/arrow.png" alt="positive elevation"></img>
                             <div className="elevation font-dancing-script">
                                 <div className="elevation font-dancing-script">
-                                    +{course.denivelePositif}m
+                                    {course.denivelePositif}m
                                 </div>
                             </div>
                             <div className="join">
@@ -56,7 +56,7 @@ const Details = (props: any) => {
                                 <div className="circle"></div>
                             </div>
                             <div className="elevation font-dancing-script">
-                                -{course.deniveleNegatif}m
+                                {course.deniveleNegatif}m
                             </div>
                             <img className="arrow-bottom" src="/src/assets/arrow.png" alt="nagative elevation"></img>
                         </div>

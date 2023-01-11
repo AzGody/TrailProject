@@ -9,3 +9,12 @@
     top: 33px;
     right: 0;
   }
+
+  @media screen and (max-width: 1024px) {
+    .name-date{
+        flex-direction: column;
+    }
+    .denivele{
+        flex-direction: column;
+    }
+  }
