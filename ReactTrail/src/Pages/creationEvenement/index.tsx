@@ -88,7 +88,7 @@ const Evenements = () => {
         namePage="Créer un évenement"
         description="Saisissiez le formulaire pour créer un évenement :"
       />
-      <div className="form-container flex items-center justify-around w-screen h-screen">
+      <div className="form-container flex items-center justify-around w-full h-screen">
         <div className="h-full w-2/4 flex flex-col items-center justify-center">
           <h1 className="text-3xl font-bold underline text-center mb-8">
             Créer un événement
@@ -183,7 +183,7 @@ const Evenements = () => {
             </form>
           </div>
         </div>
-        <div className="map h-2/4 w-96" id="map">
+        <div className="map h-96 w-96" id="map">
             <Marker_ coords={[lat, lng]}/>
         </div>
       </div>
