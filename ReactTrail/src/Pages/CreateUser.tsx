@@ -12,7 +12,7 @@ function CreateUser() {
     const [count, setCount] = useState(0)
 
     return (
-        <div className={"container mx-auto pt-28"}>
+        <div className={"container mx-auto py-10"}>
             <Header backgroundImage="/home.webp"
                     namePage="Création de compte"
                     description="Créez votre compte ! "
