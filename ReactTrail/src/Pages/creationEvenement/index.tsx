@@ -89,7 +89,7 @@ const Evenements = () => {
   }
 
   return (
-    <div className={'container mx-auto pt-28'}>
+    <div>
       <Header
         backgroundImage="/evenement.jpeg"
         namePage="Créer un évenement"

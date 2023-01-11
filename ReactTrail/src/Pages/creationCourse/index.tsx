@@ -11,6 +11,7 @@ const CreationCourse = () => {
     const [inputs, setInputs] = useState({});
     const [lat, setLat] = useState(48.864716)
     const [lng, setLng] = useState(2.349014)
+    const [event, setEvent] = useState()
 
     function getCoordinates(cityName: string) {
       fetch(
@@ -28,6 +29,7 @@ const CreationCourse = () => {
         inputs.localisation = { lat: 45, lng: 6 }; //TODO: supprimer
         inputs.utilisateurs = [];
         inputs.distance = +inputs.distance;
+        // inputs.evenement = event
         inputs.denivelePositif = +inputs.denivelePositif;
         inputs.deniveleNegatif = +inputs.deniveleNegatif;
         //console.log(inputs)
@@ -36,7 +38,7 @@ const CreationCourse = () => {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
             },
             body: JSON.stringify(inputs)
         })
@@ -60,6 +62,7 @@ const CreationCourse = () => {
         else{
             document.querySelector('.localisation').classList.contains('hidden') ? null : document.querySelector('.localisation').classList.add('hidden')
             document.querySelector('.map')?.classList.add('hidden')
+            setEvent(e.target.value)
         }
     }
 
@@ -95,8 +98,32 @@ const CreationCourse = () => {
         )
       }
 
+      function fetchEvents(){
+        Array.prototype.slice.call(document.querySelectorAll('.opt')).map((item, index) => {
+            index > 1 ? item.remove() : null
+        })
+        fetch('http://127.0.0.1:8000/api/evenements', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(response => response.json())
+            .then(response => {
+                response.map((item, index) => {
+                    let opt = document.createElement('option')
+                    opt.value = item.nom
+                    opt.innerHTML = item.nom
+                    opt.classList.add('opt')
+                    document.querySelector('option[value="none"]')?.after(opt)
+                })
+            })
+            .catch(error => console.log(error))
+      }
+      fetchEvents()
     return (
-        <div className={"container mx-auto pt-28"}>
+        <div>
             <Header backgroundImage="/course.png"
                 namePage="Créer une course"
                 description="Saisissiez le formulaire pour créer une course :"
@@ -138,14 +165,11 @@ const CreationCourse = () => {
                                 type="text"
                                 id="course-evenement"
                                 name="course-evenement"
-                                className="border-black rounded-lg border-solid border p-2 w-full"
+                                className="event-select border-black rounded-lg border-solid border p-2 w-full"
                                 onChange={handleSelectChange}
                             >
-                                <option value="default" disabled selected>Choisissez l'événement associé à la course</option>
-                                <option value="none" >Aucun</option>
-                                <option value="event1" >Event 1</option>
-                                <option value="event2" >Event 2</option>
-                                <option value="event3" >Event 3</option>
+                                <option className='opt opt-default' value="default" disabled selected>Choisissez l'événement associé à la course</option>
+                                <option className='opt opt-none' value="none" >Aucun</option>
                             </select>
                         </div>
                         <div className="localisation relative flex flex-col items-start justify-center w-full mt-4 hidden">
