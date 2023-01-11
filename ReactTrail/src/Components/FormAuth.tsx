@@ -1,18 +1,67 @@
 import React, {useState} from "react";
 import {Transition} from "@headlessui/react";
+import {redirect} from "react-router-dom";
 
 function FormAuth() {
-    const [isOpen, setIsOpen] = useState(false);
+
+    const [inputs, setInputs] = useState({});
+
+
+    const [hidden, setHidden] = useState("hidden");
+
+
+    const [message, setMessage] = useState("");
+
+    const handleSubmit = (event: any) => {
+        event.preventDefault();
+
+        console.log(inputs)
+
+        fetch('http://127.0.0.1:8000/login', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(inputs)
+        })
+            .then(response => response.json())
+            .then(response => {
+                if(response.code === 401)
+                {
+                    setMessage(response.message)
+                    setHidden("block mb-4 rounded-lg")
+                }
+                else{
+                    sessionStorage.setItem("JWT", response.token)
+                    location.replace("/")
+                }
+            })
+            .catch(error => console.log(error))
+
+    }
+
+    const handleChange = (event: any) => {
+        const name = event.target.name;
+        const value = event.target.value;
+        setInputs(values => ({...values, [name]: value}))
+    }
+
     return (
         <div className="w-full lg:px-0 px-3">
-            <form className="bg-white  rounded">
+            <form onSubmit={handleSubmit} className="bg-white  rounded">
+                <div  className={"bg-red-200 text-red-700 font-bold p-4" + " " + hidden}>
+                    {message}
+                </div>
                 <div className="mb-4">
-                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
-                        Identifiant
+                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+                        Email
                     </label>
                     <input
                         className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                        id="username" type="email" placeholder="antoine.zebulon@reactive-trail.fr" required/>
+                        id="email" name="email" type="email" placeholder="antoine.zebulon@reactive-trail.fr"
+                        value={inputs.email || ""}
+                        onChange={handleChange} required/>
                 </div>
                 <div className="mb-6">
                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
@@ -20,11 +69,15 @@ function FormAuth() {
                     </label>
                     <input
                         className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                        id="password" type="password" placeholder="******************" required/>
+                        id="password" name="password" type="password" placeholder="******************"
+                        value={inputs.password || ""}
+                        onChange={handleChange} required/>
 
                 </div>
                 <div className="flex items-center justify-between">
-                    <input className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" value="Connexion"/>
+                    <input
+                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        type="submit" value="Connexion"/>
                     <a className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
                        href="/createUser">
                         Pas de compte ?

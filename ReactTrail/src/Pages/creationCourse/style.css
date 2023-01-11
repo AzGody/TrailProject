@@ -1,0 +1,11 @@
+.form-container form .results{
+    min-height: 30px;
+    max-height: 200px;
+    overflow-y: scroll;
+    top: 70px;
+}
+
+.form-container form .search {
+    top: 33px;
+    right: 0;
+  }

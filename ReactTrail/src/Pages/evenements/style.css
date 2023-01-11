@@ -1,30 +1,16 @@
-.form-container {
+.form-container{
   background-image: url('../../assets/courses-form-bg.jpg');
 }
 
-.form-container form {
+.form-container form{
   background-color: rgba(0, 0, 0, 0.699);
 }
 
-.form-container form .results{
-    min-height: 30px;
-    max-height: 200px;
-    overflow-y: scroll;
-    top: 70px;
+.form-container form textarea{
+  resize: none;
 }
 
-.form-container form .search {
-    top: 33px;
-    right: 0;
-  }
-  
-
-::placeholder {
-  font-size: 14px;
-  width: fit-content;
-}
-
-.leaflet-container {
-  width: 100%;
-  height: 100%;
+::placeholder{
+    font-size: 14px;
+    width: fit-content;    
 }
