@@ -3,7 +3,6 @@ import "./index.css";
 import { list } from "postcss";
 import { useEffect, useState } from "react";
 import { Collapse } from 'react-collapse';
-// import moment from 'moment';
 
 const BOList = () => {
   const [courses, setCourses] = useState([]);
@@ -123,7 +122,8 @@ const BOList = () => {
                           {course.nom}
                         </td>
                         <td className="px-6 py-4">
-                          {/* {moment(new Date(course.date)).format("dd/mm/yy")} */}
+                          {new Date(course.date).toLocaleDateString('fr')}&nbsp;
+                          <b>{new Date(course.date).toLocaleTimeString('fr')}</b>
                         </td>
                         <td className="px-6 py-4">
                           {course?.localisation?.nom}
