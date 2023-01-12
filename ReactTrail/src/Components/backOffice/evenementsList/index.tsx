@@ -2,9 +2,11 @@
 import "./index.css";
 import { list } from "postcss";
 import { useEffect, useState } from "react";
+import { Collapse } from 'react-collapse';
 
 const BOEvent = () => {
   const [evenements, setEvenements] = useState([]);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     fetch("http://127.0.0.1:8000/api/evenements", {
@@ -36,8 +38,47 @@ const BOEvent = () => {
 
   function AllCourses() {
     if (evenements.length !== 0) {
-      return <div className="admin-list grow flex items-center justify-center">
-        <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+      return <div className="admin-list grow flex items-center justify-center flex-col">
+        <div className='flex items-center justify-center w-full text-2xl mb-5'>
+             Voici la liste des événements disponibles
+            <button onClick={(event) => {
+                event.preventDefault()
+                setVisible(!visible)
+            }} type="button" className="ml-5 text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none">Filtrer</button>
+            <a href='/evenements/create'>
+                <button type="button"
+                        class="self-end text-white bg-green-700 hover:bg-green-800 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none"
+                        href="http://127.0.0.1:5173/createEvenement">Créer un évènement
+                </button>
+            </a>
+        </div>
+        <Collapse isOpened={visible}>
+          <div className='border-2 p-7 rounded-lg'>
+              <form>
+                  <div className='text-xl my-1.5'>Filtrage par fourchette de dates :</div>
+                  <div className='flex my-1.5'>
+                      <div>Début</div>
+                      <input name='dateMin' type='date'></input>
+                      <div>Fin</div>
+                      <input name='dateMax' type='date'></input>
+                  </div>
+                  <div className='text-xl'>Filtrage par fourchette de distances :</div>
+                  <div className='flex my-1.5'>
+                      <div>Minimum :</div>
+                      <input name="distMin" type='number' className='w-2/12 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"'></input>
+                      <div>Maximum :</div>
+                      <input name="distMax" type='number' className='w-2/12 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"'></input>
+                  </div>
+                  <div className='text-xl my-1.5'>Rechercher un nom :</div>
+                  <input type='text' name='query' className='my-1.5 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"'></input>
+                  <div className='flex content-between'>
+                      <div></div>
+                      <button type="submit" value="Envoyer" class="my-1.5 text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none" href="http://127.0.0.1:5173/createCourse">Appliquer</button>
+                  </div>
+              </form>
+          </div>
+        </Collapse>
+        <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-5">
           <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
               <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                   <tr>
