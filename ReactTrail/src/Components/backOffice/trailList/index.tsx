@@ -39,18 +39,8 @@ const BOList = () => {
     return str.length > max ? str.substring(0, len) + "..." : str;
   }
 
-<<<<<<< HEAD
-  // const deleteCourse = () => {
-  //   fetch(API_ROOT_URL+`/api/courses/${id}`, {
-  //     method: "DELETE",
-  //     headers: {
-  //       Accept: "application/json",
-  //       Autorization: "Bearer"
-  //     },
-  // })
-=======
   const deleteCourse = (id) => {
-    fetch(`http://127.0.0.1:8000/api/courses/${id}`, {
+    fetch(API_ROOT_URL+`/api/courses/${id}`, {
         method: "DELETE",
         headers: {
             Accept: "application/json",
@@ -60,7 +50,6 @@ const BOList = () => {
         .then((response) => console.log(response))
         .catch((error) => console.log(error));
 }
->>>>>>> da98c2f2ae0e04b50284add1cfd62ae394ca9677
 
   function AllCourses() {
     if (courses.length != 0) {
