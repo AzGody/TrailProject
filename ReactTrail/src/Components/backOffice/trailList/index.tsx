@@ -18,7 +18,7 @@ const BOList = () => {
     params.forEach(element => {
       paramsQuery.push(element.split('=')[1])
     });
-    apiQuery = API_ROOT_URL+'/api/courses?page=1' + (paramsQuery[1] != '' ? ('&date[before]=' + paramsQuery[1]) : '') + (paramsQuery[0] != '' ? ('&date[after]=' + paramsQuery[0]) : '') + (paramsQuery[2] != '' && paramsQuery[3] != '' ? ('&distance[between]=' + paramsQuery[2] + '..' + paramsQuery[3]) : '') + (paramsQuery[4] != '' ? '&nom=' + paramsQuery[4] : '')
+    apiQuery = API_ROOT_URL+'/api/courses?page=1' + (paramsQuery[1] != '' ? ('&date[before]=' + paramsQuery[1]) : '') + (paramsQuery[0] != '' ? ('&date[after]=' + paramsQuery[0]) : '') + (paramsQuery[2] != '' && paramsQuery[3] != '' ? ('&distance[between]=' + paramsQuery[2]*1000 + '..' + paramsQuery[3]*1000) : '') + (paramsQuery[4] != '' ? '&nom=' + paramsQuery[4] : '')
   } else {
 
     apiQuery = API_ROOT_URL+'/api/courses'

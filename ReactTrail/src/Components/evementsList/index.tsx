@@ -64,7 +64,7 @@ const List = () => {
       return <div className="list">
         <div className="list-container">
           {courses.slice(0, 4).map(course =>
-          (<a key={course.id} href={`/evenement/${course.id}`}>
+          (<a key={course.id} href={`/evenements/${course.id}`}>
             <div className="card">
               <div className="card-header">
                 <img

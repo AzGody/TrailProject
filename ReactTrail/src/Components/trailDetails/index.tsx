@@ -5,6 +5,7 @@ import Footer from "../footer";
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import { API_ROOT_URL } from "/src/main";
+import {convertMeterToKilometer} from "../../utils/convertMeterToKilometer";
 
 const Details = (props: any) => {
     const [course, setCourse] = useState([]);
@@ -35,7 +36,7 @@ const Details = (props: any) => {
                                 {course.nom}
                             </div>
                             <div className="distanceDetails font-dancing-script">
-                                {course.distance} m
+                                {convertMeterToKilometer(course.distance)} km
                             </div>
                         </div>
                         <div className="track">
