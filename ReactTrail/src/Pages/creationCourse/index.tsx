@@ -10,8 +10,8 @@ import { API_ROOT_URL } from '/src/main';
 const CreationCourse = () => {
 
     const [inputs, setInputs] = useState({});
-    const [lat, setLat] = useState(46.6024)
-    const [lng, setLng] = useState(1.8752)
+    const [lat, setLat] = useState(47.5999976)
+    const [lng, setLng] = useState(3.5333312)
     const [latLngDepart, setLatLngDepart] = useState([])
     const [latLngArrive, setLatLngArrive] = useState([])
     const [nomDepart, setNomDepart] = useState()

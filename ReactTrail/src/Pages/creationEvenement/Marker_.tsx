@@ -20,7 +20,7 @@ export default function Marker_({ coords, markerCoords }: any) {
     <MapContainer
       className="map"
       center={coords}
-      zoom={10}
+      zoom={14}
       scrollWheelZoom={false}
     >
       <TileLayer

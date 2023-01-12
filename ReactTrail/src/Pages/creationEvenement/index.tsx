@@ -9,8 +9,8 @@ import Marker_ from './Marker_'
 import { API_ROOT_URL } from '/src/main';
 
 const Evenements = () => {
-  const [lat, setLat] = useState(46.6024)
-  const [lng, setLng] = useState(1.8752)
+  const [lat, setLat] = useState(47.5999976)
+  const [lng, setLng] = useState(3.5333312)
   const [cityName, setCityName] = useState('')
 
   function getCoordinates(cityName: string) {
