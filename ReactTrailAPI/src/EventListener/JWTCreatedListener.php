@@ -35,6 +35,7 @@ class JWTCreatedListener
         $payload['email'] = $payload['username'];
         $user = $this->utilisateurRepository->findOneBy(["email" => $event->getUser()->getUserIdentifier()]);
         $payload['pseudo'] = $user->getPseudo();
+        $payload['id'] = $user->getId();
 
         $event->setData($payload);
     }
