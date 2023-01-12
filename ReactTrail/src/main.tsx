@@ -17,7 +17,7 @@ import BackOfficeCourses from "./Pages/BackOffice/Courses";
 import BackOfficeUtilisateurs from "./Pages/BackOffice/Utilisateurs";
 import PrivateRoutes from "./utils/PrivateRoutes";
 
-export const API_ROOT_URL = "http://127.0.0.1:8000";
+export const API_ROOT_URL = "https://127.0.0.1:8000";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
