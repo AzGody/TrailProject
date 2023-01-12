@@ -6,9 +6,7 @@
 
 .footer {
   justify-content: space-between;
-  height: 200px;
   background-color: #AABED7;
-  width: 100%;
   border-top: 1rem solid #016DBB;
   display: flex;
 }

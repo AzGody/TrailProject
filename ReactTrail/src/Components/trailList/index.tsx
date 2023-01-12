@@ -6,9 +6,25 @@ import { API_ROOT_URL } from "/src/main";
 
 const List = () => {
   const [courses, setCourses] = useState([]);
-
+  var params;
+  var paramsQuery = []
+  var apiQuery;
+  console.log(window.location.href)
+  if(window.location.href.includes('?')) {
+    console.log('FILTRE')
+    params = window.location.search.split('?')[1].split('&')
+    params.forEach(element => {
+      paramsQuery.push(element.split('=')[1])
+    });
+    apiQuery = API_ROOT_URL+'/api/courses?page=1' + (paramsQuery[1] != '' ? ('&date[before]=' + paramsQuery[1]) : '') + (paramsQuery[0] != '' ? ('&date[after]=' + paramsQuery[0]) : '') + (paramsQuery[2] != '' && paramsQuery[3] != '' ? ('&distance[between]=' + paramsQuery[2] + '..' + paramsQuery[3]) : '') + (paramsQuery[4] != '' ? '&nom=' + paramsQuery[4] : '')
+  } else {
+    
+    apiQuery = API_ROOT_URL+'/api/courses'
+  }
+  
+  console.log(apiQuery)
   useEffect(() => {
-    fetch(API_ROOT_URL+"/api/courses", {
+    fetch(apiQuery, {
       method: "GET",
       headers: {
         Accept: "application/json",
