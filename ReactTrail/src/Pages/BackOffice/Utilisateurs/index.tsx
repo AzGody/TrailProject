@@ -7,21 +7,21 @@ import Navbar from '../../../Components/backOffice/navbar';
 import UsersList from '../../../Components/backOffice/users';
 
 
-
 const BackOfficeUtilisateurs = () => {
     return (
-        <div>
-            <Header backgroundImage="/evenement.jpeg"
-                namePage="Créer un évènement"
-                description="Saisissiez le formulaire pour créer un évènement :"
+        <>
+            <Header backgroundImage="/users.jpg"
+                    namePage="Liste des utilisateurs"
+                    description="Liste de tous les utilisateurs créés"
             />
-            <div className={"container mx-auto py-10"}>
-            <Navbar/>
-            <UsersList />
+            <div className={"container mx-auto py-28"}>
+                <Navbar/>
+                <UsersList/>
             </div>
             <Footer></Footer>
-            </div>
-            )
+
+        </>
+    )
 }
 
 export default BackOfficeUtilisateurs
