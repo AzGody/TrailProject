@@ -1,3 +1,4 @@
+// @ts-nocheck - may need to be at the start of file
 import * as React from "react"
 import Navbar from "./Navbar";
 import jwt_decode from "jwt-decode";
@@ -27,20 +28,20 @@ export default function Header(props: any) {
         <>
             <header className="relative">
 
-                <a href={"/"}>
-                    <img
-                        className={"rounded-full absolute cursor-pointer top-0 left-1/2 z-10 drop-shadow transform -translate-x-1/2 -translate-y-1/2 transition duration-1000 ease-in-out  hover:scale-105"}
-                        src="/logoFond.png" width={200} height={200} alt={"logo"}></img>
-                </a>
 
-
-                <div className={"bg-cover bg-center bg-no-repeat h-96"}
+                <div className={"bg-cover bg-center bg-no-repeat"}
                      style={{backgroundImage: `url(${props.backgroundImage})`}}>
 
 
-                    <div className=" p-9 z-10 text-center">
+                    <div className=" p-9  text-center flex flex-col  items-center">
 
-                        <p className="font-header text-[86px]  pt-24 leading-[60px] drop-shadow text-stone-50 text-4xl lg:text-7xl"> {props.namePage}</p>
+                        <a href={"/"}>
+                            <img
+                                className={"rounded-full  cursor-pointer  drop-shadow transition duration-1000 ease-in-out  hover:scale-105"}
+                                src="/logoFond.png" width={200} height={200} alt={"logo"}></img>
+                        </a>
+
+                        <p className="font-header text-[86px]   leading-[60px] drop-shadow text-stone-50 text-4xl lg:text-7xl"> {props.namePage}</p>
 
                         <p className="font-bold mt-4 text-stone-50 text-lg"> {props.description}</p>
 

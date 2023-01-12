@@ -17,6 +17,8 @@ import BackOfficeCourses from "./Pages/BackOffice/Courses";
 import BackOfficeUtilisateurs from "./Pages/BackOffice/Utilisateurs";
 import PrivateRoutes from "./utils/PrivateRoutes";
 
+export const API_ROOT_URL = "http://127.0.0.1:8000";
+
 const router = createBrowserRouter(
     createRoutesFromElements(
       <>
@@ -34,8 +36,10 @@ const router = createBrowserRouter(
             <Route element={<BackOfficeCourses/>} path={"/admin/courses"}></Route>
             <Route element={<BackOfficeEvenements/>} path={"/admin/evenements"}></Route>
             <Route element={<BackOfficeUtilisateurs/>} path={"/admin/utilisateurs"}></Route>
-            <Route element={<CreateCourse/>} path={"/courses/create"}></Route>
-            <Route element={<CreateEvenement/>} path={"/evenements/create"}></Route>
+            <Route element={<CreateCourse/>} path={"/admin/courses/create"}></Route>
+            <Route element={<CreateCourse/>} path={"/admin/courses/edit/:id"}></Route>
+            <Route element={<CreateEvenement/>} path={"/admin/evenements/create"}></Route>
+            <Route element={<CreateEvenement/>} path={"/admin/evenements/edit/:id"}></Route>
         </Route>
 
         <Route element={<Page404/>} path={"*"} ></Route>

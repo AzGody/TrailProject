@@ -35,7 +35,7 @@ class Evenement
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['evenement:read', 'evenement:write'])]
+    #[Groups(['evenement:read', 'evenement:write', 'course:read'])]
     #[Assert\NotBlank]
     #[Assert\Type('string')]
     private ?string $nom = null;

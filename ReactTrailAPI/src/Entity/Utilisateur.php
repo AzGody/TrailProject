@@ -40,7 +40,7 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['utilisateur:read', 'utilisateur:write'])]
+    #[Groups(['utilisateur:read', 'utilisateur:write', 'course:read', 'evenement:read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
@@ -59,10 +59,10 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
+    #[Assert\NotBlank]
     private ?string $password = null;
 
     #[Groups(['utilisateur:write'])]
-    #[Assert\NotBlank]
     #[Assert\Type('string')]
     #[Assert\Length(min: 8, max: 255)]
     private ?string $plainPassword = null;
