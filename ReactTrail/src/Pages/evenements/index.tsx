@@ -4,7 +4,6 @@ import Header from "../../Components/Header";
 import Footer from "../../Components/footer";
 import List from "../../Components/evementsList"
 
-
 const Courses = () => {
     return (
         <div>

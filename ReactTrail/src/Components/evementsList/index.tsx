@@ -2,12 +2,13 @@
 import "./index.css";
 import { list } from "postcss";
 import { useEffect, useState } from "react";
+import { API_ROOT_URL } from "/src/main";
 
 const List = () => {
   const [courses, setCourses] = useState([]);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/evenements", {
+    fetch(API_ROOT_URL+"/api/evenements", {
       method: "GET",
       headers: {
         Accept: "application/json",

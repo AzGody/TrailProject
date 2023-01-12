@@ -3,13 +3,14 @@ import Header from "../Header";
 import Footer from "../footer";
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { API_ROOT_URL } from "/src/main";
 
 const EventDetails = (props: any) => {
 
     const [evenement, setEvenement] = useState([]);
     const { id } = useParams();
     useEffect(() => {
-        fetch(`http://127.0.0.1:8000/api/evenements/${id}`, {
+        fetch(API_ROOT_URL+`/api/evenements/${id}`, {
             method: "GET",
             headers: {
                 Accept: "application/json",

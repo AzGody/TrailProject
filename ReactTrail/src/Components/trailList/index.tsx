@@ -2,6 +2,7 @@
 import "./index.css";
 import { list } from "postcss";
 import { useEffect, useState } from "react";
+import { API_ROOT_URL } from "/src/main";
 // @ts-nocheck - may need to be at the start of file
 import { isConnectedUser } from "/src/utils/isConnectedUser.tsx";
 const List = () => {
@@ -15,10 +16,10 @@ const List = () => {
     params.forEach(element => {
       paramsQuery.push(element.split('=')[1])
     });
-    apiQuery = 'http://127.0.0.1:8000/api/courses?page=1' + (paramsQuery[1] != '' ? ('&date[before]=' + paramsQuery[1]) : '') + (paramsQuery[0] != '' ? ('&date[after]=' + paramsQuery[0]) : '') + (paramsQuery[2] != '' && paramsQuery[3] != '' ? ('&distance[between]=' + paramsQuery[2] + '..' + paramsQuery[3]) : '') + (paramsQuery[4] != '' ? '&nom=' + paramsQuery[4] : '')
+    apiQuery = API_ROOT_URL+'/api/courses?page=1' + (paramsQuery[1] != '' ? ('&date[before]=' + paramsQuery[1]) : '') + (paramsQuery[0] != '' ? ('&date[after]=' + paramsQuery[0]) : '') + (paramsQuery[2] != '' && paramsQuery[3] != '' ? ('&distance[between]=' + paramsQuery[2] + '..' + paramsQuery[3]) : '') + (paramsQuery[4] != '' ? '&nom=' + paramsQuery[4] : '')
   } else {
-
-    apiQuery = 'http://127.0.0.1:8000/api/courses'
+    
+    apiQuery = API_ROOT_URL+'/api/courses'
   }
 
   useEffect(() => {

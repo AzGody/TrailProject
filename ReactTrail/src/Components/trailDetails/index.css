@@ -25,16 +25,24 @@
     gap: 20px;
     background-color: #fff;
     border-radius: 50px;
-    padding: 10px 10px 10px 30px;
+    padding: 20px;
 }
-.title {
-    flex: 1;
+.header .title {
+    padding-inline: 20px;
 }
 .distanceDetails {
-    color: #fff;
-    background-color: #016DBB;
-    padding: 20px 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid #016DBB;
+    color:#016DBB;
+    height: 80px;
+    padding-inline: 30px;
     border-radius: 50px;
+}
+.header .distanceDetails {
+    background-color: #016DBB;
+    color: #fff;
 }
 .track {
     display: flex;
@@ -92,6 +100,9 @@
     border-radius: 50px;
 }
 
+.flex-1 {
+    flex: 1;
+}
 .font-dancing-script {
     font-family: 'Dancing Script', cursive;
     font-size: 25px;

@@ -1,5 +1,6 @@
 // @ts-nocheck - may need to be at the start of file
 import React, {useState} from "react";
+import { API_ROOT_URL } from "/src/main";
 
 function FormCreateUser() {
     const [inputs, setInputs] = useState({});
@@ -12,7 +13,7 @@ function FormCreateUser() {
     const handleSubmit = (event: any) => {
         event.preventDefault();
 
-        fetch('http://127.0.0.1:8000/api/utilisateurs', {
+        fetch(API_ROOT_URL+'/api/utilisateurs', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

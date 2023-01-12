@@ -1,13 +1,31 @@
-.form-container form .results{
+.form-container form .results, .form-container form .results-adr-depart, .form-container form .results-adr-arrive{
     min-height: 30px;
     max-height: 200px;
     overflow-y: scroll;
     top: 70px;
 }
 
+.form-container form .result{
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    max-height: 28px;
+    height: 28px;
+    white-space: nowrap;
+}
+
 .form-container form .search {
     top: 33px;
     right: 0;
+  }
+  .form-container form .search-adress{
+    top: 33px;
+    right: 2px;
+    padding: .3rem;
+    background-color: white;
+  }
+
+  .arrive-input, .depart-input{
+    padding-right: 4.2rem;
   }
 
   @media screen and (max-width: 1024px) {
