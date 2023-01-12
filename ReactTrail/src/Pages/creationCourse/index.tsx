@@ -68,6 +68,13 @@ const CreationCourse = () => {
                 .then(response => console.log(JSON.stringify(response)))
                 .catch(error => console.log(error))
         }else{
+            inputs.deniveleNegatif = +document.querySelector('#deniveleNegatif').value
+            inputs.denivelePositif = +document.querySelector('#denivelePositif').value
+            inputs.nom = document.querySelector('#nom').value
+            inputs.distance = +document.querySelector('#distance').value
+            inputs.date = document.querySelector('#date').value
+            inputs.localisation = course.localisation
+            console.log(course.localisation)
             fetch(API_ROOT_URL+`/api/courses/${id}`, {
                 method: 'PUT',
                 headers: {
@@ -207,7 +214,7 @@ const CreationCourse = () => {
                                     type="text"
                                     id="nom"
                                     name="nom"
-                                    value={inputs.nom || course.nom}
+                                    defaultValue={inputs.nom || course.nom}
                                     onChange={handleChange}
                                     placeholder="Entrez le nom de la course"
                                     className="border-black rounded-lg border-solid border p-2 h-10"
@@ -247,6 +254,7 @@ const CreationCourse = () => {
                                     name="depart"
                                     placeholder="Adresse de départ"
                                     className="depart-input border-black rounded-lg border-solid border p-2 w-full"
+                                    defaultValue = {course?.localisation?.nomDepart}
                                 />
                                 <div
                               className="search-adress absolute flex flex-col items-center justify-center w-1/3 text-xs cursor-pointer text-black"
@@ -267,6 +275,7 @@ const CreationCourse = () => {
                                     name="arrive"
                                     placeholder="Adresse d'arrivé"
                                     className="arrive-input border-black rounded-lg border-solid border p-2 w-full"
+                                    defaultValue = {course?.localisation?.nomArrive}
                                 />
                                 <div
                               className="search-adress absolute flex flex-col items-center justify-center w-1/3 text-xs cursor-pointer text-black"
@@ -286,7 +295,7 @@ const CreationCourse = () => {
                                 type="number"
                                 id="distance"
                                 name="distance"
-                                value={inputs.distance || course.distance}
+                                defaultValue={inputs.distance || course.distance}
                                 onChange={handleChange}
                                 placeholder="Entrez la distance de la course en m"
                                 className="border-black rounded-lg border-solid border p-2 w-full"
@@ -299,7 +308,7 @@ const CreationCourse = () => {
                                     type="number"
                                     id="denivelePositif"
                                     name="denivelePositif"
-                                    value={inputs.denivelePositif || course.denivelePositif}
+                                    defaultValue={inputs.denivelePositif || course.denivelePositif}
                                     onChange={handleChange}
                                     placeholder="Dénivelé maximum en m"
                                     className="border-black rounded-lg border-solid border p-2"
@@ -311,7 +320,7 @@ const CreationCourse = () => {
                                     type="number"
                                     id="deniveleNegatif"
                                     name="deniveleNegatif"
-                                    value={inputs.deniveleNegatif || course.deniveleNegatif}
+                                    defaultValue={inputs.deniveleNegatif || course.deniveleNegatif}
                                     onChange={handleChange}
                                     placeholder="Dénivelé minimum en m"
                                     className="border-black rounded-lg border-solid border p-2"
