@@ -22,11 +22,7 @@ const Courses = () => {
                     <button onClick={(event) => {
                         event.preventDefault()
                         setVisible(!visible)
-                    }} type="button" class="self-end text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none">Filter</button>
-
-                    <a href='/createCourse'>
-                        <button type="button" class="self-end text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none" href="http://127.0.0.1:5173/createCourse">Créer une course</button>
-                    </a>
+                    }} type="button" className="self-end text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none">Filter</button>
                 </div>
                 <Collapse isOpened={visible}>
                     <div className='border-2 p-7 rounded-lg'>

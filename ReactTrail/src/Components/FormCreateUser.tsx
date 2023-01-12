@@ -4,6 +4,11 @@ import React, {useState} from "react";
 function FormCreateUser() {
     const [inputs, setInputs] = useState({});
 
+    const [hidden, setHidden] = useState("hidden");
+
+
+    const [message, setMessage] = useState("");
+
     const handleSubmit = (event: any) => {
         event.preventDefault();
 
@@ -16,7 +21,16 @@ function FormCreateUser() {
             body: JSON.stringify(inputs)
         })
             .then(response => response.json())
-            .then(response => console.log(JSON.stringify(response)))
+            .then(response => {
+            if(response.detail === "email: This value is already used.")
+            {
+                setMessage("L'email est déjà utilisé !")
+                setHidden("block mb-4 rounded-lg")
+            }
+            else{
+                location.replace("/login")
+            }
+        })
             .catch(error => console.log(error))
     }
 
@@ -27,8 +41,11 @@ function FormCreateUser() {
     }
 
     return (
-        <div className="w-full lg:px-0 px-3">
-            <form onSubmit={handleSubmit} className="bg-white  rounded">
+        <div className="flex justify-center  lg:px-0 px-3">
+            <form onSubmit={handleSubmit} className="bg-white w-2/5 rounded">
+                <div  className={"bg-red-200 text-red-700 font-bold p-4" + " " + hidden}>
+                    {message}
+                </div>
                 <div className="mb-4">
                     <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
                         Identifiant
@@ -62,7 +79,7 @@ function FormCreateUser() {
                         onChange={handleChange}
                     />
                 </div>
-                <div className="flex items-center justify-between">
+                <div className="flex justify-center">
                     <input className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer" type="submit" value="Connexion"/>
                 </div>
             </form>

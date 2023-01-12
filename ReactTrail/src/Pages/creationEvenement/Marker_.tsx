@@ -6,11 +6,7 @@ export default function Marker_({ coords }: any) {
     map.setView(coords, map.getZoom())
 
     return (
-      <Marker position={coords}>
-        <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
-      </Marker>
+      <Marker position={coords}></Marker>
     )
   }
   return (

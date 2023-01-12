@@ -1,6 +1,5 @@
+// @ts-nocheck - may need to be at the start of file
 import React, {useState} from "react";
-import {Transition} from "@headlessui/react";
-import {redirect} from "react-router-dom";
 
 function FormAuth() {
 
@@ -49,7 +48,7 @@ function FormAuth() {
     }
 
     return (
-        <div className="w-full lg:px-0 px-3">
+        <div className="flex justify-center lg:px-0 px-3">
             <form onSubmit={handleSubmit} className="bg-white  rounded">
                 <div  className={"bg-red-200 text-red-700 font-bold p-4" + " " + hidden}>
                     {message}
@@ -77,10 +76,10 @@ function FormAuth() {
                 </div>
                 <div className="flex items-center justify-between">
                     <input
-                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer"
                         type="submit" value="Connexion"/>
                     <a className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-                       href="/createUser">
+                       href="/register">
                         Pas de compte ?
                     </a>
                 </div>
