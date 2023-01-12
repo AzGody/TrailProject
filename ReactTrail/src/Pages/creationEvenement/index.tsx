@@ -9,8 +9,8 @@ import Marker_ from './Marker_'
 import { API_ROOT_URL } from '/src/main';
 
 const Evenements = () => {
-  const [lat, setLat] = useState(48.864716)
-  const [lng, setLng] = useState(2.349014)
+  const [lat, setLat] = useState(46.6024)
+  const [lng, setLng] = useState(1.8752)
   const [cityName, setCityName] = useState('')
 
   function getCoordinates(cityName: string) {
@@ -42,6 +42,7 @@ const Evenements = () => {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json', 
+        Authorization: "Bearer " + "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2NzM1MTEyNjksImV4cCI6MTY3MzU5NzY2OSwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJ1c2VybmFtZSI6InJvbWFpbkBnbWFpbC5jb20iLCJlbWFpbCI6InJvbWFpbkBnbWFpbC5jb20iLCJwc2V1ZG8iOiJSb21haW4ifQ.Vc3-LM9Y7BDnZdp8Ozv7y5atT3I5CjDCYzdIxBQdUqWtzi1ANg_EhOlYIeEDG4BIOba609bu2TZOqznrKwF05FI1bWydsGQvdFdM-yDyRZaSCwG4MioB6gjEq5znZZJ6XLLZnujcx331iasFQi0aRE768CtrKMAM0wcoHHoZlDBqEUyHFuDRhBP9QParREU3hNveLp_4q7XcVBiU7PsqNrotNouDKO1wrBT1En0x732sLCi0ibEg4z7DUR_htIAqYYhx5WQBR6dUV-omD6yV1jyctQK5p_2Z2P8gTUmJ3VTrxE8wlZIsmIBjBsFvokxHQ-kV7qWmjwQmcIIwZegzqg"
       },
       body: JSON.stringify(inputs),
     })
@@ -192,7 +193,7 @@ const Evenements = () => {
           </div>
         </div>
         <div className="map h-96 w-96" id="map">
-            <Marker_ coords={[lat, lng]}/>
+            <Marker_ coords={[lat, lng]} markerCoords={[[lat, lng]]}/>
         </div>
       </div>
       <Footer></Footer>
