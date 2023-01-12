@@ -28,6 +28,11 @@ function Nav() {
         location.replace("/goCourseFavorites")
     }
 
+    const goCalendrier = () => {
+        location.replace("/calendrier")
+    }
+
+
 
     return (
         <div>
@@ -105,6 +110,11 @@ function Nav() {
                                                 className="mb-2 w-full text-gray-300 hover:bg-gray-700 hover:text-white transition-colors px-3 py-2 rounded-md text-sm font-medium"
                                                 onClick={goCourseFavorites}>Courses favorites
                                             </button>
+                                            <button
+                                                className="w-full text-red-600 hover:bg-red-200 hover:text-red-900 transition-colors px-3 py-2 rounded-md text-sm font-medium"
+                                                onClick={goCalendrier}>Calendrier
+                                            </button>
+
                                             <button
                                                 className="w-full text-red-600 hover:bg-red-200 hover:text-red-900 transition-colors px-3 py-2 rounded-md text-sm font-medium"
                                                 onClick={logOutUser}>Déconnexion
