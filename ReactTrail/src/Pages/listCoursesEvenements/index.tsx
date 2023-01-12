@@ -1,35 +1,16 @@
 // @ts-nocheck - may need to be at the start of file
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet'
 import './style.css'
 
 import Header from '../../Components/Header'
 import Footer from '../../Components/footer'
 import Marker_ from './Marker_'
-import { API_ROOT_URL } from '/src/main';
-import { useParams } from 'react-router-dom';
 
 const Evenements = () => {
-  const [lat, setLat] = useState(47.5999976)
-  const [lng, setLng] = useState(3.5333312)
+  const [lat, setLat] = useState(48.864716)
+  const [lng, setLng] = useState(2.349014)
   const [cityName, setCityName] = useState('')
-  const { id } = useParams();
-  const [evenement, setEvenement] = useState([]);
-  
-  // GET REQUEST TO GET VALUE BY ID
-  if(id !== undefined){
-    useEffect(() => {
-      fetch(API_ROOT_URL+`/api/evenements/${id}`, {
-          method: "GET",
-          headers: {
-              Accept: "application/json",
-          },
-      })
-          .then((response) => response.json())
-          .then((response) => setEvenement(response))
-          .catch((error) => console.log(error));
-    }, []);
-  }
 
   function getCoordinates(cityName: string) {
     fetch(
@@ -44,7 +25,6 @@ const Evenements = () => {
   const [inputs, setInputs] = useState({})
 
   const handleSubmit = (event: any) => {
-
     event.preventDefault()
     inputs.utilisateurs = []
     inputs.courses = []
@@ -53,35 +33,20 @@ const Evenements = () => {
       lat: lat,
       lng: lng
     }
-    
-    if(id === undefined){
-      fetch(API_ROOT_URL+'/api/evenements', {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json', 
-          Authorization: "Bearer " + sessionStorage.getItem("JWT")
-        },
-        body: JSON.stringify(inputs),
-      })
-        .then((response) => response.json())
-        .then((response) => console.log(JSON.stringify(response)))
-        .catch((error) => console.log(error))
-    }else{
-      // PUT REQUEST TO MODIFY EVENT
-      fetch(API_ROOT_URL+`/api/evenements/${id}`, {
-        method: 'PUT',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json', 
-          Authorization: "Bearer " + sessionStorage.getItem("JWT")
-        },
-        body: JSON.stringify(inputs),
-      })
-        .then((response) => response.json())
-        .then((response) => console.log(JSON.stringify(response)))
-        .catch((error) => console.log(error))
-    }
+
+    console.log(inputs)
+
+    fetch('http://127.0.0.1:8000/api/evenements', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json', 
+      },
+      body: JSON.stringify(inputs),
+    })
+      .then((response) => response.json())
+      .then((response) => console.log(JSON.stringify(response)))
+      .catch((error) => console.log(error))
   }
 
   const handleChange = (event: any) => {
@@ -123,20 +88,6 @@ const Evenements = () => {
     )
   }
 
-  function formatDate(date) {
-    var d = new Date(date),
-        month = '' + (d.getMonth() + 1),
-        day = '' + d.getDate(),
-        year = d.getFullYear();
-
-    if (month.length < 2) 
-        month = '0' + month;
-    if (day.length < 2) 
-        day = '0' + day;
-
-    return [year, month, day].join('-');
-  }
- 
   return (
     <div>
       <Header
@@ -164,7 +115,7 @@ const Evenements = () => {
                   name="nom"
                   placeholder="Entrez le nom de l'événement"
                   className="border-black rounded-lg border-solid border p-2 h-10 w-full text-black"
-                  value={inputs.nom || evenement.nom}
+                  value={inputs.nom || ''}
                   onChange={handleChange}
                 />
               </div>
@@ -196,7 +147,7 @@ const Evenements = () => {
                     id="date-debut"
                     name="dateDebut"
                     className="border-black rounded-lg border-solid border p-2 h-10 w-full text-slate-400"
-                    value={inputs.dateDebut || formatDate(evenement.dateDebut)}
+                    value={inputs.dateDebut || ''}
                     onChange={handleChange}
                   />
                 </div>
@@ -207,7 +158,7 @@ const Evenements = () => {
                     id="date-fin"
                     name="dateFin"
                     className="border-black rounded-lg border-solid border p-2 h-10 w-full text-slate-400"
-                    value={inputs.dateFin || formatDate(evenement.dateFin)}
+                    value={inputs.dateFin || ''}
                     onChange={handleChange}
                   />
                 </div>
@@ -220,7 +171,7 @@ const Evenements = () => {
                   type="textarea"
                   id="description"
                   name="description"
-                  value={inputs.description || evenement.description}
+                  value={inputs.description || ''}
                   onChange={handleChange}
                   placeholder="description"
                   className="border-black rounded-lg border-solid border p-2 w-full text-black"
@@ -240,7 +191,7 @@ const Evenements = () => {
           </div>
         </div>
         <div className="map h-96 w-96" id="map">
-            <Marker_ coords={[lat, lng]} markerCoords={[[lat, lng]]}/>
+            <Marker_ coords={[lat, lng]}/>
         </div>
       </div>
       <Footer></Footer>
