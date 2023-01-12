@@ -6,6 +6,7 @@ import './style.css'
 import Header from '../../Components/Header'
 import Footer from '../../Components/footer'
 import Marker_ from './Marker_'
+import { API_ROOT_URL } from '/src/main';
 
 const Evenements = () => {
   const [lat, setLat] = useState(48.864716)
@@ -36,7 +37,7 @@ const Evenements = () => {
 
     console.log(inputs)
 
-    fetch('http://127.0.0.1:8000/api/evenements', {
+    fetch(API_ROOT_URL+'/api/evenements', {
       method: 'POST',
       headers: {
         Accept: 'application/json',

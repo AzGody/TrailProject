@@ -2,12 +2,13 @@
 import "./index.css";
 import { list } from "postcss";
 import { useEffect, useState } from "react";
+import { API_ROOT_URL } from "/src/main";
 
 const BOEvent = () => {
   const [evenements, setEvenements] = useState([]);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/evenements", {
+    fetch(API_ROOT_URL+"/api/evenements", {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -23,7 +24,7 @@ const BOEvent = () => {
   }
 
   const deleteEvenement = (id) => {
-      fetch(`http://127.0.0.1:8000/api/evenements/${id}`, {
+      fetch(API_ROOT_URL+`/api/evenements/${id}`, {
           method: "DELETE",
           headers: {
               Accept: "application/json",

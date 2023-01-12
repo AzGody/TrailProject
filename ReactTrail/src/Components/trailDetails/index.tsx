@@ -4,12 +4,13 @@ import Header from "../Header";
 import Footer from "../footer";
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from "react";
+import { API_ROOT_URL } from "/src/main";
 
 const Details = (props: any) => {
     const [course, setCourse] = useState([]);
     const { id } = useParams();
     useEffect(() => {
-        fetch(`http://127.0.0.1:8000/api/courses/${id}`, {
+        fetch(API_ROOT_URL+`/api/courses/${id}`, {
             method: "GET",
             headers: {
                 Accept: "application/json",

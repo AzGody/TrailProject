@@ -3,8 +3,7 @@ import './style.css'
 import Header from "../../Components/Header";
 import Footer from "../../Components/footer";
 import List from "../../Components/evementsList"
-
-
+import { API_ROOT_URL } from '/src/main';
 
 const Courses = () => {
   return (

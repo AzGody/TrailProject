@@ -1,5 +1,6 @@
 // @ts-nocheck - may need to be at the start of file
 import React, {useState} from "react";
+import { API_ROOT_URL } from "/src/main";
 
 function FormAuth() {
 
@@ -16,7 +17,7 @@ function FormAuth() {
 
         console.log(inputs)
 
-        fetch('http://127.0.0.1:8000/login', {
+        fetch(API_ROOT_URL+'/login', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

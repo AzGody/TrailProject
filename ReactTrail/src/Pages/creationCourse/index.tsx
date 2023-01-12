@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Header from "../../Components/Header";
 import Footer from "../../Components/footer";
 import Marker_ from '../creationEvenement/Marker_';
+import { API_ROOT_URL } from '/src/main';
 
 
 const CreationCourse = () => {
@@ -36,7 +37,7 @@ const CreationCourse = () => {
         inputs.deniveleNegatif = +inputs.deniveleNegatif;
         // console.log(inputs)
 
-        fetch('http://127.0.0.1:8000/api/courses', {
+        fetch(API_ROOT_URL+'/api/courses', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -114,7 +115,7 @@ const CreationCourse = () => {
         })
       }
       useEffect(() => {
-          fetch('http://127.0.0.1:8000/api/evenements', {
+          fetch(API_ROOT_URL+'/api/evenements', {
               method: 'GET',
               headers: {
                   'Accept': 'application/json',

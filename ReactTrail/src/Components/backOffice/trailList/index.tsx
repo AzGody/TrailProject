@@ -2,12 +2,13 @@
 import "./index.css";
 import { list } from "postcss";
 import { useEffect, useState } from "react";
+import { API_ROOT_URL } from "/src/main";
 
 const BOList = () => {
   const [courses, setCourses] = useState([]);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/courses", {
+    fetch(API_ROOT_URL+"/api/courses", {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -23,7 +24,7 @@ const BOList = () => {
   }
 
   // const deleteCourse = () => {
-  //   fetch(`http://127.0.0.1:8000/api/courses/${id}`, {
+  //   fetch(API_ROOT_URL+`/api/courses/${id}`, {
   //     method: "DELETE",
   //     headers: {
   //       Accept: "application/json",
