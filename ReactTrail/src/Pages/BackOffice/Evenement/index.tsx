@@ -7,19 +7,20 @@ import Navbar from '../../../Components/backOffice/navbar';
 import BOEvent from '../../../Components/backOffice/evenementsList';
 
 
-
 const BackOfficeEvenements = () => {
     return (
-        <div className={"container mx-auto pt-28"}>
+        <>
             <Header backgroundImage="/evenement.jpeg"
-                namePage="Liste des évènements"
-                description="Liste de tous les événements créés :"
+                    namePage="Liste des évènements"
+                    description="Liste de tous les événements créés"
             />
-            <Navbar/>
-            <BOEvent/>
+            <div className={"container mx-auto py-28"}>
+                <Navbar/>
+                <BOEvent/>
+            </div>
             <Footer></Footer>
 
-        </div>
+        </>
     )
 }
 
