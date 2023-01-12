@@ -25,7 +25,7 @@ use Symfony\Component\Validator\Constraints\Email;
     operations: [
         new GetCollection(security: "is_granted('ROLE_ADMIN')"),
         new Post(processor: UserPasswordHasher::class),
-        new Get(security: "is_granted('ROLE_ADMIN')"),
+        new Get(security: "is_granted('ROLE_USER')"),
         new Put(security: "is_granted('ROLE_ADMIN')", processor: UserPasswordHasher::class),
         new Patch(security: "is_granted('ROLE_ADMIN')", processor: UserPasswordHasher::class),
         new Delete(security: "is_granted('ROLE_ADMIN')"),

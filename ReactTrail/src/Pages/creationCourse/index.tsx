@@ -5,6 +5,7 @@ import Header from "../../Components/Header";
 import Footer from "../../Components/footer";
 import Marker_ from '../creationEvenement/Marker_';
 import { API_ROOT_URL } from '/src/main';
+import { useParams } from 'react-router-dom';
 
 
 const CreationCourse = () => {
@@ -18,8 +19,26 @@ const CreationCourse = () => {
     const [nomArrive, setNomArrive] = useState()
     const [events, setEvents] = useState([])
     const [event, setEvent] = useState()
+    const { id } = useParams();
+    const [course, setCourse] = useState([]);
+  
+    // GET REQUEST TO GET VALUE BY ID
+    if(id !== undefined){
+        useEffect(() => {
+            fetch(API_ROOT_URL+`/api/courses/${id}`, {
+                method: "GET",
+                headers: {
+                    Accept: "application/json",
+                },
+            })
+                .then((response) => response.json())
+                .then((response) => setCourse(response))
+                .catch((error) => console.log(error));
+        }, []);
+    }
 
     const handleSubmit = (e: any) => {
+
         e.preventDefault();
         inputs.localisation = {
             nomDepart: nomDepart,
@@ -33,20 +52,43 @@ const CreationCourse = () => {
         event == undefined ? null : inputs.evenement = "/api/evenements/"+event
         inputs.denivelePositif = +inputs.denivelePositif;
         inputs.deniveleNegatif = +inputs.deniveleNegatif;
-        // console.log(inputs)
+        console.log(inputs)
 
-        fetch(API_ROOT_URL+'/api/courses', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                Authorization: "Bearer " + "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2NzM1MTEyNjksImV4cCI6MTY3MzU5NzY2OSwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJ1c2VybmFtZSI6InJvbWFpbkBnbWFpbC5jb20iLCJlbWFpbCI6InJvbWFpbkBnbWFpbC5jb20iLCJwc2V1ZG8iOiJSb21haW4ifQ.Vc3-LM9Y7BDnZdp8Ozv7y5atT3I5CjDCYzdIxBQdUqWtzi1ANg_EhOlYIeEDG4BIOba609bu2TZOqznrKwF05FI1bWydsGQvdFdM-yDyRZaSCwG4MioB6gjEq5znZZJ6XLLZnujcx331iasFQi0aRE768CtrKMAM0wcoHHoZlDBqEUyHFuDRhBP9QParREU3hNveLp_4q7XcVBiU7PsqNrotNouDKO1wrBT1En0x732sLCi0ibEg4z7DUR_htIAqYYhx5WQBR6dUV-omD6yV1jyctQK5p_2Z2P8gTUmJ3VTrxE8wlZIsmIBjBsFvokxHQ-kV7qWmjwQmcIIwZegzqg"
-            },
-            body: JSON.stringify(inputs)
-        })
-            .then(response => response.json())
-            .then(response => console.log(JSON.stringify(response)))
-            .catch(error => console.log(error))
+        if(id === undefined){
+            fetch(API_ROOT_URL+'/api/courses', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    Authorization: "Bearer " + sessionStorage.getItem("JWT")
+                },
+                body: JSON.stringify(inputs)
+            })
+                .then(response => response.json())
+                .then(response => console.log(JSON.stringify(response)))
+                .then(response => window.location.replace("/admin/courses"))
+                .catch(error => console.log(error))
+        }else{
+            inputs.deniveleNegatif = +document.querySelector('#deniveleNegatif').value
+            inputs.denivelePositif = +document.querySelector('#denivelePositif').value
+            inputs.nom = document.querySelector('#nom').value
+            inputs.distance = +document.querySelector('#distance').value
+            inputs.date = document.querySelector('#date').value
+            inputs.localisation = course.localisation
+            console.log(course.localisation)
+            fetch(API_ROOT_URL+`/api/courses/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    Authorization: "Bearer " + sessionStorage.getItem("JWT")
+                },
+                body: JSON.stringify(inputs)
+            })
+                .then(response => response.json())
+                .then(response => console.log(JSON.stringify(response)))
+                .catch(error => console.log(error))
+        }
     }
 
     const handleChange = (event: any) => {
@@ -106,39 +148,54 @@ const CreationCourse = () => {
             })
           })
         )
-      }
-      function fetchEvents(){
-        Array.prototype.slice.call(document.querySelectorAll('.opt')).map((item, index) => {
-            index > 1 ? item.remove() : null
-        })
-        events.map((item, index) => {
-            let opt = document.createElement('option')
-            opt.value = item.id
-            opt.innerHTML = item.nom
-            opt.onclick = (e) => {
-                console.log(e.target.value)
-            }
-            opt.classList.add('opt')
-            document.querySelector('option[value="none"]')?.after(opt)
-        })
-      }
-      useEffect(() => {
-          fetch(API_ROOT_URL+'/api/evenements', {
-              method: 'GET',
-              headers: {
-                  'Accept': 'application/json',
-                  'Content-Type': 'application/json',
-                  Authorization: "Bearer " + "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2NzM1MTEyNjksImV4cCI6MTY3MzU5NzY2OSwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJ1c2VybmFtZSI6InJvbWFpbkBnbWFpbC5jb20iLCJlbWFpbCI6InJvbWFpbkBnbWFpbC5jb20iLCJwc2V1ZG8iOiJSb21haW4ifQ.Vc3-LM9Y7BDnZdp8Ozv7y5atT3I5CjDCYzdIxBQdUqWtzi1ANg_EhOlYIeEDG4BIOba609bu2TZOqznrKwF05FI1bWydsGQvdFdM-yDyRZaSCwG4MioB6gjEq5znZZJ6XLLZnujcx331iasFQi0aRE768CtrKMAM0wcoHHoZlDBqEUyHFuDRhBP9QParREU3hNveLp_4q7XcVBiU7PsqNrotNouDKO1wrBT1En0x732sLCi0ibEg4z7DUR_htIAqYYhx5WQBR6dUV-omD6yV1jyctQK5p_2Z2P8gTUmJ3VTrxE8wlZIsmIBjBsFvokxHQ-kV7qWmjwQmcIIwZegzqg"
-            },
-        })
-          .then((response) => response.json())
-          .then((response) => {setEvents(response)})
-          .catch((error) => console.log(error));
-        }, []);
-        
-        useEffect(() => {
-            fetchEvents()
-        }, events[0])
+    }
+
+    function fetchEvents(){
+    Array.prototype.slice.call(document.querySelectorAll('.opt')).map((item, index) => {
+        index > 1 ? item.remove() : null
+    })
+    events.map((item, index) => {
+        let opt = document.createElement('option')
+        opt.value = item.id
+        opt.innerHTML = item.nom
+        opt.onclick = (e) => {
+            console.log(e.target.value)
+        }
+        opt.classList.add('opt')
+        document.querySelector('option[value="none"]')?.after(opt)
+    })
+    }
+
+    useEffect(() => {
+        fetch(API_ROOT_URL+'/api/evenements', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+        },
+    })
+        .then((response) => response.json())
+        .then((response) => {setEvents(response)})
+        .catch((error) => console.log(error));
+    }, []);
+
+    useEffect(() => {
+        fetchEvents()
+    }, events[0])
+
+    function formatDate(date) {
+        var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+
+        if (month.length < 2) 
+            month = '0' + month;
+        if (day.length < 2) 
+            day = '0' + day;
+
+        return [year, month, day].join('-');
+    }
+
     return (
         <div>
             <Header backgroundImage="/course.png"
@@ -158,7 +215,7 @@ const CreationCourse = () => {
                                     type="text"
                                     id="nom"
                                     name="nom"
-                                    value={inputs.nom || ""}
+                                    defaultValue={inputs.nom || course.nom}
                                     onChange={handleChange}
                                     placeholder="Entrez le nom de la course"
                                     className="border-black rounded-lg border-solid border p-2 h-10"
@@ -170,7 +227,7 @@ const CreationCourse = () => {
                                     type="date"
                                     id="date"
                                     name="date"
-                                    value={inputs.date || ""}
+                                    value={inputs.date || formatDate(course.date)}
                                     onChange={handleChange}
                                     className="border-black rounded-lg border-solid border p-2 h-10 w-full text-slate-400"
                                 />
@@ -198,6 +255,7 @@ const CreationCourse = () => {
                                     name="depart"
                                     placeholder="Adresse de départ"
                                     className="depart-input border-black rounded-lg border-solid border p-2 w-full"
+                                    defaultValue = {course?.localisation?.nomDepart}
                                 />
                                 <div
                               className="search-adress absolute flex flex-col items-center justify-center w-1/3 text-xs cursor-pointer text-black"
@@ -218,6 +276,7 @@ const CreationCourse = () => {
                                     name="arrive"
                                     placeholder="Adresse d'arrivé"
                                     className="arrive-input border-black rounded-lg border-solid border p-2 w-full"
+                                    defaultValue = {course?.localisation?.nomArrive}
                                 />
                                 <div
                               className="search-adress absolute flex flex-col items-center justify-center w-1/3 text-xs cursor-pointer text-black"
@@ -237,7 +296,7 @@ const CreationCourse = () => {
                                 type="number"
                                 id="distance"
                                 name="distance"
-                                value={inputs.distance || ""}
+                                defaultValue={inputs.distance || course.distance}
                                 onChange={handleChange}
                                 placeholder="Entrez la distance de la course en m"
                                 className="border-black rounded-lg border-solid border p-2 w-full"
@@ -250,7 +309,7 @@ const CreationCourse = () => {
                                     type="number"
                                     id="denivelePositif"
                                     name="denivelePositif"
-                                    value={inputs.denivelePositif || ""}
+                                    defaultValue={inputs.denivelePositif || course.denivelePositif}
                                     onChange={handleChange}
                                     placeholder="Dénivelé maximum en m"
                                     className="border-black rounded-lg border-solid border p-2"
@@ -262,7 +321,7 @@ const CreationCourse = () => {
                                     type="number"
                                     id="deniveleNegatif"
                                     name="deniveleNegatif"
-                                    value={inputs.deniveleNegatif || ""}
+                                    defaultValue={inputs.deniveleNegatif || course.deniveleNegatif}
                                     onChange={handleChange}
                                     placeholder="Dénivelé minimum en m"
                                     className="border-black rounded-lg border-solid border p-2"
