@@ -2,6 +2,7 @@
     max-width: 100%;
     width: 100%;
     height: 100%;
+    margin-top: -7rem;
 }
 #admin-navbar{
     width: 100%;
@@ -34,7 +35,7 @@
     background-color: rgb(31 41 55);
     display: inline-block;
     position: absolute;
-    top: -25px;
+    top: -26px;
 }
 #admin-navbar .socials{
     justify-content: center;
