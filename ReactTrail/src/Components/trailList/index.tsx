@@ -12,7 +12,7 @@ const List = () => {
     paramsQuery.push(element.split('=')[1])
   });
   // console.log(paramsQuery)
-  console.log('http://127.0.0.1:8000/api/courses?page=1' + (paramsQuery[1] != '' ? ('&date[before]=' + paramsQuery[1]) : '') + (paramsQuery[0] != '' ? ('&date[after]=' + paramsQuery[0]) : '') + (paramsQuery[2] != '' && paramsQuery[3] != '' ? ('&distance[between]=' + paramsQuery[2] + '..' + paramsQuery[3]) : '') + (paramsQuery[4] != '' ? '&nom=' + paramsQuery[4] : ''))
+  // console.log('http://127.0.0.1:8000/api/courses?page=1' + (paramsQuery[1] != '' ? ('&date[before]=' + paramsQuery[1]) : '') + (paramsQuery[0] != '' ? ('&date[after]=' + paramsQuery[0]) : '') + (paramsQuery[2] != '' && paramsQuery[3] != '' ? ('&distance[between]=' + paramsQuery[2] + '..' + paramsQuery[3]) : '') + (paramsQuery[4] != '' ? '&nom=' + paramsQuery[4] : ''))
 
   useEffect(() => {
     // fetch('http://127.0.0.1:8000/api/courses?page=1&date[before]=2023-11-15&date[after]=2021-11-15&distance[between]=0..1000&nom=str', {
