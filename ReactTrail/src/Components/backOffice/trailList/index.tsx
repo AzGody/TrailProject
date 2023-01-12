@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 const BOList = () => {
   const [courses, setCourses] = useState([]);
-
+  
   useEffect(() => {
     fetch("http://127.0.0.1:8000/api/courses", {
       method: "GET",

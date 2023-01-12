@@ -7,19 +7,20 @@ import Navbar from '../../../Components/backOffice/navbar';
 import BOList from '../../../Components/backOffice/trailList';
 
 
-
 const BackOfficeCourses = () => {
     return (
-        <div className={"container mx-auto pt-28"}>
+        <>
             <Header backgroundImage="/course.png"
-                namePage="Liste des courses"
-                description="Vous pouvez trouver ici la liste des courses Reactive Trail"
+                    namePage="Liste des courses"
+                    description="Liste de tous les courses créés"
             />
-            <Navbar/>
-            <BOList/>
+            <div className={"container mx-auto py-28"}>
+                <Navbar/>
+                <BOList/>
+            </div>
             <Footer></Footer>
 
-        </div>
+        </>
     )
 }
 
