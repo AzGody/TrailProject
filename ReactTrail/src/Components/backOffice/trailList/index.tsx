@@ -153,7 +153,7 @@ const BOList = () => {
                           {course.deniveleNegatif}
                         </td>
                         <td className="px-6 py-4">
-                          {/* {course?.evenement?.nom} */}
+                          {course?.evenement?.nom}
                         </td>
                         <td className="px-6 py-4 flex">
                           <a href={"/admin/courses/edit/" + course.id}
