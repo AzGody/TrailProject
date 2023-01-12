@@ -24,7 +24,7 @@ const List = () => {
   }
 
   function AllCourses() {
-    console.log(courses.length)
+    console.log(courses)
     if (courses.length != 0) {
       return <div className="list">
         <div className="list-container">
@@ -38,13 +38,10 @@ const List = () => {
                 />
               </div>
               <div className="card-body">
-                <h3>{new Date(course.date).toLocaleDateString('Fr-fr')}</h3>
+                <h3>{new Date(course.dateDebut).toLocaleDateString('Fr-fr')} - {new Date(course.dateFin).toLocaleDateString('Fr-fr')}</h3>
                 <h1>{course.nom}</h1>
                 <h2>{course.localisation.nom}</h2>
                 <p>{truncate(String(course.description), 0, 80)}</p>
-                <div className="flex">
-                  <div className="distance">{course.distance} m</div>
-                </div>
               </div>
             </div>
           </a>))}
@@ -76,13 +73,10 @@ const List = () => {
                 />
               </div>
               <div className="card-body">
-                <h3>{new Date(course.date).toLocaleDateString('Fr-fr')}</h3>
+                <h3>{new Date(course.dateDebut).toLocaleDateString('Fr-fr')} - {new Date(course.dateFin).toLocaleDateString('Fr-fr')}</h3>
                 <h1>{course.nom}</h1>
                 <h2>{course.localisation.nom}</h2>
                 <p>{truncate(String(course.description), 0, 80)}</p>
-                <div className="flex">
-                  <div className="distance">{course.distance} m</div>
-                </div>
               </div>
             </div>
           </a>))}
