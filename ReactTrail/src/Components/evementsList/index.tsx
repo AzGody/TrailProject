@@ -6,9 +6,6 @@ import { useEffect, useState } from "react";
 const List = () => {
   const [courses, setCourses] = useState([]);
 
-  var pathLocation = window.location.pathname;
-  console.log(pathLocation)
-
   useEffect(() => {
     fetch("http://127.0.0.1:8000/api/evenements", {
       method: "GET",
@@ -31,7 +28,7 @@ const List = () => {
       return <div className="list">
         <div className="list-container">
           {courses.map(course =>
-          (<a key={course.id} href={`/evenement/${course.id}`}>
+          (<a key={course.id} href={`/evenements/${course.id}`}>
             <div className="card">
               <div className="card-header">
                 <img
