@@ -9,25 +9,23 @@ import Marker_ from '../creationEvenement/Marker_';
 const CreationCourse = () => {
 
     const [inputs, setInputs] = useState({});
-    const [lat, setLat] = useState(48.864716)
-    const [lng, setLng] = useState(2.349014)
+    const [lat, setLat] = useState(46.6024)
+    const [lng, setLng] = useState(1.8752)
+    const [latLngDepart, setLatLngDepart] = useState([])
+    const [latLngArrive, setLatLngArrive] = useState([])
+    const [nomDepart, setNomDepart] = useState()
+    const [nomArrive, setNomArrive] = useState()
     const [events, setEvents] = useState([])
     const [event, setEvent] = useState()
 
-    function getCoordinates(cityName: string) {
-      fetch(
-        'https://nominatim.openstreetmap.org/search?format=json&q=' + cityName
-      ).then((response) => {
-        response.json().then((data) => {
-          setLat(data[0].lat)
-          setLng(data[0].lon)
-        })
-      })
-    }
-
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        inputs.localisation = { lat: lat, lng: lng}; //TODO: supprimer
+        inputs.localisation = {
+            nomDepart: nomDepart,
+            latLngDepart: latLngDepart,
+            nomArrive: nomArrive,
+            latLngArrive: latLngArrive
+        }; //TODO: supprimer
         inputs.utilisateurs = [];
         inputs.distance = +inputs.distance;
         console.log(event)
@@ -41,6 +39,7 @@ const CreationCourse = () => {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
+                Authorization: "Bearer " + "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2NzM1MTEyNjksImV4cCI6MTY3MzU5NzY2OSwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJ1c2VybmFtZSI6InJvbWFpbkBnbWFpbC5jb20iLCJlbWFpbCI6InJvbWFpbkBnbWFpbC5jb20iLCJwc2V1ZG8iOiJSb21haW4ifQ.Vc3-LM9Y7BDnZdp8Ozv7y5atT3I5CjDCYzdIxBQdUqWtzi1ANg_EhOlYIeEDG4BIOba609bu2TZOqznrKwF05FI1bWydsGQvdFdM-yDyRZaSCwG4MioB6gjEq5znZZJ6XLLZnujcx331iasFQi0aRE768CtrKMAM0wcoHHoZlDBqEUyHFuDRhBP9QParREU3hNveLp_4q7XcVBiU7PsqNrotNouDKO1wrBT1En0x732sLCi0ibEg4z7DUR_htIAqYYhx5WQBR6dUV-omD6yV1jyctQK5p_2Z2P8gTUmJ3VTrxE8wlZIsmIBjBsFvokxHQ-kV7qWmjwQmcIIwZegzqg"
             },
             body: JSON.stringify(inputs)
         })
@@ -67,33 +66,42 @@ const CreationCourse = () => {
         }
     }
 
-    function handleSearch(input: string) {
-        document.querySelector('.results').innerHTML = ''
+    function handleSearchAdress(input: string, point: string) {
+        document.querySelector('.results-adr-'+point).innerHTML = ''
         if (input == '') return
         fetch(
-          'https://geo.api.gouv.fr/communes?nom=' + input + '&fields=codesPostaux'
+          'https://api-adresse.data.gouv.fr/search/?q='+input
         ).then((response) =>
           response.json().then((data) => {
-            document.querySelector('.results')?.classList.remove('hidden')
-            data.map((item) => {
-              let div = document.createElement('div')
-              div.classList.add(
-                'result',
-                'text-black',
-                'align-left',
-                'w-full',
-                'hover:bg-slate-300',
-                'pl-2',
-                'cursor-pointer'
-              )
-              div.innerHTML = item.nom + ' - ' + item.codesPostaux[0]
-              div.onclick = (e) => {
-                document.querySelector('.localisation-input').value =
-                  e.target.innerText.split(' - ')[0]
-                document.querySelector('.results')?.classList.add('hidden')
-                getCoordinates(e.target.innerText.split(' - ')[0])
-              }
-              document.querySelector('.results')?.append(div)
+            document.querySelector('.results-adr-'+point)?.classList.remove('hidden')
+            data.features.map((item) => {
+                console.log(item)
+                let div = document.createElement('div')
+                div.classList.add(
+                  'result',
+                  'text-black',
+                  'align-left',
+                  'w-full',
+                  'hover:bg-slate-300',
+                  'pl-2',
+                  'cursor-pointer'
+                )
+                div.innerHTML = item.properties.postcode + ' - ' + item.properties.name 
+                div.onclick = (e) => {
+                  document.querySelector('.'+point+'-input').value =
+                    e.target.innerText.split(' - ')[1]
+                    document.querySelector('.results-adr-'+point)?.classList.add('hidden')
+                    if(point == "depart"){
+                        setLatLngDepart([item.geometry.coordinates[1], item.geometry.coordinates[0]])
+                        setNomDepart(item.properties.name)
+                    }
+                    else{
+                        setLatLngArrive([item.geometry.coordinates[1], item.geometry.coordinates[0]])
+                        setNomArrive(item.properties.name)
+                    }
+                    setLat(item.geometry.coordinates[1]), setLng(item.geometry.coordinates[0])
+                }
+                document.querySelector('.results-adr-'+point)?.append(div)
             })
           })
         )
@@ -119,6 +127,7 @@ const CreationCourse = () => {
               headers: {
                   'Accept': 'application/json',
                   'Content-Type': 'application/json',
+                  Authorization: "Bearer " + "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2NzM1MTEyNjksImV4cCI6MTY3MzU5NzY2OSwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJ1c2VybmFtZSI6InJvbWFpbkBnbWFpbC5jb20iLCJlbWFpbCI6InJvbWFpbkBnbWFpbC5jb20iLCJwc2V1ZG8iOiJSb21haW4ifQ.Vc3-LM9Y7BDnZdp8Ozv7y5atT3I5CjDCYzdIxBQdUqWtzi1ANg_EhOlYIeEDG4BIOba609bu2TZOqznrKwF05FI1bWydsGQvdFdM-yDyRZaSCwG4MioB6gjEq5znZZJ6XLLZnujcx331iasFQi0aRE768CtrKMAM0wcoHHoZlDBqEUyHFuDRhBP9QParREU3hNveLp_4q7XcVBiU7PsqNrotNouDKO1wrBT1En0x732sLCi0ibEg4z7DUR_htIAqYYhx5WQBR6dUV-omD6yV1jyctQK5p_2Z2P8gTUmJ3VTrxE8wlZIsmIBjBsFvokxHQ-kV7qWmjwQmcIIwZegzqg"
             },
         })
           .then((response) => response.json())
@@ -179,26 +188,47 @@ const CreationCourse = () => {
                                 <option className='opt opt-none' value="none" >Aucun</option>
                             </select>
                         </div>
-                        <div className="localisation relative flex flex-col items-start justify-center w-full mt-4 hidden">
-                            <label htmlFor="localisation" className="text-white">Localisation</label>
-                            <input
-                              type="text"
-                              id="localisation"
-                              name="localisation"
-                              placeholder="Entrez le nom de la ville"
-                              className="localisation-input border-black rounded-lg border-solid border p-2 w-full text-black"
-                            />
-                            <div
-                              className="search absolute flex flex-col items-center justify-center w-1/3 rounded-lg cursor-pointer text-black"
+                        <div className="flex items-center justify-between mt-4">
+                            <div className="relative flex flex-col items-start justify-center w-full mt-4">
+                                <label className={"text-white"} htmlFor="course-depart">Point de départ</label>
+                                <input
+                                    type="text"
+                                    id="depart"
+                                    name="depart"
+                                    placeholder="Adresse de départ"
+                                    className="depart-input border-black rounded-lg border-solid border p-2 w-full"
+                                />
+                                <div
+                              className="search-adress absolute flex flex-col items-center justify-center w-1/3 text-xs cursor-pointer text-black"
                               onClick={() => {
-                                let input = document.querySelector('.localisation-input')
-                                console.log(input.value)
-                                handleSearch(input.value)
+                                let input = document.querySelector('#depart')
+                                handleSearchAdress(input.value, "depart")
                               }}
                             >
                               Rechercher
                             </div>
-                            <div className="results absolute flex flex-col items-center justify-center w-full rounded-lg border border-slate-500 bg-slate-200 hidden"></div>
+                            <div className="results-adr-depart absolute flex flex-col items-center justify-center w-full rounded-lg border border-slate-500 bg-slate-200 hidden"></div>
+                            </div>
+                            <div className="relative flex flex-col items-start justify-center w-full mt-4">
+                                <label className={"text-white"} htmlFor="course-arrive">Point d'arrivé</label>
+                                <input
+                                    type="text"
+                                    id="arrive"
+                                    name="arrive"
+                                    placeholder="Adresse d'arrivé"
+                                    className="arrive-input border-black rounded-lg border-solid border p-2 w-full"
+                                />
+                                <div
+                              className="search-adress absolute flex flex-col items-center justify-center w-1/3 text-xs cursor-pointer text-black"
+                              onClick={() => {
+                                let input = document.querySelector('#arrive')
+                                handleSearchAdress(input.value, "arrive")
+                              }}
+                            >
+                              Rechercher
+                            </div>
+                            <div className="results-adr-arrive absolute flex flex-col items-center justify-center w-full rounded-lg border border-slate-500 bg-slate-200 hidden"></div>
+                            </div>
                         </div>
                         <div className="flex flex-col items-start justify-center w-full mt-4">
                             <label className={"text-white"} htmlFor="course-distance">Distance</label>
@@ -250,8 +280,8 @@ const CreationCourse = () => {
                         >Annuler</button>
                     </form>
                 </div>
-                <div className="map h-2/4 w-96 hidden" id="map">
-                    <Marker_ coords={[lat, lng]}/>
+                <div className="map h-2/4 w-96" id="map">
+                    <Marker_ coords={[lat, lng]} markerCoords={[latLngDepart, latLngArrive]}/>
                 </div>
             </div>
             <Footer></Footer>
