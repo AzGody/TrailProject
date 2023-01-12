@@ -5,18 +5,24 @@ import { useEffect, useState } from "react";
 
 const List = () => {
   const [courses, setCourses] = useState([]);
-  // var params = window.location.search.split('?')[1].split('&');
-  var params = window.location.search.split('?')[1].split('&')
+  var params;
   var paramsQuery = []
-  params.forEach(element => {
-    paramsQuery.push(element.split('=')[1])
-  });
-  // console.log(paramsQuery)
-  // console.log('http://127.0.0.1:8000/api/courses?page=1' + (paramsQuery[1] != '' ? ('&date[before]=' + paramsQuery[1]) : '') + (paramsQuery[0] != '' ? ('&date[after]=' + paramsQuery[0]) : '') + (paramsQuery[2] != '' && paramsQuery[3] != '' ? ('&distance[between]=' + paramsQuery[2] + '..' + paramsQuery[3]) : '') + (paramsQuery[4] != '' ? '&nom=' + paramsQuery[4] : ''))
+  var apiQuery;
+  
+  if(window.location.href != 'http://127.0.0.1:5173/courses') {
+    params = window.location.search.split('?')[1].split('&')
+    params.forEach(element => {
+      paramsQuery.push(element.split('=')[1])
+    });
+    // console.log(paramsQuery)
+    apiQuery = 'http://127.0.0.1:8000/api/courses?page=1' + (paramsQuery[1] != '' ? ('&date[before]=' + paramsQuery[1]) : '') + (paramsQuery[0] != '' ? ('&date[after]=' + paramsQuery[0]) : '') + (paramsQuery[2] != '' && paramsQuery[3] != '' ? ('&distance[between]=' + paramsQuery[2] + '..' + paramsQuery[3]) : '') + (paramsQuery[4] != '' ? '&nom=' + paramsQuery[4] : '')
+  } else {
+    apiQuery = 'http://127.0.0.1:8000/api/courses'
+  }
+  
 
   useEffect(() => {
-    // fetch('http://127.0.0.1:8000/api/courses?page=1&date[before]=2023-11-15&date[after]=2021-11-15&distance[between]=0..1000&nom=str', {
-    fetch('http://127.0.0.1:8000/api/courses?page=1' + (paramsQuery[1] != '' ? ('&date[before]=' + paramsQuery[1]) : '') + (paramsQuery[0] != '' ? ('&date[after]=' + paramsQuery[0]) : '') + (paramsQuery[2] != '' && paramsQuery[3] != '' ? ('&distance[between]=' + paramsQuery[2] + '..' + paramsQuery[3]) : '') + (paramsQuery[4] != '' ? '&nom=' + paramsQuery[4] : ''), {
+    fetch(apiQuery, {
       method: "GET",
       headers: {
         Accept: "application/json",
