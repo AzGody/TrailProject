@@ -59,7 +59,7 @@ const BOList = () => {
                 event.preventDefault()
                 setVisible(!visible)
             }} type="button" className="ml-5 text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none">Filtrer</button>
-            <a href='/courses/create'>
+            <a href='/admin/courses/create'>
                 <button type="button"
                         class="self-end text-white bg-green-700 hover:bg-green-800 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none"
                         href="http://127.0.0.1:5173/createCourse">Créer une course
@@ -155,7 +155,7 @@ const BOList = () => {
                           {/* {course?.evenement?.nom} */}
                         </td>
                         <td className="px-6 py-4 flex">
-                          <a href={"/admin/courses/" + course.id}
+                          <a href={"/admin/courses/edit/" + course.id}
                                   className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
                                   <path d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z" />
