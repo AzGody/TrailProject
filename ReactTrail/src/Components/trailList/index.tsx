@@ -5,7 +5,10 @@ import { useEffect, useState } from "react";
 
 const List = () => {
   const [courses, setCourses] = useState([]);
-
+  // var params = window.location.search.split('?')[1].split('&');
+  // params.forEach(element => {
+  //     console.log(element.split('=')[1])
+  // });
   useEffect(() => {
     fetch("http://127.0.0.1:8000/api/courses", {
       method: "GET",

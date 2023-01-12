@@ -10,11 +10,12 @@ import Navbar from "../../Components/backOffice";
 
 const BackOffice = () => {
     return (
-        <div className={"container mx-auto pt-28"}>
+        <div>
             <Header backgroundImage="/course.png"
                 namePage="DashBoard BackOffice"
                 description="Bienvenu(e) DashBoard BackOffice"
             />
+            <div className={"container mx-auto py-10"}>
             <div class="bo-dashboard">
                 <Navbar/>
                 <div class="bo-dash-content">
@@ -35,6 +36,7 @@ const BackOffice = () => {
                         </a>
                     </div>
                 </div>
+            </div>
             </div>
             <Footer></Footer>
 

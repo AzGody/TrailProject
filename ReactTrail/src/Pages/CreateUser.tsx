@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import { useState } from 'react'
 import Header from "../Components/Header";
 import Footer from "../Components/footer";
 import TrailList from '../Components/trailList';
@@ -12,13 +12,15 @@ function CreateUser() {
     const [count, setCount] = useState(0)
 
     return (
-        <div className={"container mx-auto py-10"}>
+        <div>
             <Header backgroundImage="/home.webp"
-                    namePage="Création de compte"
-                    description="Créez votre compte ! "
+                namePage="Création de compte"
+                description="Créez votre compte ! "
             />
+            <div className={"container mx-auto py-10"}>
 
-            <FormCreateUser></FormCreateUser>
+                <FormCreateUser></FormCreateUser>
+            </div>
             <Footer></Footer>
 
         </div>
