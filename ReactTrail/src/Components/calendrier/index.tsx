@@ -1,3 +1,4 @@
+// @ts-nocheck - may need to be at the start of file
 import Header from "../Header";
 import Footer from "../footer";
 
@@ -37,22 +38,18 @@ const Calendrier = (props: any) => {
     return (
         <div>
             <Header backgroundImage="/evenement.jpeg"
-                namePage={props.title}
-                description={props.trailNumber + " courses"}
+                namePage={"Mes courses"}
+                description={"Les courses auxquelles vous participez"}
             />
             <FullCalendar
                 plugins={[ dayGridPlugin ]}
                 initialView="dayGridMonth"
                 events={[
                     { title: 'event 1', date: '2023-01-12', id: '1' },
-                    { title: 'event 2', date: '2023-01-14', id: '2' },
-                    { title: 'course 1', date: '2023-01-14', id: '2' },
-                    { title: 'course 2', date: '2023-01-14', id: '2' },
-                    { title: 'course 3', date: '2023-01-14', id: '2' },
                 ]}
                 eventClick={((arg) => {
                     let id = arg.event.id;
-                    window.open(`http://localhost:5173/evenements/evenements/${id}`);
+                    window.open(`http://localhost:5173/courses/${id}`);
                 })}
 
             />
