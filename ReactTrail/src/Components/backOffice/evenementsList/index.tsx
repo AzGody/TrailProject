@@ -27,7 +27,7 @@ const BOEvent = () => {
           method: "DELETE",
           headers: {
               Accept: "application/json",
-              Autorization: "Bearer " + sessionStorage.getItem("JWT")
+              Authorization: "Bearer " + sessionStorage.getItem("JWT")
           },
       }).then((response) => response.json())
           .then((response) => console.log(response))
