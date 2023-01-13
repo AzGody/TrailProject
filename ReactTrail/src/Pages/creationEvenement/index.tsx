@@ -72,6 +72,12 @@ console.log(evenement)
 
         .catch((error) => console.log(error))
     }else{
+      inputs.utilisateurs = []
+      inputs.courses = []
+      inputs.dateDebut = +document.querySelector('#date-debut').value
+      inputs.dateFin = +document.querySelector('#date-fin').value
+      inputs.description = +document.querySelector('#description').value
+      inputs.localisation = evenement.localisation
       // PUT REQUEST TO MODIFY EVENT
       fetch(API_ROOT_URL+`/api/evenements/${id}`, {
         method: 'PUT',
@@ -116,11 +122,10 @@ console.log(evenement)
           )
           div.innerHTML =item.codesPostaux[0] + ' - ' +  item.nom 
           div.onclick = (e) => {
-            document.querySelector('.localisation').value =
-              e.target.innerText.split(' - ')[0]
+            document.querySelector('.localisation').value = item.nom 
             document.querySelector('.results')?.classList.add('hidden')
-            getCoordinates(e.target.innerText.split(' - ')[0])
-            setCityName(e.target.innerText.split(' - ')[0])
+            getCoordinates(e.target.innerText.split(' - ')[1])
+            setCityName(e.target.innerText.split(' - ')[1])
           }
           document.querySelector('.results')?.append(div)
         })
