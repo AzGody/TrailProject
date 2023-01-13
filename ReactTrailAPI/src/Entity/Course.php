@@ -39,17 +39,17 @@ class Course
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['course:read', 'course:write', 'evenement:read'])]
+    #[Groups(['course:read', 'course:write', 'evenement:read', 'utilisateur:read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['course:read', 'course:write', 'evenement:read'])]
+    #[Groups(['course:read', 'course:write', 'evenement:read', 'utilisateur:read'])]
     #[Assert\NotBlank]
     #[Assert\Type('string')]
     private ?string $nom = null;
     
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    #[Groups(['course:read', 'course:write', 'evenement:read'])]
+    #[Groups(['course:read', 'course:write', 'evenement:read', 'utilisateur:read'])]
     #[Assert\NotBlank]
     private ?\DateTimeInterface $date = null;
     
