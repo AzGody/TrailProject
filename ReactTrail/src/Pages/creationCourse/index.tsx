@@ -22,7 +22,7 @@ const CreationCourse = () => {
     const { id } = useParams();
     const [course, setCourse] = useState([]);
 
-    // GET REQUEST TO GET VALUE BY ID
+    // GET REQUEST TO GET value BY ID
     if (id !== undefined) {
         useEffect(() => {
             fetch(API_ROOT_URL + `/api/courses/${id}`, {
@@ -241,7 +241,7 @@ const CreationCourse = () => {
                                 type="textarea"
                                 id="description"
                                 name="description"
-                                value={inputs.description || course.description}
+                                defaultValue={inputs.description || course.description}
                                 onChange={handleChange}
                                 placeholder="description"
                                 className="border-black rounded-lg border-solid border p-2 w-full text-black"
