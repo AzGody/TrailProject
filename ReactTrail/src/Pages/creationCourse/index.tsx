@@ -318,26 +318,26 @@ const CreationCourse = () => {
                         </div>
                         <div className="denivele flex items-center justify-between mt-4">
                             <div className="flex flex-col items-start justify-center  w-48">
-                                <label className={"text-white"} htmlFor="course-denivele-max">Dénivelé maximum</label>
+                                <label className={"text-white"} htmlFor="course-denivele-max">Dénivelé Positif</label>
                                 <input
                                     type="number"
                                     id="denivelePositif"
                                     name="denivelePositif"
                                     defaultValue={inputs.denivelePositif || course.denivelePositif}
                                     onChange={handleChange}
-                                    placeholder="Dénivelé maximum en m"
+                                    placeholder="Dénivelé Positif en m"
                                     className="border-black rounded-lg border-solid border p-2"
                                 />
                             </div>
                             <div className="flex flex-col items-start justify-center  w-48">
-                                <label className={"text-white"} htmlFor="course-denivele-min">Dénivelé minimum</label>
+                                <label className={"text-white"} htmlFor="course-denivele-min">Dénivelé Négatif</label>
                                 <input
                                     type="number"
                                     id="deniveleNegatif"
                                     name="deniveleNegatif"
                                     defaultValue={inputs.deniveleNegatif || course.deniveleNegatif}
                                     onChange={handleChange}
-                                    placeholder="Dénivelé minimum en m"
+                                    placeholder="Dénivelé Négatif en m"
                                     className="border-black rounded-lg border-solid border p-2"
                                 />
                             </div>
