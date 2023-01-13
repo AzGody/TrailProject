@@ -30,7 +30,7 @@ const Evenements = () => {
           .catch((error) => console.log(error));
     }, []);
   }
-
+console.log(evenement)
   function getCoordinates(cityName: string) {
     fetch(
       'https://nominatim.openstreetmap.org/search?format=json&q=' + cityName
@@ -83,7 +83,8 @@ const Evenements = () => {
         body: JSON.stringify(inputs),
       })
         .then((response) => response.json())
-        .then((response) => window.location.replace("/admin/evenements"))
+        .then((response) => console.log(JSON.stringify(response)))
+        .then(response => window.location.replace("/admin/evenements"))
         .catch((error) => console.log(error))
     }
   }
@@ -113,7 +114,7 @@ const Evenements = () => {
             'pl-2',
             'cursor-pointer'
           )
-          div.innerHTML = item.nom + ' - ' + item.codesPostaux[0]
+          div.innerHTML =item.codesPostaux[0] + ' - ' +  item.nom 
           div.onclick = (e) => {
             document.querySelector('.localisation').value =
               e.target.innerText.split(' - ')[0]
@@ -145,13 +146,13 @@ const Evenements = () => {
     <div>
       <Header
         backgroundImage="/evenement.jpeg"
-        namePage="Créer un évenement"
-        description="Saisissiez le formulaire pour créer un évenement :"
+        namePage={ evenement.nom ? "Modifier l'événement" : "Créer un évenement"}
+        description={ evenement.nom ? "Saisissiez le formulaire pour modifier l'événement" :"Saisissiez le formulaire pour créer un évenement :"}
       />
       <div className="form-container flex items-center justify-around w-full h-screen">
         <div className="h-full w-2/4 flex flex-col items-center justify-center">
           <h1 className="text-3xl font-bold underline text-center mb-8">
-            Créer un événement
+            {evenement.nom ? "Modifier l'événement" : "Créer un événement"}
           </h1>
           <div className="flex flex-col items-center justify-center w-full">
             <form
@@ -179,6 +180,7 @@ const Evenements = () => {
                   id="localisation"
                   name="localisation"
                   placeholder="Entrez le nom de la ville"
+                  defaultValue={evenement.nom ? evenement.localisation.name : ""}
                   className="localisation border-black rounded-lg border-solid border p-2 w-full text-black"
                 />
                 <div
@@ -190,7 +192,7 @@ const Evenements = () => {
                 >
                   Rechercher
                 </div>
-                <div className="results absolute flex flex-col items-center justify-center w-full rounded-lg border border-slate-500 bg-slate-200 hidden"></div>
+                <div className="results absolute flex flex-col items-start justify-start  rounded-lg border border-slate-500 bg-slate-200 hidden"></div>
               </div>
               <div className="date flex items-center justify-between mt-4">
                 <div className="flex flex-col items-start justify-center w-48">
@@ -224,7 +226,7 @@ const Evenements = () => {
                   type="textarea"
                   id="description"
                   name="description"
-                  value={inputs.description || evenement.description}
+                  defaultValue={inputs.description || evenement.description}
                   onChange={handleChange}
                   placeholder="description"
                   className="border-black rounded-lg border-solid border p-2 w-full text-black"
@@ -232,7 +234,7 @@ const Evenements = () => {
               </div>
               <input
                 type="submit"
-                value="Créer"
+                value={evenement.nom ? "Modifier" :"Créer"}
                 className="mt-4 mr-4 bg-slate-500 rounded-lg p-2 text-white w-24 hover:bg-slate-600 cursor-pointer"
               />
               <button

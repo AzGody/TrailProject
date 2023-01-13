@@ -12,8 +12,8 @@ const Courses = () => {
     <div>
       <Header
         backgroundImage="/course.png"
-        namePage="Créer une course"
-        description="Saisissiez le formulaire pour créer une course :"
+        namePage="Courses"
+        description=""
       />
       <div className={'container mx-auto py-10'}>
         <div className="flex items-center justify-center w-full text-2xl">

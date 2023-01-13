@@ -8,8 +8,8 @@ const Courses = () => {
     return (
         <div>
             <Header backgroundImage="/evenement.jpeg"
-                    namePage="Créer un évènement"
-                    description="Saisissiez le formulaire pour créer un évènement"
+                    namePage="Evénements"
+                    description=""
             />
             <div className={"container mx-auto py-10"}>
                 <div className='flex items-center justify-center w-full text-2xl'>Voici la liste des évènements
