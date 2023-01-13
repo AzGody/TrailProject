@@ -6,7 +6,8 @@ import Footer from "./Components/footer";
 import TrailDetails from "./Components/trailDetails";
 import TrailList from "./Components/trailList";
 import EvenementList from "./Components/evementsList";
-import Marker_ from "./Pages/listCoursesEvenements/Marker_";
+import Marker_c from "./Pages/listCourses/Marker_";
+import Marker_e from "./Pages/listEvenements/Marker_";
 import { useEffect } from "react";
 
 // import './App.css'
@@ -79,7 +80,7 @@ function App() {
 </select>
 
         <div className="map mx-auto h-96 w-96 center" id="map">
-          {(courseSelected) ? <Marker_ courses={courses} /> : <Marker_ courses={evenements} />}
+          {(courseSelected) ? <Marker_c courses={courses}/> : <Marker_e evenements={evenements} />}
         </div>
       </div>
       <Footer></Footer>
