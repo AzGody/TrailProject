@@ -55,8 +55,8 @@ function App() {
         backgroundImage="/home.webp"
         namePage="Reactive Trail"
         description="Bienvenue sur notre site de trail ! "
-        description3="courses vous attendent ! Bonne visite !"
-        nbCourses={"56"}
+        // description3="courses vous attendent ! Bonne visite !"
+        // nbCourses={"56"}
       />
       <div className={"container mx-auto py-10"}>
         <p className={"lg:pt-2 px-4 lg:px-0"}>
@@ -71,16 +71,19 @@ function App() {
         <TrailList></TrailList>
         <p className="lg:pt-2 px-4 lg:px-0 text-xl font-semibold">Liste des évènements les plus populaires :</p>
         <EvenementList></EvenementList>
-
-        <label for="activites">Afficher les :</label>
-
-<select name="activite" id="activites" onChange={onChangeSelect}>
-    <option value="course">courses</option>
-    <option value="evenement">evenement</option>
-</select>
-
-        <div className="map mx-auto h-96 w-96 center" id="map">
-          {(courseSelected) ? <Marker_c courses={courses}/> : <Marker_e evenements={evenements} />}
+        <div className="flex center">
+          <div className="inline-flex w-30 ml-2 z-999999999999999999999999999999999999999999999999999999999999 my-auto  ">
+            <label for="activites">Afficher les :</label>
+            <div>
+              <select name="activite" id="activites" onChange={onChangeSelect} className="p-0">
+                <option value="course">courses</option>
+                <option value="evenement">evenement</option>
+              </select>
+            </div>
+          </div>
+          <div className="map  h-[600px] w-[1200px]" id="map">
+            {courseSelected ? <Marker_c courses={courses} /> : <Marker_e evenements={evenements} />}
+          </div>
         </div>
       </div>
       <Footer></Footer>

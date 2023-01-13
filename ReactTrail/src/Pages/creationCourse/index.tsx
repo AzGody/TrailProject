@@ -113,7 +113,7 @@ const CreationCourse = () => {
         document.querySelector('.results-adr-' + point).innerHTML = ''
         if (input == '') return
         fetch(
-            'https://api-adresse.data.gouv.fr/search/?q=' + input
+            'https://api-adresse.data.gouv.fr/search/?q=' + input + '&type=street&limit=100'
         ).then((response) =>
             response.json().then((data) => {
                 document.querySelector('.results-adr-' + point)?.classList.remove('hidden')
@@ -280,7 +280,7 @@ const CreationCourse = () => {
                                 >
                                     Rechercher
                                 </div>
-                                <div className="results-adr-depart absolute flex flex-col items-center justify-center w-full rounded-lg border border-slate-500 bg-slate-200 hidden"></div>
+                                <div className="results-adr-depart absolute flex flex-col items-start justify-start rounded-lg border border-slate-500 bg-slate-200 hidden"></div>
                             </div>
                             <div className="relative flex flex-col items-start justify-center w-full mt-4">
                                 <label className={"text-white"} htmlFor="course-arrive">Point d'arrivé</label>
@@ -301,7 +301,7 @@ const CreationCourse = () => {
                                 >
                                     Rechercher
                                 </div>
-                                <div className="results-adr-arrive absolute flex flex-col items-center justify-center w-full rounded-lg border border-slate-500 bg-slate-200 hidden"></div>
+                                <div className="results-adr-arrive absolute flex flex-col items-start justify-start rounded-lg border border-slate-500 bg-slate-200 hidden"></div>
                             </div>
                         </div>
                         <div className="flex flex-col items-start justify-center w-full mt-4">
