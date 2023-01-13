@@ -17,7 +17,7 @@ export default function Marker_({evenements}:any) {
     <MapContainer
       className="map"
       center={[46.71109, 1.7191036]}
-      zoom={5}
+      zoom={6}
       scrollWheelZoom={true}
     >
       <TileLayer
