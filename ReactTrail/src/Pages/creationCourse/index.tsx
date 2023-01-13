@@ -46,11 +46,10 @@ const CreationCourse = () => {
             latLngDepart: latLngDepart,
             nomArrive: nomArrive,
             latLngArrive: latLngArrive
-        }; //TODO: supprimer
+        };
         inputs.utilisateurs = [];
         inputs.distance = (+inputs.distance)*1000;
         console.log(event)
-        event == undefined ? null : inputs.evenement = "/api/evenements/" + event
         inputs.denivelePositif = +inputs.denivelePositif;
         inputs.deniveleNegatif = +inputs.deniveleNegatif;
         console.log(inputs)
@@ -67,7 +66,7 @@ const CreationCourse = () => {
             })
                 .then(response => response.json())
                 .then(response => console.log(JSON.stringify(response)))
-                .then(response => window.location.replace("/admin/courses"))
+                .then(response => console.log(response))
                 .catch(error => console.log(error))
         } else {
             inputs.deniveleNegatif = +document.querySelector('#deniveleNegatif').value
@@ -102,13 +101,10 @@ const CreationCourse = () => {
 
     const handleSelectChange = (e) => {
         if (e.target.value == "none") {
-            document.querySelector('.localisation').classList.remove('hidden')
-            document.querySelector('.map')?.classList.remove('hidden')
+            console.log(e.target.value)
         }
         else {
-            document.querySelector('.localisation').classList.contains('hidden') ? null : document.querySelector('.localisation').classList.add('hidden')
-            document.querySelector('.map')?.classList.add('hidden')
-            setEvent(e.target.value)
+            setInputs({...inputs, evenement: "/api/evenements/"+e.target.value});
         }
     }
 
@@ -186,17 +182,11 @@ const CreationCourse = () => {
     }, events[0])
 
     function formatDate(date) {
-        var d = new Date(date),
-            month = '' + (d.getMonth() + 1),
-            day = '' + d.getDate(),
-            year = d.getFullYear();
-
-        if (month.length < 2)
-            month = '0' + month;
-        if (day.length < 2)
-            day = '0' + day;
-
-        return [year, month, day].join('-');
+        if (date !== undefined) {
+            let splitDate = date.split("+");
+            splitDate.pop();
+            return splitDate;
+        }
     }
 
     return (
@@ -227,7 +217,7 @@ const CreationCourse = () => {
                             <div className="flex flex-col items-start justify-center w-48">
                                 <label className={"text-white"} htmlFor="course-date">Date</label>
                                 <input
-                                    type="date"
+                                    type="datetime-local"
                                     id="date"
                                     name="date"
                                     value={inputs.date || formatDate(course.date)}
@@ -254,8 +244,8 @@ const CreationCourse = () => {
                             <label className={"text-white"} htmlFor="course-evenement">Evénement</label>
                             <select
                                 type="text"
-                                id="course-evenement"
-                                name="course-evenement"
+                                id="evenement"
+                                name="evenement"
                                 className="event-select border-black rounded-lg border-solid border p-2 w-full"
                                 onChange={handleSelectChange}
                             >
@@ -313,7 +303,7 @@ const CreationCourse = () => {
                                 type="number"
                                 id="distance"
                                 name="distance"
-                                defaultValue={inputs.distance || convertMeterToKilometer(course.distance)}
+                                value={inputs.distance || convertMeterToKilometer(course.distance)}
                                 onChange={handleChange}
                                 placeholder="Entrez la distance de la course en km"
                                 className="border-black rounded-lg border-solid border p-2 w-full"

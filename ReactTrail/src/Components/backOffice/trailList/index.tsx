@@ -4,6 +4,7 @@ import { list } from "postcss";
 import { useEffect, useState } from "react";
 import { API_ROOT_URL } from "/src/main";
 import { Collapse } from 'react-collapse';
+import {convertMeterToKilometer} from "../../../utils/convertMeterToKilometer";
 
 const BOList = () => {
   const [courses, setCourses] = useState([]);
@@ -93,7 +94,7 @@ const BOList = () => {
                             Date
                         </th>
                         <th scope="col" className="px-6 py-3">
-                            Localisation
+                            Départ
                         </th>
                         <th scope="col" className="px-6 py-3">
                             Distance
@@ -127,16 +128,16 @@ const BOList = () => {
                           <b>{new Date(course.date).toLocaleTimeString('fr')}</b>
                         </td>
                         <td className="px-6 py-4">
-                          {course?.localisation?.nom}
+                          {course?.localisation?.nomDepart}
                         </td>
                         <td className="px-6 py-4">
-                          {course.distance}
+                          {convertMeterToKilometer(course.distance)} km
                         </td>
                         <td className="px-6 py-4">
-                          {course.denivelePositif}
+                          {course.denivelePositif} m
                         </td>
                         <td className="px-6 py-4">
-                          {course.deniveleNegatif}
+                          {course.deniveleNegatif} m
                         </td>
                         <td className="px-6 py-4">
                           {course?.evenement?.nom}
