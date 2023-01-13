@@ -84,6 +84,8 @@ const Evenements = () => {
       })
         .then((response) => response.json())
         .then((response) => console.log(JSON.stringify(response)))
+        .then(response => window.location.replace("/admin/evenements"))
+
         .catch((error) => console.log(error))
     }
   }
