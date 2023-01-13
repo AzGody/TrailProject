@@ -156,7 +156,7 @@ const List = () => {
                 <h2>{course.localisation.nom}</h2>
                 <p>{truncate(String(course.description), 0, 150)}</p>
                 <div className="flex">
-                  <div className="distance">{convertMeterToKilometer(course.distance)} m</div>
+                  <div className="distance">{convertMeterToKilometer(course.distance)} km</div>
                 </div>
               </div>
             </div>
