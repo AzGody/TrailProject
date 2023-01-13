@@ -26,7 +26,7 @@ export default function Marker_({evenements}:any) {
       />
 
       {
-        evenements.map((evenement: object) => <Marker key={evenement.id} position={[evenement.localisation.lat, evenement.localisation.lng]}></Marker>)
+        evenements.map((evenement: object) => <Marker key={evenement.id} position={evenement.localisation.position}></Marker>)
       }
 
     </MapContainer>
