@@ -1,5 +1,5 @@
 // @ts-nocheck - may need to be at the start of file
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { API_ROOT_URL } from "/src/main";
 
 function FormCreateUser() {
@@ -13,7 +13,7 @@ function FormCreateUser() {
     const handleSubmit = (event: any) => {
         event.preventDefault();
 
-        fetch(API_ROOT_URL+'/api/utilisateurs', {
+        fetch(API_ROOT_URL + '/api/utilisateurs', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -23,15 +23,14 @@ function FormCreateUser() {
         })
             .then(response => response.json())
             .then(response => {
-            if(response.detail === "email: This value is already used.")
-            {
-                setMessage("L'email est déjà utilisé !")
-                setHidden("block mb-4 rounded-lg")
-            }
-            else{
-                location.replace("/login")
-            }
-        })
+                if (response.detail === "email: This value is already used.") {
+                    setMessage("L'email est déjà utilisé !")
+                    setHidden("block mb-4 rounded-lg")
+                }
+                else {
+                    location.replace("/login")
+                }
+            })
             .catch(error => console.log(error))
     }
 
@@ -44,7 +43,7 @@ function FormCreateUser() {
     return (
         <div className="flex justify-center  lg:px-0 px-3">
             <form onSubmit={handleSubmit} className="bg-white w-2/5 rounded">
-                <div  className={"bg-red-200 text-red-700 font-bold p-4" + " " + hidden}>
+                <div className={"bg-red-200 text-red-700 font-bold p-4" + " " + hidden}>
                     {message}
                 </div>
                 <div className="mb-4">
@@ -53,7 +52,7 @@ function FormCreateUser() {
                     </label>
                     <input
                         className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                        id="username" name={"pseudo"} type="text" placeholder="antoine_zebulon" required  minLength={3} maxLength={30}
+                        id="username" name={"pseudo"} type="text" placeholder="antoine_zebulon" required minLength={3} maxLength={30}
                         value={inputs.pseudo || ""}
                         onChange={handleChange}
                     />
@@ -81,7 +80,7 @@ function FormCreateUser() {
                     />
                 </div>
                 <div className="flex justify-center">
-                    <input className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer" type="submit" value="Connexion"/>
+                    <input className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer" type="submit" value="Créer un compte" />
                 </div>
             </form>
         </div>

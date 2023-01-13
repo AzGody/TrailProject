@@ -71,16 +71,11 @@ function App() {
         <TrailList></TrailList>
         <p className="lg:pt-2 px-4 lg:px-0 text-xl font-semibold">Liste des évènements les plus populaires :</p>
         <EvenementList></EvenementList>
-        <div className="flex-column center w-auto ">
-          <div className="inline-flex mx-auto w-30 center  ">
-            <label for="activites" className="mr-4">Afficher les :  </label>
-            <div>
-              <select name="activite" id="activites" onChange={onChangeSelect} className="p-0">
-                <option value="course">courses</option>
-                <option value="evenement">evenement</option>
-              </select>
-            </div>
-          </div>
+        <div className="flex-column center w-auto relative">
+          <select name="activite" id="activites" onChange={onChangeSelect} className="z-[9999] absolute top-6 left-16 p-2">
+            <option value="course">courses</option>
+            <option value="evenement">evenement</option>
+          </select>
           <div className="map  h-[600px] " id="map">
             {courseSelected ? <Marker_c courses={courses} /> : <Marker_e evenements={evenements} />}
           </div>

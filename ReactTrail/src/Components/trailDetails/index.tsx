@@ -43,7 +43,7 @@ const Details = (props: any) => {
                             <div className="start">
                                 <img src="/src/assets/start.png" alt="Start"></img>
                                 <div className="font-dancing-script">
-                                    {course?.localisation?.nom}
+                                    {course?.localisation?.nomDepart}
                                 </div>
                             </div>
                             <div className="middle-track">
@@ -66,7 +66,7 @@ const Details = (props: any) => {
                             <div className="arrival">
                                 <img src="/src/assets/arrival.png" alt="Start"></img>
                                 <div className="font-dancing-script">
-                                    {course?.localisation?.nom}
+                                    {course?.localisation?.nomArrive}
                                 </div>
                             </div>
                         </div>

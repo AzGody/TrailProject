@@ -57,6 +57,7 @@ const Calendrier = () => {
                         initialView="dayGridMonth"
                         events={customCourse}
                         eventClick={((arg) => {
+                            let id = arg.event.id;
                             window.open(`http://localhost:5173/courses/${id}`);
                         })}
                         locale={"fr-fr"}
