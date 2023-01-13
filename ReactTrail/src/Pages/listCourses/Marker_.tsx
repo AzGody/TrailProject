@@ -24,9 +24,12 @@ export default function Marker_({ courses }: any) {
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
+
       {
-        courses.map((course: object) => <Marker key={course.id} position={course.localisation.position}></Marker>)
+        courses.map((course: object) => <Marker key={course.id} position={course.localisation.latLngDepart}></Marker>)
       }
+
+
     </MapContainer>
   )
 }
