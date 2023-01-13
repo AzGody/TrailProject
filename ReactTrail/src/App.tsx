@@ -55,8 +55,8 @@ function App() {
         backgroundImage="/home.webp"
         namePage="Reactive Trail"
         description="Bienvenue sur notre site de trail ! "
-        description3="courses vous attendent ! Bonne visite !"
-        nbCourses={"56"}
+        // description3="courses vous attendent ! Bonne visite !"
+        // nbCourses={"56"}
       />
       <div className={"container mx-auto py-10"}>
         <p className={"lg:pt-2 px-4 lg:px-0"}>
