@@ -26,7 +26,7 @@ const Details = (props: any) => {
         <div>
             <Header backgroundImage="https://www.belambra.fr/les-echappees/wp-inside/uploads/2019/12/perdu-randonnee-reflexes.jpg"
                 namePage={course.nom}
-                description={course.distance + " m"}
+                description={convertMeterToKilometer(course.distance) + " km"}
             />
             <div className={"container mx-auto py-10"}>
                 <div className="details">
