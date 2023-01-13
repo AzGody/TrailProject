@@ -25,8 +25,9 @@ function Nav() {
     }
 
     const goCourseFavorites = () => {
-        location.replace("/goCourseFavorites")
+        location.replace("/mes-courses")
     }
+
 
 
     return (
@@ -103,8 +104,9 @@ function Nav() {
                                             aria-labelledby="dropdownDefaultButton">
                                             <button
                                                 className="mb-2 w-full text-gray-300 hover:bg-gray-700 hover:text-white transition-colors px-3 py-2 rounded-md text-sm font-medium"
-                                                onClick={goCourseFavorites}>Courses favorites
+                                                onClick={goCourseFavorites}>Mes courses
                                             </button>
+
                                             <button
                                                 className="w-full text-red-600 hover:bg-red-200 hover:text-red-900 transition-colors px-3 py-2 rounded-md text-sm font-medium"
                                                 onClick={logOutUser}>Déconnexion

@@ -22,7 +22,7 @@ const Courses = () => {
                     <button onClick={(event) => {
                         event.preventDefault()
                         setVisible(!visible)
-                    }} type="button" className="self-end text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none">Filtrer</button>
+                    }} type="button" className="self-end text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 ml-4 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none">Filtrer</button>
                 </div>
                 <Collapse isOpened={visible}>
                     <div className='border-2 p-7 rounded-lg'>
@@ -34,7 +34,7 @@ const Courses = () => {
                                 <div>Fin</div>
                                 <input name='dateMax' type='date'></input>
                             </div>
-                            <div className='text-xl'>Filtrage par fourchette de distances :</div>
+                            <div className='text-xl'>Filtrage par fourchette de distances en km :</div>
                             <div className='flex my-1.5'>
                                 <div>Minimum :</div>
                                 <input name="distMin" type='number' className='w-2/12 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"'></input>

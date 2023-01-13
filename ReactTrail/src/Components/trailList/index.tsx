@@ -6,10 +6,13 @@ import { API_ROOT_URL } from "/src/main";
 import jwt_decode from "jwt-decode";
 // @ts-nocheck - may need to be at the start of file
 import { isConnectedUser } from "/src/utils/isConnectedUser.tsx";
+import {convertMeterToKilometer} from "../../utils/convertMeterToKilometer";
+import {co} from "@fullcalendar/core/internal-common";
 
 const List = () => {
   const [courses, setCourses] = useState([]);
   const [userId, setUserId] = useState("");
+
   var params;
   var paramsQuery = []
   var apiQuery;
@@ -19,7 +22,7 @@ const List = () => {
     params.forEach(element => {
       paramsQuery.push(element.split('=')[1])
     });
-    apiQuery = API_ROOT_URL + '/api/courses?page=1' + (paramsQuery[1] != '' ? ('&date[before]=' + paramsQuery[1]) : '') + (paramsQuery[0] != '' ? ('&date[after]=' + paramsQuery[0]) : '') + (paramsQuery[2] != '' && paramsQuery[3] != '' ? ('&distance[between]=' + paramsQuery[2] + '..' + paramsQuery[3]) : '') + (paramsQuery[4] != '' ? '&nom=' + paramsQuery[4] : '')
+    apiQuery = API_ROOT_URL + '/api/courses?page=1' + (paramsQuery[1] != '' ? ('&date[before]=' + paramsQuery[1]) : '') + (paramsQuery[0] != '' ? ('&date[after]=' + paramsQuery[0]) : '') + (paramsQuery[2] != '' && paramsQuery[3] != '' ? ('&distance[between]=' + paramsQuery[2]*1000 + '..' + paramsQuery[3]*1000) : '') + (paramsQuery[4] != '' ? '&nom=' + paramsQuery[4] : '')
   } else {
 
     apiQuery = API_ROOT_URL + '/api/courses'
@@ -32,10 +35,8 @@ const List = () => {
         Accept: "application/json",
       },
     })
-      // .then((response) => console.log(response))
       .then((response) => response.json())
       .then((response) => setCourses(response))
-
       .catch((error) => console.log(error));
   }, []);
 
@@ -48,26 +49,35 @@ const List = () => {
     }
   }, [userId])
 
-  const heart = (bool) => {
-    if (bool == true) {
-      return (
-        <svg width="24" height="24" fill='red' stroke='red' xmlns="http://www.w3.org/2000/svg"><path d="m12 5.72c-2.624-4.517-10-3.198-10 2.461 0 3.725 4.345 7.727 9.303 12.54.194.189.446.283.697.283s.503-.094.697-.283c4.977-4.831 9.303-8.814 9.303-12.54 0-5.678-7.396-6.944-10-2.461z" /></svg>
-      )
+  const handleHearthClick = (event, course) => {
+    if (event.target.tagName !== "svg") {
+      event.target.parentElement.classList.replace("text-gray-400", "text-red-400")
+      event.target.parentElement.classList.add("pointer-events-none")
     } else {
-      return (
-        <svg width="24" height="24" fill='grey' stroke='grey' xmlns="http://www.w3.org/2000/svg"><path d="m12 5.72c-2.624-4.517-10-3.198-10 2.461 0 3.725 4.345 7.727 9.303 12.54.194.189.446.283.697.283s.503-.094.697-.283c4.977-4.831 9.303-8.814 9.303-12.54 0-5.678-7.396-6.944-10-2.461z" /></svg>
-      )
+      event.target.classList.replace("text-gray-400", "text-red-400")
+      event.target.classList.add("pointer-events-none")
     }
+
+    const users = [];
+    users.push(...course.utilisateurs, "/api/utilisateurs/"+userId)
+
+    fetch(API_ROOT_URL+"/api/courses/"+course.id, {
+      method: "PUT",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token
+      },
+      body: JSON.stringify({"utilisateurs": users })
+    }).then((response) => {
+      console.log(response)
+    }).catch((error) => console.log(error));
   }
 
   const truncate = (str, max, len) => {
     return str.length > max ? str.substring(0, len) + "..." : str;
   }
 
-  function test() {
-    console.log("ok");
-
-  }
   function AllCourses() {
 
     if (courses.length != 0) {
@@ -76,7 +86,7 @@ const List = () => {
           {courses.map(course =>
           (
 
-            <div className="card">
+            <div key={course.id} className="card">
               <div className="card-header">
                 <img
                   src="https://www.belambra.fr/les-echappees/wp-inside/uploads/2019/12/perdu-randonnee-reflexes.jpg"
@@ -88,27 +98,27 @@ const List = () => {
                 <h1>{course.nom}</h1>
                 <h2>{course.localisation.nom}</h2>
                 <p>{truncate(String(course.description), 0, 150)}</p>
-                <div className="distance">{course.distance} m</div>
-                <div className="flex mt-3">
+                <div className="distance">{convertMeterToKilometer(course.distance)} km</div>
+                <div className={isConnectedUser() ? "flex mt-3 items-center justify-between" : "flex mt-3 items-center justify-center"}>
                   {
-                    isConnectedUser() && course.utilisateurs.length != 0 ?
-                      <div>
-                        {course.utilisateurs.map(courseUser =>
-                        (<div onClick={test} className="testClick">
-                          {courseUser.id == 3 ?
-                            heart(true)
-                            : null}
-                        </div>
-                        )
-                        )}
-                      </div> : <div onClick={test}> {heart(false)}</div>
-
+                    isConnectedUser() ?
+                        (course.utilisateurs.length > 0) ?
+                            (course.utilisateurs.includes("/api/utilisateurs/"+userId)) ?
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-red-400">
+                                  <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
+                                </svg> :
+                                <svg onClick={event => handleHearthClick(event, course)} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 cursor-pointer text-gray-400 hover:scale-125 transition-all">
+                                  <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
+                                </svg> :
+                        <svg onClick={event => handleHearthClick(event, course)} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 cursor-pointer text-gray-400">
+                          <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
+                        </svg> : null
                   }
-                  <a key={course.id} href={`/courses/${course.id}`}>
+                  <a key={course.id} className={"linkToCourse"} href={`/courses/${course.id}`}>
                     <button onClick={(event) => {
                       // event.preventDefault()
                       // setVisible(!visible)
-                    }} type="button" className="self-end text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none">Voir plus</button>
+                    }} type="button" className="self-end text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none">Voir plus</button>
                   </a></div>
               </div>
             </div>

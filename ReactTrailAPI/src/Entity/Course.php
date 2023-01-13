@@ -26,7 +26,7 @@ use ApiPlatform\Metadata\Put;
     denormalizationContext: ['groups' => ['course:write']],
 )]
 #[Get]
-#[Put(security: "is_granted('ROLE_ORGANISATEUR')")]
+#[Put(security: "is_granted('ROLE_USER')")]
 #[GetCollection]
 #[Post(security: "is_granted('ROLE_ORGANISATEUR')")]
 #[Delete(security: "is_granted('ROLE_ORGANISATEUR')")]

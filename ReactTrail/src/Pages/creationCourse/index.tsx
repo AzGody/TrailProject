@@ -66,6 +66,7 @@ const CreationCourse = () => {
             })
                 .then(response => response.json())
                 .then(response => console.log(JSON.stringify(response)))
+                .then(response => window.location.replace("/admin/courses"))
                 .catch(error => console.log(error))
         }else{
             inputs.deniveleNegatif = +document.querySelector('#deniveleNegatif').value

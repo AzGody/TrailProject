@@ -1,3 +1,3 @@
 export const convertMeterToKilometer = (value: string) => {
-    return +value/1000;
+    return Math.round(+value/1000);
 }

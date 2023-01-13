@@ -9,6 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fullcalendar/core": "^6.0.3",
+    "@fullcalendar/daygrid": "^6.0.3",
+    "@fullcalendar/react": "^6.0.3",
     "@headlessui/react": "^1.7.7",
     "jwt-decode": "^3.1.2",
     "leaflet": "^1.9.3",
