@@ -11,3 +11,7 @@
 .font-header {
   font-family: 'Dancing Script';
 }
+
+.popup a {
+  @apply text-white
+}
