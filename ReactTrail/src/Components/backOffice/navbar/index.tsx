@@ -8,9 +8,9 @@ const Navbar = () => {
         <div className='admin-navbar-container'>
             <nav id="admin-navbar">
                 <ul>
-                    <li><a href="/admin/evenements">Evenement</a></li>
-                    <li><a href="/admin/courses">Courses</a></li>
-                    <li><a href="/admin/utilisateurs">Utilisateurs</a></li>
+                    <li><a href="/admin/evenements" className='px-3'>Evenement</a></li>
+                    <li><a href="/admin/courses" className='px-3'>Courses</a></li>
+                    <li><a href="/admin/utilisateurs" className='px-3'>Utilisateurs</a></li>
                 </ul>
             </nav>
         </div>

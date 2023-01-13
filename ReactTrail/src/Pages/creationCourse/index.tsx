@@ -21,11 +21,11 @@ const CreationCourse = () => {
     const [event, setEvent] = useState()
     const { id } = useParams();
     const [course, setCourse] = useState([]);
-  
+
     // GET REQUEST TO GET VALUE BY ID
-    if(id !== undefined){
+    if (id !== undefined) {
         useEffect(() => {
-            fetch(API_ROOT_URL+`/api/courses/${id}`, {
+            fetch(API_ROOT_URL + `/api/courses/${id}`, {
                 method: "GET",
                 headers: {
                     Accept: "application/json",
@@ -49,13 +49,13 @@ const CreationCourse = () => {
         inputs.utilisateurs = [];
         inputs.distance = +inputs.distance;
         console.log(event)
-        event == undefined ? null : inputs.evenement = "/api/evenements/"+event
+        event == undefined ? null : inputs.evenement = "/api/evenements/" + event
         inputs.denivelePositif = +inputs.denivelePositif;
         inputs.deniveleNegatif = +inputs.deniveleNegatif;
         console.log(inputs)
 
-        if(id === undefined){
-            fetch(API_ROOT_URL+'/api/courses', {
+        if (id === undefined) {
+            fetch(API_ROOT_URL + '/api/courses', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -68,7 +68,7 @@ const CreationCourse = () => {
                 .then(response => console.log(JSON.stringify(response)))
                 .then(response => window.location.replace("/admin/courses"))
                 .catch(error => console.log(error))
-        }else{
+        } else {
             inputs.deniveleNegatif = +document.querySelector('#deniveleNegatif').value
             inputs.denivelePositif = +document.querySelector('#denivelePositif').value
             inputs.nom = document.querySelector('#nom').value
@@ -76,7 +76,7 @@ const CreationCourse = () => {
             inputs.date = document.querySelector('#date').value
             inputs.localisation = course.localisation
             console.log(course.localisation)
-            fetch(API_ROOT_URL+`/api/courses/${id}`, {
+            fetch(API_ROOT_URL + `/api/courses/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Accept': 'application/json',
@@ -98,11 +98,11 @@ const CreationCourse = () => {
     }
 
     const handleSelectChange = (e) => {
-        if(e.target.value == "none"){
+        if (e.target.value == "none") {
             document.querySelector('.localisation').classList.remove('hidden')
             document.querySelector('.map')?.classList.remove('hidden')
         }
-        else{
+        else {
             document.querySelector('.localisation').classList.contains('hidden') ? null : document.querySelector('.localisation').classList.add('hidden')
             document.querySelector('.map')?.classList.add('hidden')
             setEvent(e.target.value)
@@ -110,72 +110,72 @@ const CreationCourse = () => {
     }
 
     function handleSearchAdress(input: string, point: string) {
-        document.querySelector('.results-adr-'+point).innerHTML = ''
+        document.querySelector('.results-adr-' + point).innerHTML = ''
         if (input == '') return
         fetch(
-          'https://api-adresse.data.gouv.fr/search/?q='+input
+            'https://api-adresse.data.gouv.fr/search/?q=' + input
         ).then((response) =>
-          response.json().then((data) => {
-            document.querySelector('.results-adr-'+point)?.classList.remove('hidden')
-            data.features.map((item) => {
-                console.log(item)
-                let div = document.createElement('div')
-                div.classList.add(
-                  'result',
-                  'text-black',
-                  'align-left',
-                  'w-full',
-                  'hover:bg-slate-300',
-                  'pl-2',
-                  'cursor-pointer'
-                )
-                div.innerHTML = item.properties.postcode + ' - ' + item.properties.name 
-                div.onclick = (e) => {
-                  document.querySelector('.'+point+'-input').value =
-                    e.target.innerText.split(' - ')[1]
-                    document.querySelector('.results-adr-'+point)?.classList.add('hidden')
-                    if(point == "depart"){
-                        setLatLngDepart([item.geometry.coordinates[1], item.geometry.coordinates[0]])
-                        setNomDepart(item.properties.name)
+            response.json().then((data) => {
+                document.querySelector('.results-adr-' + point)?.classList.remove('hidden')
+                data.features.map((item) => {
+                    console.log(item)
+                    let div = document.createElement('div')
+                    div.classList.add(
+                        'result',
+                        'text-black',
+                        'align-left',
+                        'w-full',
+                        'hover:bg-slate-300',
+                        'pl-2',
+                        'cursor-pointer'
+                    )
+                    div.innerHTML = item.properties.postcode + ' - ' + item.properties.name
+                    div.onclick = (e) => {
+                        document.querySelector('.' + point + '-input').value =
+                            e.target.innerText.split(' - ')[1]
+                        document.querySelector('.results-adr-' + point)?.classList.add('hidden')
+                        if (point == "depart") {
+                            setLatLngDepart([item.geometry.coordinates[1], item.geometry.coordinates[0]])
+                            setNomDepart(item.properties.name)
+                        }
+                        else {
+                            setLatLngArrive([item.geometry.coordinates[1], item.geometry.coordinates[0]])
+                            setNomArrive(item.properties.name)
+                        }
+                        setLat(item.geometry.coordinates[1]), setLng(item.geometry.coordinates[0])
                     }
-                    else{
-                        setLatLngArrive([item.geometry.coordinates[1], item.geometry.coordinates[0]])
-                        setNomArrive(item.properties.name)
-                    }
-                    setLat(item.geometry.coordinates[1]), setLng(item.geometry.coordinates[0])
-                }
-                document.querySelector('.results-adr-'+point)?.append(div)
+                    document.querySelector('.results-adr-' + point)?.append(div)
+                })
             })
-          })
         )
     }
 
-    function fetchEvents(){
-    Array.prototype.slice.call(document.querySelectorAll('.opt')).map((item, index) => {
-        index > 1 ? item.remove() : null
-    })
-    events.map((item, index) => {
-        let opt = document.createElement('option')
-        opt.value = item.id
-        opt.innerHTML = item.nom
-        opt.onclick = (e) => {
-            console.log(e.target.value)
-        }
-        opt.classList.add('opt')
-        document.querySelector('option[value="none"]')?.after(opt)
-    })
+    function fetchEvents() {
+        Array.prototype.slice.call(document.querySelectorAll('.opt')).map((item, index) => {
+            index > 1 ? item.remove() : null
+        })
+        events.map((item, index) => {
+            let opt = document.createElement('option')
+            opt.value = item.id
+            opt.innerHTML = item.nom
+            opt.onclick = (e) => {
+                console.log(e.target.value)
+            }
+            opt.classList.add('opt')
+            document.querySelector('option[value="none"]')?.after(opt)
+        })
     }
 
     useEffect(() => {
-        fetch(API_ROOT_URL+'/api/evenements', {
+        fetch(API_ROOT_URL + '/api/evenements', {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
-        },
-    })
-        .then((response) => response.json())
-        .then((response) => {setEvents(response)})
-        .catch((error) => console.log(error));
+            },
+        })
+            .then((response) => response.json())
+            .then((response) => { setEvents(response) })
+            .catch((error) => console.log(error));
     }, []);
 
     useEffect(() => {
@@ -188,9 +188,9 @@ const CreationCourse = () => {
             day = '' + d.getDate(),
             year = d.getFullYear();
 
-        if (month.length < 2) 
+        if (month.length < 2)
             month = '0' + month;
-        if (day.length < 2) 
+        if (day.length < 2)
             day = '0' + day;
 
         return [year, month, day].join('-');
@@ -233,6 +233,20 @@ const CreationCourse = () => {
                                 />
                             </div>
                         </div>
+                        <div className="flex flex-col items-start justify-center w-full mt-4">
+                            <label className={'text-white'} htmlFor="description">
+                                Description
+                            </label>
+                            <input
+                                type="textarea"
+                                id="description"
+                                name="description"
+                                value={inputs.description || course.description}
+                                onChange={handleChange}
+                                placeholder="description"
+                                className="border-black rounded-lg border-solid border p-2 w-full text-black"
+                            />
+                        </div>
                         <div className="flex flex-col items-start justify-center w-full mt-4 ">
                             <label className={"text-white"} htmlFor="course-evenement">Evénement</label>
                             <select
@@ -255,18 +269,18 @@ const CreationCourse = () => {
                                     name="depart"
                                     placeholder="Adresse de départ"
                                     className="depart-input border-black rounded-lg border-solid border p-2 w-full"
-                                    defaultValue = {course?.localisation?.nomDepart}
+                                    defaultValue={course?.localisation?.nomDepart}
                                 />
                                 <div
-                              className="search-adress absolute flex flex-col items-center justify-center w-1/3 text-xs cursor-pointer text-black"
-                              onClick={() => {
-                                let input = document.querySelector('#depart')
-                                handleSearchAdress(input.value, "depart")
-                              }}
-                            >
-                              Rechercher
-                            </div>
-                            <div className="results-adr-depart absolute flex flex-col items-center justify-center w-full rounded-lg border border-slate-500 bg-slate-200 hidden"></div>
+                                    className="search-adress absolute flex flex-col items-center justify-center w-1/3 text-xs cursor-pointer text-black"
+                                    onClick={() => {
+                                        let input = document.querySelector('#depart')
+                                        handleSearchAdress(input.value, "depart")
+                                    }}
+                                >
+                                    Rechercher
+                                </div>
+                                <div className="results-adr-depart absolute flex flex-col items-center justify-center w-full rounded-lg border border-slate-500 bg-slate-200 hidden"></div>
                             </div>
                             <div className="relative flex flex-col items-start justify-center w-full mt-4">
                                 <label className={"text-white"} htmlFor="course-arrive">Point d'arrivé</label>
@@ -276,18 +290,18 @@ const CreationCourse = () => {
                                     name="arrive"
                                     placeholder="Adresse d'arrivé"
                                     className="arrive-input border-black rounded-lg border-solid border p-2 w-full"
-                                    defaultValue = {course?.localisation?.nomArrive}
+                                    defaultValue={course?.localisation?.nomArrive}
                                 />
                                 <div
-                              className="search-adress absolute flex flex-col items-center justify-center w-1/3 text-xs cursor-pointer text-black"
-                              onClick={() => {
-                                let input = document.querySelector('#arrive')
-                                handleSearchAdress(input.value, "arrive")
-                              }}
-                            >
-                              Rechercher
-                            </div>
-                            <div className="results-adr-arrive absolute flex flex-col items-center justify-center w-full rounded-lg border border-slate-500 bg-slate-200 hidden"></div>
+                                    className="search-adress absolute flex flex-col items-center justify-center w-1/3 text-xs cursor-pointer text-black"
+                                    onClick={() => {
+                                        let input = document.querySelector('#arrive')
+                                        handleSearchAdress(input.value, "arrive")
+                                    }}
+                                >
+                                    Rechercher
+                                </div>
+                                <div className="results-adr-arrive absolute flex flex-col items-center justify-center w-full rounded-lg border border-slate-500 bg-slate-200 hidden"></div>
                             </div>
                         </div>
                         <div className="flex flex-col items-start justify-center w-full mt-4">
@@ -304,26 +318,26 @@ const CreationCourse = () => {
                         </div>
                         <div className="denivele flex items-center justify-between mt-4">
                             <div className="flex flex-col items-start justify-center  w-48">
-                                <label className={"text-white"} htmlFor="course-denivele-max">Dénivelé maximum</label>
+                                <label className={"text-white"} htmlFor="course-denivele-max">Dénivelé Positif</label>
                                 <input
                                     type="number"
                                     id="denivelePositif"
                                     name="denivelePositif"
                                     defaultValue={inputs.denivelePositif || course.denivelePositif}
                                     onChange={handleChange}
-                                    placeholder="Dénivelé maximum en m"
+                                    placeholder="Dénivelé Positif en m"
                                     className="border-black rounded-lg border-solid border p-2"
                                 />
                             </div>
                             <div className="flex flex-col items-start justify-center  w-48">
-                                <label className={"text-white"} htmlFor="course-denivele-min">Dénivelé minimum</label>
+                                <label className={"text-white"} htmlFor="course-denivele-min">Dénivelé Négatif</label>
                                 <input
                                     type="number"
                                     id="deniveleNegatif"
                                     name="deniveleNegatif"
                                     defaultValue={inputs.deniveleNegatif || course.deniveleNegatif}
                                     onChange={handleChange}
-                                    placeholder="Dénivelé minimum en m"
+                                    placeholder="Dénivelé Négatif en m"
                                     className="border-black rounded-lg border-solid border p-2"
                                 />
                             </div>
@@ -335,13 +349,13 @@ const CreationCourse = () => {
                         />
                         <button
                             type="button"
-                            onClick={e => { history.back() } }
+                            onClick={e => { history.back() }}
                             className="mt-4 bg-red-400 rounded-lg p-2 text-white w-24 hover:bg-red-500 cursor-pointer"
                         >Annuler</button>
                     </form>
                 </div>
                 <div className="map h-2/4 w-96" id="map">
-                    <Marker_ coords={[lat, lng]} markerCoords={[latLngDepart, latLngArrive]}/>
+                    <Marker_ coords={[lat, lng]} markerCoords={[latLngDepart, latLngArrive]} />
                 </div>
             </div>
             <Footer></Footer>
