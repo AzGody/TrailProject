@@ -17,6 +17,8 @@ import BackOfficeCourses from "./Pages/BackOffice/Courses";
 import BackOfficeUtilisateurs from "./Pages/BackOffice/Utilisateurs";
 import PrivateRoutes from "./utils/PrivateRoutes";
 import Calendrier from "./Components/calendrier";
+import DeleteCourse from "./Pages/BackOffice/DeleteCourse";
+import DeleteEvenement from "./Pages/BackOffice/DeleteEvenement";
 
 export const API_ROOT_URL = "http://127.0.0.1:8000";
 
@@ -42,6 +44,8 @@ const router = createBrowserRouter(
                 <Route element={<CreateCourse/>} path={"/admin/courses/edit/:id"}></Route>
                 <Route element={<CreateEvenement/>} path={"/admin/evenements/create"}></Route>
                 <Route element={<CreateEvenement/>} path={"/admin/evenements/edit/:id"}></Route>
+                <Route element={<DeleteCourse/>} path={"/admin/courses/delete/:id"}></Route>
+                <Route element={<DeleteEvenement/>} path={"/admin/evenements/delete/:id"}></Route>
             </Route>
 
             <Route element={<Page404/>} path={"*"}></Route>

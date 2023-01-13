@@ -52,9 +52,6 @@ const UsersList = () => {
                             <th scope="col" className="px-6 py-3">
                                 Role
                             </th>
-                            <th scope="col" className="px-6 py-3 text-center">
-                                Actions
-                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -72,10 +69,6 @@ const UsersList = () => {
                             </td>  
                             <td className="px-6 py-4">
                               {utilisateur.roles.map(role => <div>{role}</div>)}
-                            </td>                            
-                            <td className="px-6 py-4 text-center">
-                                <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Modifier</a>
-                                <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Supprimer</a>
                             </td>
                         </tr>
                       ))}
