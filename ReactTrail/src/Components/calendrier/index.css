@@ -1,0 +1,10 @@
+a.fc-event {
+    cursor: pointer;
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+a.fc-event:hover {
+    opacity: 80%;
+}

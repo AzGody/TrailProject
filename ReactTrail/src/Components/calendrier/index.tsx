@@ -1,6 +1,7 @@
 // @ts-nocheck - may need to be at the start of file
 import Header from "../Header";
 import Footer from "../footer";
+import "./index.css";
 
 import React, { useState, useEffect } from 'react'
 import FullCalendar from '@fullcalendar/react'
@@ -8,10 +9,12 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 
 import { API_ROOT_URL } from "/src/main";
 import jwtDecode from "jwt-decode";
+import {an} from "@fullcalendar/core/internal-common";
 
-const Calendrier = (props: any) => {
+const Calendrier = () => {
 
     const [courses, setCourses] = useState([]);
+    const [customCourse, setCustomCourse] = useState([]);
 
     const token = sessionStorage.getItem("JWT");
 
@@ -28,16 +31,18 @@ const Calendrier = (props: any) => {
         .then((response) => response.json())
         .then((user) => {
             setCourses(user.course)
-            console.log(user)
         })
         .catch((error) => console.log(error));
     }, []);
 
-    console.log("toto" , courses);
+    useEffect(() => {
+        const array = [];
 
-    const formatDate = (date) => {
-        return date.split("T")[0];
-    }
+        courses.forEach((course) => {
+            array.push({...course, title: "Course : " + course.nom, date: course.date.split("T")[0]})
+        })
+        setCustomCourse(array)
+    }, [courses])
 
     return (
         <div>
@@ -45,18 +50,20 @@ const Calendrier = (props: any) => {
                 namePage={"Mes courses"}
                 description={"Les courses auxquelles vous participez"}
             />
-            <FullCalendar
-                plugins={[ dayGridPlugin ]}
-                initialView="dayGridMonth"
-                events={[
-                    { title: courses.nom, date: formatDate(courses.date), id: courses.id },
-                ]}
-                eventClick={((arg) => {
-                    let id = arg.event.id;
-                    window.open(`http://localhost:5173/courses/${id}`);
-                })}
-
-            />
+            <div className={"w-4/5 m-auto"}>
+                <div className={"w-full p-12"}>
+                    <FullCalendar
+                        plugins={[ dayGridPlugin ]}
+                        initialView="dayGridMonth"
+                        events={customCourse}
+                        eventClick={((arg) => {
+                            window.open(`http://localhost:5173/courses/${id}`);
+                        })}
+                        locale={"fr-fr"}
+                        buttonText={ {today: "Aujourd'hui"} }
+                    />
+                </div>
+            </div>
             <Footer />
         </div>
     )
