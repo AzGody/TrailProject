@@ -309,7 +309,7 @@ const CreationCourse = () => {
                                 className="border-black rounded-lg border-solid border p-2 w-full"
                             />
                         </div>
-                        <div className="denivele flex items-center justify-between mt-4">
+                        <div className="denivele flex items-center justify-evenly mt-4">
                             <div className="flex flex-col items-start justify-center  w-48">
                                 <label className={"text-white"} htmlFor="course-denivele-max">Dénivelé Positif</label>
                                 <input
