@@ -73,7 +73,7 @@ function App() {
         <EvenementList></EvenementList>
         <div className="flex-column center w-auto ">
           <div className="inline-flex mx-auto w-30 center  ">
-            <label for="activites" className="mr-4">Afficher les :  </label>
+            <label htmlFor="activites" className="mr-4">Afficher les :  </label>
             <div>
               <select name="activite" id="activites" onChange={onChangeSelect} className="p-0">
                 <option value="course">courses</option>
