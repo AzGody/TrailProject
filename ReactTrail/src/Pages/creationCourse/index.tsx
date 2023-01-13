@@ -301,7 +301,7 @@ const CreationCourse = () => {
                                 >
                                     Rechercher
                                 </div>
-                                <div className="results-adr-arrive absolute flex flex-col items-center justify-center w-full rounded-lg border border-slate-500 bg-slate-200 hidden"></div>
+                                <div className="results-adr-arrive absolute flex flex-col items-start justify-start rounded-lg border border-slate-500 bg-slate-200 hidden"></div>
                             </div>
                         </div>
                         <div className="flex flex-col items-start justify-center w-full mt-4">
