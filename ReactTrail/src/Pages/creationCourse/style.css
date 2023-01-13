@@ -1,13 +1,16 @@
 .form-container form .results, .form-container form .results-adr-depart, .form-container form .results-adr-arrive{
     min-height: 30px;
     max-height: 200px;
+    width: 195px;
     overflow-y: scroll;
+    overflow-x: hidden;
     top: 70px;
 }
 
 .form-container form .result{
-    overflow-x: hidden;
     text-overflow: ellipsis;
+    width: 195px;
+    max-width: 195px;
     max-height: 28px;
     height: 28px;
     white-space: nowrap;
