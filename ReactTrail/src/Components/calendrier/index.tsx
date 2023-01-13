@@ -33,11 +33,15 @@ const Calendrier = (props: any) => {
         .catch((error) => console.log(error));
     }, []);
 
-    console.log(courses);
+    console.log("toto" , courses);
+
+    const formatDate = (date) => {
+        return date.split("T")[0];
+    }
 
     return (
         <div>
-            <Header backgroundImage="/evenement.jpeg"
+            <Header backgroundImage="/course.png"
                 namePage={"Mes courses"}
                 description={"Les courses auxquelles vous participez"}
             />
@@ -45,7 +49,7 @@ const Calendrier = (props: any) => {
                 plugins={[ dayGridPlugin ]}
                 initialView="dayGridMonth"
                 events={[
-                    { title: 'event 1', date: '2023-01-12', id: '1' },
+                    { title: courses.nom, date: formatDate(courses.date), id: courses.id },
                 ]}
                 eventClick={((arg) => {
                     let id = arg.event.id;
