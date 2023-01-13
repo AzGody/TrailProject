@@ -49,9 +49,11 @@ const Evenements = () => {
     inputs.utilisateurs = []
     inputs.courses = []
     inputs.localisation = {
-      name: cityName,
-      lat: lat,
-      lng: lng
+      nom: cityName,
+      position: {
+        lat: lat,
+        lng: lng
+      }
     }
     
     if(id === undefined){
