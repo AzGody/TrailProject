@@ -30,7 +30,6 @@ const Evenements = () => {
           .catch((error) => console.log(error));
     }, []);
   }
-console.log(evenement)
   function getCoordinates(cityName: string) {
     fetch(
       'https://nominatim.openstreetmap.org/search?format=json&q=' + cityName
@@ -74,10 +73,12 @@ console.log(evenement)
     }else{
       inputs.utilisateurs = []
       inputs.courses = []
-      inputs.dateDebut = +document.querySelector('#date-debut').value
-      inputs.dateFin = +document.querySelector('#date-fin').value
-      inputs.description = +document.querySelector('#description').value
+      inputs.nom = document.querySelector('#nom').value
+      inputs.dateDebut = document.querySelector('#date-debut').value
+      inputs.dateFin = document.querySelector('#date-fin').value
+      inputs.description = document.querySelector('#description').value
       inputs.localisation = evenement.localisation
+      console.log(inputs)
       // PUT REQUEST TO MODIFY EVENT
       fetch(API_ROOT_URL+`/api/evenements/${id}`, {
         method: 'PUT',
@@ -98,6 +99,7 @@ console.log(evenement)
   const handleChange = (event: any) => {
     const name = event.target.name
     const value = event.target.value
+    console.log(value)
     setInputs((values) => ({ ...values, [name]: value }))
   }
 
@@ -174,7 +176,7 @@ console.log(evenement)
                   name="nom"
                   placeholder="Entrez le nom de l'événement"
                   className="border-black rounded-lg border-solid border p-2 h-10 w-full text-black"
-                  value={inputs.nom || evenement.nom}
+                  defaultValue={evenement.nom ? evenement.nom : inputs.nom}
                   onChange={handleChange}
                 />
               </div>
