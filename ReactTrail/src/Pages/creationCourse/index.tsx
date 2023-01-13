@@ -6,6 +6,7 @@ import Footer from "../../Components/footer";
 import Marker_ from '../creationEvenement/Marker_';
 import { API_ROOT_URL } from '/src/main';
 import { useParams } from 'react-router-dom';
+import {convertMeterToKilometer} from "../../utils/convertMeterToKilometer";
 
 
 const CreationCourse = () => {
@@ -47,7 +48,7 @@ const CreationCourse = () => {
             latLngArrive: latLngArrive
         }; //TODO: supprimer
         inputs.utilisateurs = [];
-        inputs.distance = +inputs.distance;
+        inputs.distance = (+inputs.distance)*1000;
         console.log(event)
         event == undefined ? null : inputs.evenement = "/api/evenements/" + event
         inputs.denivelePositif = +inputs.denivelePositif;
@@ -72,7 +73,7 @@ const CreationCourse = () => {
             inputs.deniveleNegatif = +document.querySelector('#deniveleNegatif').value
             inputs.denivelePositif = +document.querySelector('#denivelePositif').value
             inputs.nom = document.querySelector('#nom').value
-            inputs.distance = +document.querySelector('#distance').value
+            inputs.distance = (+document.querySelector('#distance').value)*1000
             inputs.date = document.querySelector('#date').value
             inputs.localisation = course.localisation
             console.log(course.localisation)
@@ -312,9 +313,9 @@ const CreationCourse = () => {
                                 type="number"
                                 id="distance"
                                 name="distance"
-                                defaultValue={inputs.distance || course.distance}
+                                defaultValue={inputs.distance || convertMeterToKilometer(course.distance)}
                                 onChange={handleChange}
-                                placeholder="Entrez la distance de la course en m"
+                                placeholder="Entrez la distance de la course en km"
                                 className="border-black rounded-lg border-solid border p-2 w-full"
                             />
                         </div>
